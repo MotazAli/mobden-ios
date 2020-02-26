@@ -13,6 +13,8 @@
 		C3A039E223FFA845002BBE36 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3A039E123FFA845002BBE36 /* Assets.xcassets */; };
 		C3A039E523FFA845002BBE36 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3A039E423FFA845002BBE36 /* Preview Assets.xcassets */; };
 		C3A039E823FFA845002BBE36 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3A039E623FFA845002BBE36 /* LaunchScreen.storyboard */; };
+		C3A039F023FFA900002BBE36 /* SliderMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A039EF23FFA900002BBE36 /* SliderMenu.swift */; };
+		C3A039F223FFA943002BBE36 /* PrimarySchoolSliderMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A039F123FFA943002BBE36 /* PrimarySchoolSliderMenu.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		C3A039E423FFA845002BBE36 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C3A039E723FFA845002BBE36 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C3A039E923FFA845002BBE36 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C3A039EF23FFA900002BBE36 /* SliderMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderMenu.swift; sourceTree = "<group>"; };
+		C3A039F123FFA943002BBE36 /* PrimarySchoolSliderMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimarySchoolSliderMenu.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +67,8 @@
 				C3A039E623FFA845002BBE36 /* LaunchScreen.storyboard */,
 				C3A039E923FFA845002BBE36 /* Info.plist */,
 				C3A039E323FFA845002BBE36 /* Preview Content */,
+				C3A039EF23FFA900002BBE36 /* SliderMenu.swift */,
+				C3A039F123FFA943002BBE36 /* PrimarySchoolSliderMenu.swift */,
 			);
 			path = mobden;
 			sourceTree = "<group>";
@@ -149,6 +155,8 @@
 				C3A039DC23FFA840002BBE36 /* AppDelegate.swift in Sources */,
 				C3A039DE23FFA840002BBE36 /* SceneDelegate.swift in Sources */,
 				C3A039E023FFA840002BBE36 /* ContentView.swift in Sources */,
+				C3A039F023FFA900002BBE36 /* SliderMenu.swift in Sources */,
+				C3A039F223FFA943002BBE36 /* PrimarySchoolSliderMenu.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
