@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C369A66F2406C4D100CB6E79 /* DataObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = C369A66E2406C4D100CB6E79 /* DataObjects.swift */; };
+		C369A6712406C58C00CB6E79 /* RequestServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = C369A6702406C58C00CB6E79 /* RequestServices.swift */; };
 		C3A039DC23FFA840002BBE36 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A039DB23FFA840002BBE36 /* AppDelegate.swift */; };
 		C3A039DE23FFA840002BBE36 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A039DD23FFA840002BBE36 /* SceneDelegate.swift */; };
 		C3A039E023FFA840002BBE36 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A039DF23FFA840002BBE36 /* ContentView.swift */; };
@@ -18,6 +20,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C369A66E2406C4D100CB6E79 /* DataObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataObjects.swift; sourceTree = "<group>"; };
+		C369A6702406C58C00CB6E79 /* RequestServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestServices.swift; sourceTree = "<group>"; };
 		C3A039D823FFA840002BBE36 /* mobden.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mobden.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3A039DB23FFA840002BBE36 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C3A039DD23FFA840002BBE36 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -41,6 +45,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C369A66B2406C40200CB6E79 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C369A66C2406C42800CB6E79 /* Server */ = {
+			isa = PBXGroup;
+			children = (
+				C369A6702406C58C00CB6E79 /* RequestServices.swift */,
+			);
+			path = Server;
+			sourceTree = "<group>";
+		};
+		C369A66D2406C4A000CB6E79 /* DataObject */ = {
+			isa = PBXGroup;
+			children = (
+				C369A66E2406C4D100CB6E79 /* DataObjects.swift */,
+			);
+			path = DataObject;
+			sourceTree = "<group>";
+		};
 		C3A039CF23FFA840002BBE36 = {
 			isa = PBXGroup;
 			children = (
@@ -60,6 +87,9 @@
 		C3A039DA23FFA840002BBE36 /* mobden */ = {
 			isa = PBXGroup;
 			children = (
+				C369A66D2406C4A000CB6E79 /* DataObject */,
+				C369A66C2406C42800CB6E79 /* Server */,
+				C369A66B2406C40200CB6E79 /* Views */,
 				C3A039DB23FFA840002BBE36 /* AppDelegate.swift */,
 				C3A039DD23FFA840002BBE36 /* SceneDelegate.swift */,
 				C3A039DF23FFA840002BBE36 /* ContentView.swift */,
@@ -154,8 +184,10 @@
 			files = (
 				C3A039DC23FFA840002BBE36 /* AppDelegate.swift in Sources */,
 				C3A039DE23FFA840002BBE36 /* SceneDelegate.swift in Sources */,
+				C369A6712406C58C00CB6E79 /* RequestServices.swift in Sources */,
 				C3A039E023FFA840002BBE36 /* ContentView.swift in Sources */,
 				C3A039F023FFA900002BBE36 /* SliderMenu.swift in Sources */,
+				C369A66F2406C4D100CB6E79 /* DataObjects.swift in Sources */,
 				C3A039F223FFA943002BBE36 /* PrimarySchoolSliderMenu.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

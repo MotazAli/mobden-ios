@@ -1,0 +1,45 @@
+//
+//  DataObjects.swift
+//  mobden
+//
+//  Created by administrator on 2/26/20.
+//  Copyright © 2020 motaz. All rights reserved.
+//
+
+import Foundation
+import SwiftUI
+import Combine
+
+
+struct Word : Decodable, Identifiable{
+    var id:Int
+    var image:String
+    var title:String
+    var description:String
+    
+    
+}
+
+
+
+
+struct Article : Decodable, Identifiable{
+    var id:Int
+    var image:String
+    var title:String
+    var description:String
+    var creationDate:String
+    
+    
+}
+
+struct AboutSchool : Decodable, Identifiable{
+    var id:Int
+    var image:String
+    var tile:String
+    
+    var creationDate:String
+    var link:String
+      
+}
+
