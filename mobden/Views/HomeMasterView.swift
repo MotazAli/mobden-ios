@@ -37,32 +37,46 @@ struct HomeMasterView: View {
                 List{
                 //Group{
 
+                    
+                    
+                    
+                    
                     VStack(alignment:.trailing){
-                                Text("لوحة الشرف")
-                            ScrollView(.horizontal,showsIndicators: false){
-
-                                VStack(alignment:.leading){
-
-                            HStack{
-                               ForEach(model.words){ word in
-                                
-                                
-                                
-                                
-                                VStack(alignment: .center){
-
-                                       UrlImageView(urlString:(self.url + self.wordUrl + word.image),width: 300,height: 200)
-                                        Text(word.title)
-                                   }.frame(width: 300, height: 400, alignment: .center)
-                               }
-
-
-                            }
-
-                        }.frame(minWidth: 0, idealWidth: nil, maxWidth: .infinity, minHeight: 0, idealHeight: nil, maxHeight: .infinity, alignment: .leading)
-                            }.frame(height:300)
-
+                        ForEach(model.words){ word in
+                            UrlImageView(urlString:(self.url + self.wordUrl + word.image),width: 300,height: 200)
+                            Text(word.title)
                         }
+                        Spacer()
+                    }
+                    
+                    
+//
+//                    VStack(alignment:.trailing){
+//                                Text("لوحة الشرف")
+//                            ScrollView(.horizontal,showsIndicators: false){
+//
+//                                VStack(alignment:.leading){
+//
+//                            HStack{
+//                               ForEach(model.words){ word in
+//
+//
+//
+//
+//                                VStack(alignment: .center){
+//
+//                                       UrlImageView(urlString:(self.url + self.wordUrl + word.image),width: 300,height: 200)
+//                                        Text(word.title)
+//                                   }.frame(width: 300, height: 400, alignment: .center)
+//                               }
+//
+//
+//                            }
+//
+//                        }.frame(minWidth: 0, idealWidth: nil, maxWidth: .infinity, minHeight: 0, idealHeight: nil, maxHeight: .infinity, alignment: .leading)
+//                            }.frame(height:300)
+//
+//                        }
 
 
 

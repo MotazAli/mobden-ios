@@ -13,6 +13,7 @@ struct UrlImageView: View {
     var height :CGFloat
     var width : CGFloat
     
+    
     init(urlString: String? ,width: CGFloat ,height : CGFloat ){
         urlImageModel = UrlImageModel(urlString: urlString)
         self.width = width
@@ -25,9 +26,15 @@ struct UrlImageView: View {
         Image(uiImage: urlImageModel.image ?? UrlImageView.defaultImage!)
             .renderingMode(.original)
         .resizable()
-            //.aspectRatio(contentMode: .fit)
+            .frame(width: self.width, height: self.height, alignment: .center)
         .scaledToFit()
-            .frame( height: self.height)
+                                       //.resizable()
+                                       //.frame(width: 300, height: 200, alignment: .center)
+                                       //.scaledToFit()
+        //.resizable()
+            //.aspectRatio(contentMode: .fit)
+        //.scaledToFit()
+            //.frame( height: self.height)
     }
     
     

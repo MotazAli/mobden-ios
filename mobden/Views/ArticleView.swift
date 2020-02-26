@@ -31,7 +31,7 @@ struct ArticleView: View {
                ForEach(self.articleModel.articles){ article in
                    
                                        //VStack(alignment:.trailing){
-                       Text(article.creationDate)
+                       Text(article.arabicDate)
                                                .padding([.trailing],5)
                                                //.flipsForRightToLeftLayoutDirection(true)
                        Text(article.title)
@@ -45,7 +45,7 @@ struct ArticleView: View {
                                        //}
                                        
                                       // VStack{
-                                           UrlImageView(urlString:(self.url + self.articleUrl + article.image),width: 0,height: 300).padding([.trailing],50)                    //}.padding([.trailing],10)
+                                           UrlImageView(urlString:(self.url + self.articleUrl + article.image),width: 300,height: 300).padding([.trailing],50)                    //}.padding([.trailing],10)
 
 
                                        

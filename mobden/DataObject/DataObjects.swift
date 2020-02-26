@@ -29,6 +29,13 @@ struct Article : Decodable, Identifiable{
     var title:String
     var description:String
     var creationDate:String
+    var arabicDate:String{
+        get{
+            
+            return SystemDates.getArabicDate(date:self.creationDate)
+                
+        }
+    }
     
     
 }
@@ -40,6 +47,15 @@ struct AboutSchool : Decodable, Identifiable{
     
     var creationDate:String
     var link:String
+    
+    var arabicDate:String{
+        get{
+            
+            return SystemDates.getArabicDate(date:self.creationDate)
+                
+        }
+    }
+    
       
 }
 

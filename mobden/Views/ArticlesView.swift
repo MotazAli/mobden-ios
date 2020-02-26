@@ -53,7 +53,7 @@ struct ArticlesView: View {
                                             //}
                                             
                                             VStack{
-                                                UrlImageView(urlString:(self.url + self.articleUrl + article.image),width: 0,height: 300)                    }.padding([.trailing],10)
+                                                UrlImageView(urlString:(self.url + self.articleUrl + article.image),width: 300,height: 300)                    }.padding([.trailing],10)
 
 
                                             
