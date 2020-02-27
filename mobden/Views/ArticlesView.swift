@@ -37,23 +37,31 @@ struct ArticlesView: View {
                         
 
                                         
-                                        VStack(alignment:.trailing){
-                                            //VStack(alignment:.trailing){
-                                                Text(article.creationDate)
-                                                    .padding([.trailing],5)
-                                                    //.flipsForRightToLeftLayoutDirection(true)
-                                                Text(article.title)
-                                                    //.flipsForRightToLeftLayoutDirection(true)
-                                                    .font(.headline)
-                                                    .multilineTextAlignment(.trailing)
-                                                    .lineLimit(3)
-                                                    .padding([.trailing],5)
-                                                    //.alignmentGuide(.trailing){d in d[.trailing]}
-                                                
-                                            //}
-                                            
+                                        VStack{
                                             VStack{
-                                                UrlImageView(urlString:(self.url + self.articleUrl + article.image),width: 300,height: 300)                    }.padding([.trailing],10)
+                                                HStack{
+                                                    Spacer()
+                                                    Text(article.arabicDate)
+                                                    .padding([.trailing],5)
+                                                    //.flipsForRightToLeftLayoutDirection(true)
+                                                }
+                                                HStack{
+                                                    Spacer()
+                                                    Text(article.title)
+                                                        //.flipsForRightToLeftLayoutDirection(true)
+                                                        .font(.headline)
+                                                        .multilineTextAlignment(.trailing)
+                                                        .lineLimit(3)
+                                                        .padding([.trailing],5)
+                                                        //.alignmentGuide(.trailing){d in d[.trailing]}
+                                                    
+                                                }
+                                                
+                                                
+                                            }
+                                            
+                                            //VStack{
+                                                UrlImageView(urlString:(self.url + self.articleUrl + article.image),width: 330,height: 300)                    //}.padding([.trailing],10)
 
 
                                             
@@ -64,22 +72,22 @@ struct ArticlesView: View {
                         //                        .scaledToFit()
                         //                            .frame( height: 300)
                                             
-                                            //VStack(alignment:.trailing){
+                                            VStack{
                                                 Text(article.description)
                                                 //.flipsForRightToLeftLayoutDirection(true)
-                                                    .padding([.trailing],10)
+                                                    //.padding(4)
                                                 .multilineTextAlignment(.trailing)
                                                     .lineLimit(3)
                                                 
-                                            //}
+                                            }.padding(5)
                                             
                                             
                                             
-                                        }.frame(width:375,height:500)
+                                        }.frame(height:500)
                                         
                                             //.padding([.trailing],30)
                                             .background(Color.gray.opacity(0.2))
-                                        .cornerRadius(15)
+                                        .cornerRadius(9)
                         
                     }
                     
@@ -88,7 +96,8 @@ struct ArticlesView: View {
                     
                 }
                 //.navigationBarTitle("مقالات")
-            }//.padding([.trailing],10)
+                
+                }//.padding([.trailing],10)
                 //.frame(alignment:.trailing)
                 .sheet(isPresented: self.$isArticleViewPersented)
                 {

@@ -290,3 +290,75 @@ final class AboutSchoolModel: ObservableObject{
 }
 
 
+
+final class HonorBoardlModel: ObservableObject{
+    
+    @Published var honorBoardList = [HonorBoard]()
+    
+//    init() {
+//        fetchPosts()
+//    }
+    
+    
+    
+     func getAllHonorBoard()
+    {
+
+        honorBoardList.removeAll()
+        
+        let url = URL(string: "https://mobdenapi.azurewebsites.net/MobdenAPI/HonorBoard/GetManagmentHonorBoards")
+        guard let requestUrl = url else { fatalError() }
+        // Create URL Request
+        var request = URLRequest(url: requestUrl)
+        // Specify HTTP Method to use
+        request.httpMethod = "GET"
+        // Send HTTP Request
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            
+            // Check if Error took place
+            if let error = error {
+                print("Error took place \(error)")
+                return
+            }
+            
+            // Read HTTP Response Status code
+            if let response = response as? HTTPURLResponse {
+                print("Response HTTP Status code: \(response.statusCode)")
+            }
+            
+            // Convert HTTP Response Data to a simple String
+            if let data = data, let dataString = String(data: data, encoding: .utf8) {
+                
+                if dataString != "null"{
+                    let data = Data(dataString.utf8)
+                                   let honorBoardlData = try! JSONDecoder().decode([HonorBoard].self, from: data)
+                                  
+                                   DispatchQueue.main.async {
+                                                    self.honorBoardList = honorBoardlData
+                                   }
+                }
+               
+                
+//                print("Response data string:\n \(dataString)")
+//
+//                print("Response data string:\n \(String(describing: wordsData.title))")
+//
+//
+//                print("Response data string:\n \(String(describing: self.words[0].title))")
+                
+            }
+            
+        }
+        task.resume()
+        
+        
+        
+        
+    }
+    
+    
+}
+
+
+
+

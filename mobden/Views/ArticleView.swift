@@ -26,47 +26,51 @@ struct ArticleView: View {
            ScrollView{
            
            
-           VStack(alignment:.trailing){
+           VStack{
                
                ForEach(self.articleModel.articles){ article in
                    
-                                       //VStack(alignment:.trailing){
-                       Text(article.arabicDate)
-                                               .padding([.trailing],5)
-                                               //.flipsForRightToLeftLayoutDirection(true)
-                       Text(article.title)
-                                               //.flipsForRightToLeftLayoutDirection(true)
-                                               .font(.headline)
-                                               .multilineTextAlignment(.trailing)
-                                               .lineLimit(3)
-                                               .padding([.trailing],5)
-                                               //.alignmentGuide(.trailing){d in d[.trailing]}
-                                           
-                                       //}
+                                       VStack{
+                                        HStack{
+                                            Spacer()
+                                            Text(article.arabicDate)
+                                            .padding([.trailing],5)
+                                            //.flipsForRightToLeftLayoutDirection(true)
+                                        }
+                                        HStack{
+                                            Spacer()
+                                            Text(article.title)
+                                                //.flipsForRightToLeftLayoutDirection(true)
+                                                .font(.headline)
+                                                .multilineTextAlignment(.trailing)
+                                                .lineLimit(3)
+                                                .padding([.trailing],5)
+                                                //.alignmentGuide(.trailing){d in d[.trailing]}
+                                            
+                                        }
+                                        
+                       
+                       
+                                       }
                                        
                                       // VStack{
-                                           UrlImageView(urlString:(self.url + self.articleUrl + article.image),width: 300,height: 300).padding([.trailing],50)                    //}.padding([.trailing],10)
+                                           UrlImageView(urlString:(self.url + self.articleUrl + article.image),width: 400,height: 300)
+                
+                
+                                       
+                VStack{
+                    Text(article.description)
+                        .flipsForRightToLeftLayoutDirection(true)
+                        .font(.body)
+                        //.padding([.trailing],5)
+                        .lineSpacing(5)
+                                      //.fixedSize(horizontal: false, vertical: true)
+                        .multilineTextAlignment(.trailing)
+                        //.lineLimit(Int.max)
 
-
+                }
                                        
-                                       
-                                       
-                   //                        Image("company_logo")
-                   //                        .resizable()
-                   //                        .scaledToFit()
-                   //                            .frame( height: 300)
-                                       
-                                       //VStack(alignment:.trailing){
-                       Text(article.description)
-                                           .flipsForRightToLeftLayoutDirection(true)
-                           .font(.body)
-                                               .padding([.trailing],10)
-                   .lineSpacing(5)
-                   //.fixedSize(horizontal: false, vertical: true)
-                                           .multilineTextAlignment(.trailing)
-                           .lineLimit(Int.max)
-                                           
-                                       //}
+                 
                                                    }
                
                                

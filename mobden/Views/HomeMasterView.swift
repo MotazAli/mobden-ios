@@ -15,10 +15,12 @@ struct HomeMasterView: View {
          @ObservedObject var model = WordModel()
         @ObservedObject var articleModel = ArticleModel()
         @ObservedObject var aboutSchoolModel = AboutSchoolModel()
+    @ObservedObject var honorBoardModel = HonorBoardlModel()
          var url = "https://mobdenapi.azurewebsites.net/"
          var wordUrl = "assets/Word/"
            var articleUrl = "assets/articles/"
         var aboutSchoolUrl = "assets/about/"
+    var honorBoardUrl = "assets/honorBoards/"
         
         
         init() {
@@ -26,6 +28,7 @@ struct HomeMasterView: View {
             //self.articleModel = ArticleModel()
             self.articleModel.getTopThreeArticles()
             self.aboutSchoolModel.getAboutSchool()
+            self.honorBoardModel.getAllHonorBoard()
             
         }
         
@@ -41,10 +44,21 @@ struct HomeMasterView: View {
                     
                     
                     
-                    VStack(alignment:.trailing){
+                    VStack{
                         ForEach(model.words){ word in
-                            UrlImageView(urlString:(self.url + self.wordUrl + word.image),width: 300,height: 200)
-                            Text(word.title)
+                            VStack{
+                                HStack{
+                                    Spacer()
+                                     Text(word.title)
+                                }
+                               
+                                VStack{
+                                    UrlImageView(urlString:(self.url + self.wordUrl + word.image),width: 350,height: 200)
+                                }.padding(.leading,10)
+                                
+                            }
+                            
+                            
                         }
                         Spacer()
                     }
@@ -90,7 +104,11 @@ struct HomeMasterView: View {
                     
                     VStack(alignment:.trailing){
                         NavigationLink(destination: ArticlesView()){
-                            Text("المقالات")
+                            HStack{
+                                Spacer()
+                                Text("المقالات")
+                            }
+                            
                             
                         }
                         
@@ -101,19 +119,28 @@ struct HomeMasterView: View {
                             HStack{
                                ForEach(articleModel.articles){ article in
                                 
-                                Button(action: {
-                                    
-                                    self.articleID = article.id
-                                    self.isArticleViewPersented.toggle()
-                                    
-                                }){
-                                    VStack(alignment: .center){
+                                VStack{
+
+                                    Button(action: {
                                         
-                                        UrlImageView(urlString:(self.url + self.articleUrl + article.image),width: 300,height: 200)
-                                        Text(article.title).foregroundColor(.primary)
-                                        }.frame(width: 300, height: 400, alignment: .center)
-                                    
-                                }
+                                        self.articleID = article.id
+                                        self.isArticleViewPersented.toggle()
+                                        
+                                    }){
+                                        VStack(alignment: .center){
+                                            
+                                            UrlImageView(urlString:(self.url + self.articleUrl + article.image),width: 300,height: 200)
+                                            Text(article.title).foregroundColor(.primary)
+                                            }
+                                            
+                                        
+                                    }
+                                }.frame(height: 400).padding(10)
+                                    .cornerRadius(20)
+                                .background(Color.blue.opacity(0.15))
+                                
+                                
+                                
                                 
                                }
                                    
@@ -136,19 +163,43 @@ struct HomeMasterView: View {
                // Group{
 
 
-                    VStack(alignment:.trailing){
+                    VStack{
+                        NavigationLink(destination: ArticlesView()){
+                            HStack{
+                                Spacer()
                                 Text("عن المدرسة")
+                            }.padding([.trailing], 55)
+                            
+                            
+                        }
+                        
+                            
                             ScrollView(.horizontal,showsIndicators: false){
 
                                 VStack(alignment:.leading){
 
                             HStack{
                                ForEach(aboutSchoolModel.aboutSchoolList){ about in
-                                VStack(alignment: .center){
+                                
+                                
+                                VStack{
+                                    
+                                    Button(action: {
+                                        
+                                    }){
+                                        VStack(alignment: .center){
 
-                                       UrlImageView(urlString:(self.url + self.aboutSchoolUrl + about.image),width: 300,height: 200)
-                                        Text(about.tile)
-                                   }.frame(width: 300, height: 400, alignment: .center)
+                                            UrlImageView(urlString:(self.url + self.aboutSchoolUrl + about.image),width: 300,height: 200)
+                                             Text(about.tile).foregroundColor(.primary)
+                                        }
+                                    }
+                                    
+                                }.frame(height: 400).padding(10)
+                                    .cornerRadius(20)
+                                .background(Color.blue.opacity(0.15))
+                                
+                                
+                                
                                }
 
 
@@ -162,7 +213,79 @@ struct HomeMasterView: View {
 
 
 
+                    
+                    
+                    VStack{
+                        //NavigationLink(destination: ArticlesView()){
+                            HStack{
+                                Spacer()
+                                Text("لوحة الشرف")
+                            }
+                            
+                            
+                        //}
+                        
+                        
+                        if honorBoardModel.honorBoardList.isEmpty{
+                            VStack(alignment:.center){
+                                Text("فارغ").frame(width:200,height:50)
+                                    .background(Color.red.opacity(0.5))
+                                .cornerRadius(9)
+                            }
+                        }
+                        else {
+                            
+                            ScrollView(.horizontal,showsIndicators: false){
+                                
+                                        VStack(alignment:.leading){
+                                    
+                                    HStack{
+                                       ForEach(honorBoardModel.honorBoardList){ honor in
+                                        
+                                        VStack{
 
+                                            Button(action: {
+                                                
+                                                self.articleID = honor.id
+                                                self.isArticleViewPersented.toggle()
+                                                
+                                            }){
+                                                VStack(alignment: .center){
+                                                    
+                                                    UrlImageView(urlString:(self.url + self.honorBoardUrl + honor.image),width: 300,height: 200)
+                                                    Text(honor.description).foregroundColor(.primary)
+                                                    }
+                                                    
+                                                
+                                            }
+                                        }.frame(height: 400).padding(10)
+                                            .cornerRadius(20)
+                                        .background(Color.blue.opacity(0.15))
+                                        
+                                        
+                                        
+                                        
+                                       }
+                                           
+                                            
+                                    }
+                                    
+                                        }.frame(minWidth: 0, idealWidth: nil, maxWidth: .infinity, minHeight: 0, idealHeight: nil, maxHeight: .infinity, alignment: .leading)
+                                
+                            }.frame(height:300)
+                            
+                        }
+                        
+                        
+                        
+                        
+                            
+                    
+                        }
+                    
+                    
+                    
+                    
 
 
 

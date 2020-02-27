@@ -14,6 +14,7 @@ import SwiftUI
 struct MasterMenuSlider : View {
  
     @Binding var masterSilderOpen: Bool
+    @State var isRegisterationViewPersented = false
     let width: CGFloat = 270
     
     
@@ -39,8 +40,18 @@ struct MasterMenuSlider : View {
                                       
                                   }
                                   HStack{
-                                       Text("القبول و التسجيل").padding(20)
-                                    .font(.title)
+                                    Button(action:{
+                                        self.isRegisterationViewPersented.toggle()
+                                    }){
+                                        Text("القبول و التسجيل")
+                                            .foregroundColor(Color.black)
+                                            .padding(20)
+                                            .font(.title)
+                                        
+                                    }.sheet(isPresented: self.$isRegisterationViewPersented){
+                                        RegistrationView()
+                                    }
+                                      
                                    }
                                   
                                    HStack{

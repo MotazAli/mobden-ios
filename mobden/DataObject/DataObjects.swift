@@ -59,3 +59,23 @@ struct AboutSchool : Decodable, Identifiable{
       
 }
 
+
+
+
+struct HonorBoard : Decodable ,Identifiable{
+var id:Int
+var studentFullName:String
+var image:String
+
+var creationDate:String
+var description:String
+    var arabicDate:String{
+        get{
+            
+            return SystemDates.getArabicDate(date:self.creationDate)
+                
+        }
+    }
+    
+}
+
