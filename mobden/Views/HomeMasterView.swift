@@ -239,7 +239,7 @@ struct HomeMasterView: View {
 //
 //                                }.frame(minWidth: 0, idealWidth: nil, maxWidth: .infinity, minHeight: 0, idealHeight: nil, maxHeight: .infinity, alignment: .leading)
                         
-                    }.frame(height:450)
+                    }.frame(height:430)
                         }
                     }
                     
@@ -283,39 +283,100 @@ struct HomeMasterView: View {
                         
                             
                             ScrollView(.horizontal,showsIndicators: false){
-
-                                VStack(alignment:.leading){
-
-                            HStack{
-                               ForEach(aboutSchoolModel.aboutSchoolList){ about in
                                 
                                 
-                                VStack{
+                                
+                                HStack(spacing:20){
                                     
-                                    Button(action: {
+                                    ForEach(aboutSchoolModel.aboutSchoolList){ about in
                                         
-                                    }){
-                                        VStack(alignment: .center){
-
-                                            UrlImageView(urlString:(self.url + self.aboutSchoolUrl + about.image),width: 300,height: 200)
-                                             Text(about.tile).foregroundColor(.primary)
-                                        }
+                                        GeometryReader{ geometry in
+                                            
+                                            
+                                            VStack{
+                                                Button(action: {
+                                                           
+                                                            
+                                                        }){
+                                                            VStack(alignment: .center){
+                                                                
+                                                                UrlImageView(urlString:(self.url + self.aboutSchoolUrl + about.image),width: 270,height: 200)
+                                                                    .clipShape(Rectangle())
+                                                                    .cornerRadius(8)
+                                                                    .padding(.horizontal , 10)
+                                                                
+                                                                
+                                                                Text(about.tile).foregroundColor(.primary)
+                                                                .padding(.horizontal , 10)
+                                                                }
+                                                                
+                                                            
+                                                }
+                                            }.frame(width:300,height:380)
+                                            .background(Color.red.opacity(0.3))
+                                                
+                                            .clipShape(Rectangle())
+                                            .cornerRadius(15)
+                                                .rotation3DEffect(Angle(degrees:(Double(geometry.frame(in: .global).minX) - 30) / -20), axis: (x: 0, y: 10.0, z: 0))
+                                            
+                                            
+                                        }.frame(width:300 , height: 200)
+                                        .padding(.top,80)
+                                        
                                     }
                                     
-                                }.frame(height: 400).padding(10)
-                                    .cornerRadius(20)
-                                .background(Color.red.opacity(0.15))
+                                    
+                                    
+                                }.padding(30)
+                                
+                                Spacer()
                                 
                                 
                                 
-                               }
-
-
-                            }
-
-                        }.frame(minWidth: 0, idealWidth: nil, maxWidth: .infinity, minHeight: 0, idealHeight: nil, maxHeight: .infinity, alignment: .leading)
                                 
-                            }.frame(height:300)
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+//
+//
+//                                VStack(alignment:.leading){
+//
+//                            HStack{
+//                               ForEach(aboutSchoolModel.aboutSchoolList){ about in
+//
+//
+//                                VStack{
+//
+//                                    Button(action: {
+//
+//                                    }){
+//                                        VStack(alignment: .center){
+//
+//                                            UrlImageView(urlString:(self.url + self.aboutSchoolUrl + about.image),width: 300,height: 200)
+//                                             Text(about.tile).foregroundColor(.primary)
+//                                        }
+//                                    }
+//
+//                                }.frame(height: 400).padding(10)
+//                                    .cornerRadius(20)
+//                                .background(Color.red.opacity(0.15))
+//
+//
+//
+//                               }
+//
+//
+//                            }
+//
+//                        }.frame(minWidth: 0, idealWidth: nil, maxWidth: .infinity, minHeight: 0, idealHeight: nil, maxHeight: .infinity, alignment: .leading)
+                                
+                            }.frame(height:450)
                         }
 
                         }
@@ -352,42 +413,99 @@ struct HomeMasterView: View {
                             
                             ScrollView(.horizontal,showsIndicators: false){
                                 
-                                        VStack(alignment:.leading){
+                                
+                                HStack(spacing:20){
                                     
-                                    HStack{
-                                       ForEach(honorBoardModel.honorBoardList){ honor in
+                                    ForEach(honorBoardModel.honorBoardList){ honor in
                                         
-                                        VStack{
-
-                                            Button(action: {
-                                                
-                                                self.articleID = honor.id
-                                                self.isSheetPersented.toggle()
-                                                
-                                            }){
-                                                VStack(alignment: .center){
-                                                    
-                                                    UrlImageView(urlString:(self.url + self.honorBoardUrl + honor.image),width: 300,height: 200)
-                                                    Text(honor.description).foregroundColor(.primary)
-                                                    }
-                                                    
-                                                
-                                            }
-                                        }.frame(height: 400).padding(10)
-                                            .cornerRadius(20)
-                                        .background(Color.blue.opacity(0.15))
-                                        
-                                        
-                                        
-                                        
-                                       }
-                                           
+                                        GeometryReader{ geometry in
                                             
+                                            
+                                            VStack{
+                                                Button(action: {
+                                                            
+                                                            
+                                                        }){
+                                                            VStack(alignment: .center){
+                                                                
+                                                                UrlImageView(urlString:(self.url + self.honorBoardUrl + honor.image),width: 270,height: 200)
+                                                                    .clipShape(Rectangle())
+                                                                    .cornerRadius(8)
+                                                                    .padding(.horizontal , 10)
+                                                                
+                                                                
+//                                                                Text(honor.description).foregroundColor(.primary)
+//                                                                .padding(.horizontal , 10)
+                                                                }
+                                                                
+                                                            
+                                                }
+                                            }.frame(width:300,height:380)
+                                            .background(Color.red.opacity(0.3))
+                                                
+                                            .clipShape(Rectangle())
+                                            .cornerRadius(15)
+                                                .rotation3DEffect(Angle(degrees:(Double(geometry.frame(in: .global).minX) - 30) / -20), axis: (x: 0, y: 10.0, z: 0))
+                                            
+                                            
+                                        }.frame(width:300 , height: 200)
+                                        .padding(.top,80)
+                                        
                                     }
                                     
-                                        }.frame(minWidth: 0, idealWidth: nil, maxWidth: .infinity, minHeight: 0, idealHeight: nil, maxHeight: .infinity, alignment: .leading)
+                                    
+                                    
+                                }.padding(30)
                                 
-                            }.frame(height:300)
+                                Spacer()
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+//                                        VStack(alignment:.leading){
+//
+//                                    HStack{
+//                                       ForEach(honorBoardModel.honorBoardList){ honor in
+//
+//                                        VStack{
+//
+//                                            Button(action: {
+//
+//
+//
+//                                            }){
+//                                                VStack(alignment: .center){
+//
+//                                                    UrlImageView(urlString:(self.url + self.honorBoardUrl + honor.image),width: 300,height: 200)
+//                                                    Text(honor.description).foregroundColor(.primary)
+//                                                    }
+//
+//
+//                                            }
+//                                        }.frame(height: 400).padding(10)
+//                                            .cornerRadius(20)
+//                                        .background(Color.blue.opacity(0.15))
+//
+//
+//
+//
+//                                       }
+//
+//
+//                                    }
+//
+//                                        }.frame(minWidth: 0, idealWidth: nil, maxWidth: .infinity, minHeight: 0, idealHeight: nil, maxHeight: .infinity, alignment: .leading)
+                                
+                            }.frame(height:430)
                             
                         }
                         
