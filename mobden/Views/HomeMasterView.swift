@@ -149,45 +149,85 @@ struct HomeMasterView: View {
                         
                         
                             ScrollView(.horizontal,showsIndicators: false){
-                        
-                                VStack(alignment:.leading){
-                            
-                            HStack{
-                               ForEach(articleModel.articles){ article in
                                 
-                                VStack{
-
-                                    Button(action: {
-                                        self.viewName = ViewScreen.articaleView
-                                        self.articleID = article.id
-                                        self.isSheetPersented.toggle()
+                                HStack(spacing:20){
+                                    
+                                    ForEach(articleModel.articles){ article in
                                         
-                                    }){
-                                        VStack(alignment: .center){
+                                        GeometryReader{ geometry in
                                             
-                                            UrlImageView(urlString:(self.url + self.articleUrl + article.image),width: 300,height: 200)
-                                            Text(article.title).foregroundColor(.primary)
-                                            }
                                             
+                                            VStack{
+                                                Button(action: {
+                                                             self.viewName = ViewScreen.articaleView
+                                                            self.articleID = article.id
+                                                            self.isSheetPersented.toggle()
+                                                            
+                                                        }){
+                                                            VStack(alignment: .center){
+                                                                
+                                                                UrlImageView(urlString:(self.url + self.articleUrl + article.image),width: 280,height: 200)
+                                                                Text(article.title).foregroundColor(.primary)
+                                                                }
+                                                                
+                                                            
+                                                }
+                                            }.frame(height:440)
+                                            .background(Color.red)
+                                            .clipShape(Rectangle())
+                                            .cornerRadius(10)
+                                                .rotation3DEffect(Angle(degrees:(Double(geometry.frame(in: .global).minX) - 40) / -20), axis: (x: 0, y: 10.0, z: 0))
+                                            
+                                            
+                                        }.frame(width:300 , height: 200)
                                         
                                     }
-                                }.frame(height: 400).padding(10)
-                                    .cornerRadius(20)
-                                .background(Color.red.opacity(0.15))
-                                
-                                
-                                
-                                
-                               }
-                                   
                                     
-                            }
-                            
-                                }.frame(minWidth: 0, idealWidth: nil, maxWidth: .infinity, minHeight: 0, idealHeight: nil, maxHeight: .infinity, alignment: .leading)
+                                    
+                                    
+                                }.padding(40)
+                                
+                                Spacer()
+                                
                         
-                    }.frame(height:300)
+//                                VStack(alignment:.leading){
+//
+//                            HStack{
+//                               ForEach(articleModel.articles){ article in
+//
+//                                VStack{
+//
+//                                    Button(action: {
+//                                        self.viewName = ViewScreen.articaleView
+//                                        self.articleID = article.id
+//                                        self.isSheetPersented.toggle()
+//
+//                                    }){
+//                                        VStack(alignment: .center){
+//
+//                                            UrlImageView(urlString:(self.url + self.articleUrl + article.image),width: 300,height: 200)
+//                                            Text(article.title).foregroundColor(.primary)
+//                                            }
+//
+//
+//                                    }
+//                                }.frame(height: 400).padding(10)
+//                                    .cornerRadius(20)
+//                                .background(Color.red.opacity(0.15))
+//
+//
+//
+//
+//                               }
+//
+//
+//                            }
+//
+//                                }.frame(minWidth: 0, idealWidth: nil, maxWidth: .infinity, minHeight: 0, idealHeight: nil, maxHeight: .infinity, alignment: .leading)
+                        
+                    }.frame(height:400)
                         }
-                        }
+                    }
                     
                     
                     
