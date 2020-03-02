@@ -313,7 +313,7 @@ struct HomeMasterView: View {
                                                             
                                                 }
                                             }.frame(width:300,height:380)
-                                            .background(Color.red.opacity(0.3))
+                                            .background(Color.gray.opacity(0.3))
                                                 
                                             .clipShape(Rectangle())
                                             .cornerRadius(15)

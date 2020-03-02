@@ -17,6 +17,8 @@ struct ContentView: View {
     @State var middleSchoolSliderOpen = false
     @State var primarySchoolSliderOpen = false
     @State var selectedTabView = 0
+    @State var isMasterHomeView : Bool = true
+    
     
     var body: some View {
         
@@ -52,7 +54,7 @@ struct ContentView: View {
                             .foregroundColor(.black)
                     }
                     
-                }
+                }.padding(.horizontal,10)
                 
                 //Spacer()
                 
@@ -94,20 +96,23 @@ struct ContentView: View {
                         
                         
                         
-                    }.tag(1)
+                        }.tag(1).onAppear(){self.isMasterHomeView = false}
                     
                     HomeMasterView().tabItem{
                         VStack{
+                            //self.isMasterHomeView = true
+                            VStack{
                             Image(systemName: "house.fill").font(.title)
                             Text("الرئيسية").font(.largeTitle)
+                            }
                         }
                         
                         
-                    }.tag(0)
+                    }.tag(0).onAppear(){self.isMasterHomeView = true}
                     
                 }
                 
-            }.padding()
+            }//.padding()
             
             
         
@@ -118,6 +123,7 @@ struct ContentView: View {
             PrimarySchoolSliderMenu(primarySchoolSliderOpen: self.$primarySchoolSliderOpen)
             
         }
+        .background(self.isMasterHomeView ? Color.red.edgesIgnoringSafeArea(.all): Color.blue.edgesIgnoringSafeArea(.all) )
        
         
     }
