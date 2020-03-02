@@ -39,7 +39,7 @@ struct HomeMasterView: View {
                
             NavigationView{
                 //Text("text")
-                List{
+                ScrollView{
                 //Group{
 
                     
@@ -57,14 +57,17 @@ struct HomeMasterView: View {
                                         
                                         
                                     }){
-                                        HStack{
-                                             Spacer()
-                                              Text(word.title)
-                                         }
+                                        VStack{
+                                            HStack{
+                                                 Spacer()
+                                                Text(word.title).foregroundColor(.primary)
+                                             }
+                                            
+                                             VStack{
+                                                 UrlImageView(urlString:(self.url + self.wordUrl + word.image),width: 350,height: 200)
+                                             }.padding(.leading,10)
+                                        }
                                         
-                                         VStack{
-                                             UrlImageView(urlString:(self.url + self.wordUrl + word.image),width: 350,height: 200)
-                                         }.padding(.leading,10)
                                     }
                                     
                                     
@@ -74,7 +77,8 @@ struct HomeMasterView: View {
                                 
                             }
                             Spacer()
-                        }
+                        }.padding(.bottom,20)
+                        Spacer()
                     }
                     
                     
@@ -121,13 +125,15 @@ struct HomeMasterView: View {
                     VStack{
                         NavigationLink(destination: ArticlesView()){
                             HStack{
+                                Text("شاهد الكل").foregroundColor(Color.blue)
                                 Spacer()
-                                Text("المقالات")
+                                Text("المقالات").foregroundColor(.primary)
                                     .frame(width:100 , height:25,alignment: .center)
                                     .background(Color.gray.opacity(0.8))
 
                                 .cornerRadius(7)
                                 .shadow(radius: 4)
+                                
                                 
                             }
                             
@@ -166,26 +172,34 @@ struct HomeMasterView: View {
                                                         }){
                                                             VStack(alignment: .center){
                                                                 
-                                                                UrlImageView(urlString:(self.url + self.articleUrl + article.image),width: 280,height: 200)
+                                                                UrlImageView(urlString:(self.url + self.articleUrl + article.image),width: 270,height: 200)
+                                                                    .clipShape(Rectangle())
+                                                                    .cornerRadius(8)
+                                                                    .padding(.horizontal , 10)
+                                                                
+                                                                
                                                                 Text(article.title).foregroundColor(.primary)
+                                                                .padding(.horizontal , 10)
                                                                 }
                                                                 
                                                             
                                                 }
-                                            }.frame(height:440)
-                                            .background(Color.red)
+                                            }.frame(width:300,height:380)
+                                            .background(Color.red.opacity(0.3))
+                                                
                                             .clipShape(Rectangle())
-                                            .cornerRadius(10)
-                                                .rotation3DEffect(Angle(degrees:(Double(geometry.frame(in: .global).minX) - 40) / -20), axis: (x: 0, y: 10.0, z: 0))
+                                            .cornerRadius(15)
+                                                .rotation3DEffect(Angle(degrees:(Double(geometry.frame(in: .global).minX) - 30) / -20), axis: (x: 0, y: 10.0, z: 0))
                                             
                                             
                                         }.frame(width:300 , height: 200)
+                                        .padding(.top,80)
                                         
                                     }
                                     
                                     
                                     
-                                }.padding(40)
+                                }.padding(30)
                                 
                                 Spacer()
                                 
@@ -225,7 +239,7 @@ struct HomeMasterView: View {
 //
 //                                }.frame(minWidth: 0, idealWidth: nil, maxWidth: .infinity, minHeight: 0, idealHeight: nil, maxHeight: .infinity, alignment: .leading)
                         
-                    }.frame(height:400)
+                    }.frame(height:450)
                         }
                     }
                     
@@ -242,8 +256,9 @@ struct HomeMasterView: View {
                     VStack{
                         NavigationLink(destination: ArticlesView()){
                             HStack{
+                                Text("شاهد الكل").foregroundColor(Color.blue)
                                 Spacer()
-                                Text("عن المدرسة")
+                                Text("عن المدرسة").foregroundColor(.primary)
                                 .frame(width:100 , height:25,alignment: .center)
                                     .background(Color.gray.opacity(0.8))
 
