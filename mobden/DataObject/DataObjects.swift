@@ -11,6 +11,17 @@ import SwiftUI
 import Combine
 
 
+
+
+
+enum ViewScreen: Int {
+    case noView = 0 ,wordView = 1, articlesView = 2 , articaleView = 3 , prizesView = 4,
+    registrationView = 5 , publicRelation = 6
+    
+    
+}
+
+
 struct Word : Decodable, Identifiable{
     var id:Int
     var image:String
@@ -78,4 +89,72 @@ var description:String
     }
     
 }
+
+
+
+struct RegisterFinance : Decodable, Identifiable{
+    var id:Int
+    var stage:Int
+    var fees:Int
+
+    var creationDate:String
+    var notes:String
+        var arabicDate:String{
+            get{
+                
+                return SystemDates.getArabicDate(date:self.creationDate)
+                    
+            }
+        }
+    var stageName : String {
+        switch self.stage {
+            case (1):
+                return "المرحله الابتدائيه"
+            case (2):
+                return "المرحله المتوسطه"
+            case (3):
+                return "المرحله الثانويه"
+            case (4):
+                return "رسوم النقل للأحياء الداخلية"
+            case (5):
+                return "رسوم النقل للأحياء الخارجية"
+        default:
+            return "لا يوجد"
+        }
+    }
+    var feesString :String { return String(self.fees)}
+    
+        
+}
+
+
+
+
+struct Prize : Decodable ,Identifiable{
+var id:Int
+var image:String
+
+var creationDate:String
+var description:String
+    var arabicDate:String{
+        get{
+            
+            return SystemDates.getArabicDate(date:self.creationDate)
+                
+        }
+    }
+    
+}
+
+
+
+struct PublicRelation : Decodable ,Identifiable{
+var id:Int
+var title:String
+var description:String
+    
+    
+}
+
+
 

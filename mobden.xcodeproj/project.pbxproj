@@ -16,6 +16,10 @@
 		C369A67E2406C9A600CB6E79 /* UrlImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C369A67D2406C9A600CB6E79 /* UrlImageView.swift */; };
 		C369A6802406E4F900CB6E79 /* DateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C369A67F2406E4F900CB6E79 /* DateModel.swift */; };
 		C369A68424075A0D00CB6E79 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C369A68324075A0D00CB6E79 /* RegistrationView.swift */; };
+		C369A686240ACA8700CB6E79 /* WordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C369A685240ACA8700CB6E79 /* WordView.swift */; };
+		C369A688240B34F000CB6E79 /* PrizesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C369A687240B34F000CB6E79 /* PrizesView.swift */; };
+		C369A68A240B478400CB6E79 /* PublicRelationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C369A689240B478400CB6E79 /* PublicRelationsView.swift */; };
+		C369A68C240C8BF000CB6E79 /* PublicRelationInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C369A68B240C8BF000CB6E79 /* PublicRelationInfoView.swift */; };
 		C3A039DC23FFA840002BBE36 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A039DB23FFA840002BBE36 /* AppDelegate.swift */; };
 		C3A039DE23FFA840002BBE36 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A039DD23FFA840002BBE36 /* SceneDelegate.swift */; };
 		C3A039E023FFA840002BBE36 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A039DF23FFA840002BBE36 /* ContentView.swift */; };
@@ -36,6 +40,10 @@
 		C369A67D2406C9A600CB6E79 /* UrlImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlImageView.swift; sourceTree = "<group>"; };
 		C369A67F2406E4F900CB6E79 /* DateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateModel.swift; sourceTree = "<group>"; };
 		C369A68324075A0D00CB6E79 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
+		C369A685240ACA8700CB6E79 /* WordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordView.swift; sourceTree = "<group>"; };
+		C369A687240B34F000CB6E79 /* PrizesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrizesView.swift; sourceTree = "<group>"; };
+		C369A689240B478400CB6E79 /* PublicRelationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicRelationsView.swift; sourceTree = "<group>"; };
+		C369A68B240C8BF000CB6E79 /* PublicRelationInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicRelationInfoView.swift; sourceTree = "<group>"; };
 		C3A039D823FFA840002BBE36 /* mobden.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mobden.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3A039DB23FFA840002BBE36 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C3A039DD23FFA840002BBE36 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -67,6 +75,10 @@
 				C369A6782406C87100CB6E79 /* ArticleView.swift */,
 				C369A67D2406C9A600CB6E79 /* UrlImageView.swift */,
 				C369A68324075A0D00CB6E79 /* RegistrationView.swift */,
+				C369A685240ACA8700CB6E79 /* WordView.swift */,
+				C369A687240B34F000CB6E79 /* PrizesView.swift */,
+				C369A689240B478400CB6E79 /* PublicRelationsView.swift */,
+				C369A68B240C8BF000CB6E79 /* PublicRelationInfoView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -214,14 +226,18 @@
 				C369A67C2406C92B00CB6E79 /* ImageModel.swift in Sources */,
 				C3A039DC23FFA840002BBE36 /* AppDelegate.swift in Sources */,
 				C369A67E2406C9A600CB6E79 /* UrlImageView.swift in Sources */,
+				C369A68A240B478400CB6E79 /* PublicRelationsView.swift in Sources */,
+				C369A688240B34F000CB6E79 /* PrizesView.swift in Sources */,
 				C369A68424075A0D00CB6E79 /* RegistrationView.swift in Sources */,
 				C369A6802406E4F900CB6E79 /* DateModel.swift in Sources */,
+				C369A68C240C8BF000CB6E79 /* PublicRelationInfoView.swift in Sources */,
 				C3A039DE23FFA840002BBE36 /* SceneDelegate.swift in Sources */,
 				C369A6712406C58C00CB6E79 /* RequestServices.swift in Sources */,
 				C369A6772406C80F00CB6E79 /* ArticlesView.swift in Sources */,
 				C3A039E023FFA840002BBE36 /* ContentView.swift in Sources */,
 				C3A039F023FFA900002BBE36 /* SliderMenu.swift in Sources */,
 				C369A66F2406C4D100CB6E79 /* DataObjects.swift in Sources */,
+				C369A686240ACA8700CB6E79 /* WordView.swift in Sources */,
 				C369A6792406C87100CB6E79 /* ArticleView.swift in Sources */,
 				C3A039F223FFA943002BBE36 /* PrimarySchoolSliderMenu.swift in Sources */,
 				C369A6752406C79800CB6E79 /* HomeMasterView.swift in Sources */,

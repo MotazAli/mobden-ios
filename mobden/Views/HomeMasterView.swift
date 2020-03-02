@@ -10,8 +10,10 @@ import SwiftUI
 
 struct HomeMasterView: View {
      @State var authenticated: Bool = false
-        @State var isArticleViewPersented = false
+        @State var isSheetPersented = false
+    //@State var isWordViewPersented = false
         @State var articleID :Int = 0
+    @State var viewName : ViewScreen = ViewScreen.noView
          @ObservedObject var model = WordModel()
         @ObservedObject var articleModel = ArticleModel()
         @ObservedObject var aboutSchoolModel = AboutSchoolModel()
@@ -42,26 +44,40 @@ struct HomeMasterView: View {
 
                     
                     
-                    
-                    
-                    VStack{
-                        ForEach(model.words){ word in
-                            VStack{
-                                HStack{
-                                    Spacer()
-                                     Text(word.title)
-                                }
-                               
+                    if !model.words.isEmpty{
+                        VStack{
+                            
+                            ForEach(model.words){ word in
                                 VStack{
-                                    UrlImageView(urlString:(self.url + self.wordUrl + word.image),width: 350,height: 200)
-                                }.padding(.leading,10)
+                                    
+                                    Button(action: {
+                                        
+                                        self.viewName = ViewScreen.wordView
+                                        self.isSheetPersented.toggle()
+                                        
+                                        
+                                    }){
+                                        HStack{
+                                             Spacer()
+                                              Text(word.title)
+                                         }
+                                        
+                                         VStack{
+                                             UrlImageView(urlString:(self.url + self.wordUrl + word.image),width: 350,height: 200)
+                                         }.padding(.leading,10)
+                                    }
+                                    
+                                    
+                                    
+                                }
+                                
                                 
                             }
-                            
-                            
+                            Spacer()
                         }
-                        Spacer()
                     }
+                    
+                    
                     
                     
 //
@@ -102,15 +118,35 @@ struct HomeMasterView: View {
                 //Group{
                     
                     
-                    VStack(alignment:.trailing){
+                    VStack{
                         NavigationLink(destination: ArticlesView()){
                             HStack{
                                 Spacer()
                                 Text("المقالات")
+                                    .frame(width:100 , height:25,alignment: .center)
+                                    .background(Color.gray.opacity(0.8))
+
+                                .cornerRadius(7)
+                                .shadow(radius: 4)
+                                
                             }
                             
                             
                         }
+                        
+                        
+                        if articleModel.articles.isEmpty{
+                            VStack(alignment:.center){
+                                Text("فارغ").frame(width:200,height:200)
+                                    .background(Color.red.opacity(0.3))
+                                .cornerRadius(9)
+                            }.frame(height: 250)
+                        }
+                        else{
+                        
+                        
+                        
+                        
                         
                             ScrollView(.horizontal,showsIndicators: false){
                         
@@ -122,9 +158,9 @@ struct HomeMasterView: View {
                                 VStack{
 
                                     Button(action: {
-                                        
+                                        self.viewName = ViewScreen.articaleView
                                         self.articleID = article.id
-                                        self.isArticleViewPersented.toggle()
+                                        self.isSheetPersented.toggle()
                                         
                                     }){
                                         VStack(alignment: .center){
@@ -137,7 +173,7 @@ struct HomeMasterView: View {
                                     }
                                 }.frame(height: 400).padding(10)
                                     .cornerRadius(20)
-                                .background(Color.blue.opacity(0.15))
+                                .background(Color.red.opacity(0.15))
                                 
                                 
                                 
@@ -150,7 +186,7 @@ struct HomeMasterView: View {
                                 }.frame(minWidth: 0, idealWidth: nil, maxWidth: .infinity, minHeight: 0, idealHeight: nil, maxHeight: .infinity, alignment: .leading)
                         
                     }.frame(height:300)
-                    
+                        }
                         }
                     
                     
@@ -168,10 +204,27 @@ struct HomeMasterView: View {
                             HStack{
                                 Spacer()
                                 Text("عن المدرسة")
-                            }.padding([.trailing], 55)
+                                .frame(width:100 , height:25,alignment: .center)
+                                    .background(Color.gray.opacity(0.8))
+
+                                .cornerRadius(7)
+                                .shadow(radius: 4)
+                            }
                             
                             
                         }
+                        
+                        
+                        
+                        if aboutSchoolModel.aboutSchoolList.isEmpty{
+                            VStack(alignment:.center){
+                                Text("فارغ").frame(width:200,height:200)
+                                    .background(Color.red.opacity(0.3))
+                                .cornerRadius(9)
+                            }.frame(height: 250)
+                        }
+                        else{
+                        
                         
                             
                             ScrollView(.horizontal,showsIndicators: false){
@@ -196,7 +249,7 @@ struct HomeMasterView: View {
                                     
                                 }.frame(height: 400).padding(10)
                                     .cornerRadius(20)
-                                .background(Color.blue.opacity(0.15))
+                                .background(Color.red.opacity(0.15))
                                 
                                 
                                 
@@ -206,7 +259,9 @@ struct HomeMasterView: View {
                             }
 
                         }.frame(minWidth: 0, idealWidth: nil, maxWidth: .infinity, minHeight: 0, idealHeight: nil, maxHeight: .infinity, alignment: .leading)
-                            }.frame(width:UIScreen.main.bounds.width,height:300)
+                                
+                            }.frame(height:300)
+                        }
 
                         }
 
@@ -220,6 +275,11 @@ struct HomeMasterView: View {
                             HStack{
                                 Spacer()
                                 Text("لوحة الشرف")
+                                .frame(width:100 , height:25,alignment: .center)
+                                    .background(Color.gray.opacity(0.8))
+
+                                .cornerRadius(7)
+                                .shadow(radius: 4)
                             }
                             
                             
@@ -228,10 +288,10 @@ struct HomeMasterView: View {
                         
                         if honorBoardModel.honorBoardList.isEmpty{
                             VStack(alignment:.center){
-                                Text("فارغ").frame(width:200,height:50)
-                                    .background(Color.red.opacity(0.5))
+                                Text("فارغ").frame(width:200,height:200)
+                                    .background(Color.red.opacity(0.3))
                                 .cornerRadius(9)
-                            }
+                            }.frame(height: 250)
                         }
                         else {
                             
@@ -247,7 +307,7 @@ struct HomeMasterView: View {
                                             Button(action: {
                                                 
                                                 self.articleID = honor.id
-                                                self.isArticleViewPersented.toggle()
+                                                self.isSheetPersented.toggle()
                                                 
                                             }){
                                                 VStack(alignment: .center){
@@ -296,16 +356,46 @@ struct HomeMasterView: View {
             }
             
             
-            }.sheet(isPresented:self.$isArticleViewPersented){
+            }.sheet(isPresented:self.$isSheetPersented){
     //            ArticleView(articleModel : ArticleModel(getArticleByID: self.articleID))
+               
+                self.getViewByID(viewScreen: self.viewName)
                 
-                ArticleView(articleID: self.articleID)
                 
             }
                
            }
+    
+    
+    
+    
+    func getViewByID(viewScreen: ViewScreen) -> AnyView {
+        if viewScreen == ViewScreen.wordView{
+            return AnyView( WordView())
+            
+        }
+        else if viewScreen == ViewScreen.articaleView {
+            return AnyView( ArticleView(articleID: self.articleID))
+                       
+        }
+        else if viewScreen == ViewScreen.prizesView {
+            return AnyView( PrizesView())
+                       
+        }
+        else{
+            return AnyView( EmptyView())
+        }
+        
+    }
+    
+    
+    
 
 }
+
+
+
+
 
 struct HomeMasterView_Previews: PreviewProvider {
     static var previews: some View {

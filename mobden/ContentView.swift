@@ -60,13 +60,21 @@ struct ContentView: View {
                 TabView(selection: self.$selectedTabView){
                     
                     Text("الثانوي").tabItem{
-                        Text("الثانوي")
+                        VStack{
+                            Image(systemName: "person.3.fill").font(.title)
+                            Text("الثانوي").font(.largeTitle)
+                        }
+                        //Text("الثانوي")
                         
                     }.tag(3)
                     
                     
                     Text("المتوسط").tabItem{
-                        Text("المتوسط")
+                        VStack{
+                            Image(systemName: "person.2.fill").font(.title)
+                            Text("المتوسط").font(.largeTitle)
+                        }
+                        
                         
                     }.tag(2)
                     
@@ -74,15 +82,26 @@ struct ContentView: View {
                     
                     VStack{
                     
-                        Text("الابتدائي")                  }.tabItem{
                         Text("الابتدائي")
+                        
+                    }.tabItem{
+                            
+                            VStack{
+                                Image(systemName: "person.fill").font(.title)
+                                Text("الابتدائي").font(.largeTitle)
+                            }
+                        
                         
                         
                         
                     }.tag(1)
                     
                     HomeMasterView().tabItem{
-                        Text("الرئيسية")
+                        VStack{
+                            Image(systemName: "house.fill").font(.title)
+                            Text("الرئيسية").font(.largeTitle)
+                        }
+                        
                         
                     }.tag(0)
                     

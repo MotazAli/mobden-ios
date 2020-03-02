@@ -7,17 +7,23 @@
 //
 import  Foundation
 import SwiftUI
+import Combine
 
 
 
 
 struct MasterMenuSlider : View {
  
+    @ObservedObject var registrationModel = RegistrationModel()
     @Binding var masterSilderOpen: Bool
-    @State var isRegisterationViewPersented = false
-    let width: CGFloat = 270
+    @State var viewName : ViewScreen = ViewScreen.noView
+    @State var isSheetPersented = false
+    var width: CGFloat = 270
     
-    
+//
+//    func show(){
+//        self.registrationModel.getRegistrationFinanace()
+//    }
     
     
     var body: some View{
@@ -40,23 +46,37 @@ struct MasterMenuSlider : View {
                                       
                                   }
                                   HStack{
+                                    
+                                    
+                                    
                                     Button(action:{
-                                        self.isRegisterationViewPersented.toggle()
+                                        self.viewName = ViewScreen.registrationView
+                                        self.isSheetPersented.toggle()
                                     }){
                                         Text("القبول و التسجيل")
                                             .foregroundColor(Color.black)
                                             .padding(20)
                                             .font(.title)
-                                        
-                                    }.sheet(isPresented: self.$isRegisterationViewPersented){
-                                        RegistrationView()
+
                                     }
                                       
                                    }
                                   
                                    HStack{
-                                       Text("الجوائز").padding(20)
-                                    .font(.title)
+                                    
+                                    
+                                    Button(action:{
+                                        self.viewName = ViewScreen.prizesView
+                                        self.isSheetPersented.toggle()
+                                    }){
+                                        Text("الجوائز")
+                                            .foregroundColor(.primary)
+                                            .padding(20)
+                                        .font(.title)
+                                    }
+                                    
+                                    
+                                       
                                    }
                                   HStack{
                                       Text("الجودة الشاملة").padding(20)
@@ -68,8 +88,19 @@ struct MasterMenuSlider : View {
                                     .scaledToFit()
                                   }
                                   HStack{
-                                      Text("العلاقات العامة").padding(20)
-                                    .font(.title)
+                                    
+                                    Button(action:{
+                                        self.viewName = ViewScreen.publicRelation
+                                        self.isSheetPersented.toggle()
+                                    }){
+                                        Text("العلاقات العامة")
+                                            .foregroundColor(.primary)
+                                            .padding(20)
+                                        .font(.title)
+                                    }
+                                    
+                                    
+                                    
                                   }
                                   HStack{
                                       Text("النقل المدرسي").padding(20)
@@ -98,18 +129,49 @@ struct MasterMenuSlider : View {
                   }
             
         
+        }.sheet(isPresented: self.$isSheetPersented){
+            
+            //ArticleView(articleID: 65)
+            self.getViewByID(viewScreen: self.viewName)
         }
         
     }
     
     
-}
-
-
-struct MasterMenuSlider_Previews: PreviewProvider {
-    static var previews: some View {
-        MasterMenuSlider(masterSilderOpen: Binding.constant(true))
+    
+    
+    
+    func getViewByID(viewScreen: ViewScreen) -> AnyView {
+        if viewScreen == ViewScreen.registrationView {
+            return AnyView( RegistrationView())
+                       
+        }
+        else if viewScreen == ViewScreen.prizesView {
+            return AnyView( PrizesView())
+                       
+        }
+            else if viewScreen == ViewScreen.publicRelation {
+                return AnyView( PublicRelationsView())
+                           
+            }
+        else{
+            return AnyView( EmptyView())
+        }
+        
     }
+    
+    
+    
+    
+    
+    
 }
+
+//
+//struct MasterMenuSlider_Previews: PreviewProvider {
+//    static var previews: some View {
+//        MasterMenuSlider(masterSilderOpen: Binding.constant(true))
+//    }
+//}
 
 
