@@ -20,6 +20,14 @@ struct ContentView: View {
     @State var isMasterHomeView : Bool = true
     
     
+//
+//    init(){
+//
+//        UITabBar.appearance().backgroundColor = UIColor.clear
+//    }
+    
+    
+    
     var body: some View {
         
         
@@ -96,7 +104,11 @@ struct ContentView: View {
                         
                         
                         
-                        }.tag(1).onAppear(){self.isMasterHomeView = false}
+                        }.tag(1).onAppear(){
+                            self.isMasterHomeView = false
+                            UITabBar.appearance().barTintColor  = UIColor.blue
+                            
+                    }
                     
                     HomeMasterView().tabItem{
                         VStack{
@@ -108,11 +120,15 @@ struct ContentView: View {
                         }
                         
                         
-                    }.tag(0).onAppear(){self.isMasterHomeView = true}
+                    }.tag(0).padding(.horizontal,10)
+                        .onAppear(){
+                        self.isMasterHomeView = true
+                        
+                    }
                     
                 }
                 
-            }//.padding()
+            }
             
             
         
@@ -123,13 +139,35 @@ struct ContentView: View {
             PrimarySchoolSliderMenu(primarySchoolSliderOpen: self.$primarySchoolSliderOpen)
             
         }
-        .background(self.isMasterHomeView ? Color.red.edgesIgnoringSafeArea(.all): Color.blue.edgesIgnoringSafeArea(.all) )
+        .background(self.isMasterHomeView ? Color.red.opacity(0.8).edgesIgnoringSafeArea(.all): Color.blue.edgesIgnoringSafeArea(.all) )
        
         
     }
     
 
 }
+
+
+
+
+//extension UITabBarController {
+//    override open func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(animated)
+//        let standardAppearance = UITabBarAppearance()
+//
+//        //standardAppearance.configureWithOpaqueBackground()
+//
+//        standardAppearance.configureWithTransparentBackground()
+//
+//        tabBar.standardAppearance = standardAppearance
+//    }
+//}
+
+
+
+
+
+
 
 
 struct ArticalsMainGroupView :View{

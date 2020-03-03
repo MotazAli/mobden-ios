@@ -528,6 +528,12 @@ struct HomeMasterView: View {
                 
             }
             
+                
+                
+                .navigationBarTitle("الرئيسية")
+                .navigationBarHidden(true)
+                
+                
             
             }.sheet(isPresented:self.$isSheetPersented){
     //            ArticleView(articleModel : ArticleModel(getArticleByID: self.articleID))

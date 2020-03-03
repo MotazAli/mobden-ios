@@ -23,7 +23,7 @@ struct ArticlesView: View {
         
         
         var body: some View {
-            NavigationView{
+           // NavigationView{
                 List(articleModel.articles){ article in
                     
                     
@@ -95,9 +95,14 @@ struct ArticlesView: View {
                     
                     
                 }
-                //.navigationBarTitle("مقالات")
                 
-                }//.padding([.trailing],10)
+                
+            
+                
+                
+                .navigationBarTitle("مقالات",displayMode: .inline)
+                //.navigationBarHidden(true)
+                //}//.padding([.trailing],10)
                 //.frame(alignment:.trailing)
                 .sheet(isPresented: self.$isArticleViewPersented)
                 {
