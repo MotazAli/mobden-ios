@@ -85,7 +85,7 @@ struct PublicRelationInfoView: View {
             .background(Color.gray.opacity(0.2))
                        // .cornerRadius(15)
         }.frame(width: geometry.size.width)
-     }
+        }.navigationBarTitle("توضيح",displayMode: .inline)
     }
 }
 

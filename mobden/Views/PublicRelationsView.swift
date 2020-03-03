@@ -37,7 +37,9 @@ struct PublicRelationsView: View {
                             }
              
                   NavigationView{
-                  
+                    
+                    
+                    
                   
                   VStack{
                       
@@ -76,8 +78,8 @@ struct PublicRelationsView: View {
                                       
                   }//.padding([.trailing,.leading],10)
                       .frame(width:geometry.size.width)
-                                  
-                                     
+                    .navigationBarTitle("العلاقات العامة")
+                    .navigationBarHidden(true)
                   }.frame(width: geometry.size.width)
                  
                  
