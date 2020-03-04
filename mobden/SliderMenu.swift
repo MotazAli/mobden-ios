@@ -83,9 +83,23 @@ struct MasterMenuSlider : View {
                                     .font(.title)
                                   }
                                   HStack{
-                                      Text("الاشراف و التطوير المهني").padding(20)
+                                    
+                                    Button(action:{
+                                        self.viewName = ViewScreen.supervisionView
+                                        self.isSheetPersented.toggle()
+                                    }){
+                                        Text("الاشراف و التطوير المهني")
+                                            .foregroundColor(.primary)
+                                            .padding(20)
                                         .font(.system(size: 25))
-                                    .scaledToFit()
+                                        .scaledToFit()
+                                        
+                                    }
+                                    
+                                    
+                                    
+                                    
+                                      
                                   }
                                   HStack{
                                     
@@ -152,6 +166,10 @@ struct MasterMenuSlider : View {
         }
             else if viewScreen == ViewScreen.publicRelation {
                 return AnyView( PublicRelationsView())
+                           
+            }
+            else if viewScreen == ViewScreen.supervisionView {
+                return AnyView( SupervisionView())
                            
             }
         else{

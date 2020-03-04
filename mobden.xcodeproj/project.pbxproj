@@ -20,6 +20,7 @@
 		C369A688240B34F000CB6E79 /* PrizesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C369A687240B34F000CB6E79 /* PrizesView.swift */; };
 		C369A68A240B478400CB6E79 /* PublicRelationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C369A689240B478400CB6E79 /* PublicRelationsView.swift */; };
 		C369A68C240C8BF000CB6E79 /* PublicRelationInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C369A68B240C8BF000CB6E79 /* PublicRelationInfoView.swift */; };
+		C369A68E240F2F7700CB6E79 /* SupervisionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C369A68D240F2F7700CB6E79 /* SupervisionView.swift */; };
 		C3A039DC23FFA840002BBE36 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A039DB23FFA840002BBE36 /* AppDelegate.swift */; };
 		C3A039DE23FFA840002BBE36 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A039DD23FFA840002BBE36 /* SceneDelegate.swift */; };
 		C3A039E023FFA840002BBE36 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A039DF23FFA840002BBE36 /* ContentView.swift */; };
@@ -44,6 +45,7 @@
 		C369A687240B34F000CB6E79 /* PrizesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrizesView.swift; sourceTree = "<group>"; };
 		C369A689240B478400CB6E79 /* PublicRelationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicRelationsView.swift; sourceTree = "<group>"; };
 		C369A68B240C8BF000CB6E79 /* PublicRelationInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicRelationInfoView.swift; sourceTree = "<group>"; };
+		C369A68D240F2F7700CB6E79 /* SupervisionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupervisionView.swift; sourceTree = "<group>"; };
 		C3A039D823FFA840002BBE36 /* mobden.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mobden.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3A039DB23FFA840002BBE36 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C3A039DD23FFA840002BBE36 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 				C369A687240B34F000CB6E79 /* PrizesView.swift */,
 				C369A689240B478400CB6E79 /* PublicRelationsView.swift */,
 				C369A68B240C8BF000CB6E79 /* PublicRelationInfoView.swift */,
+				C369A68D240F2F7700CB6E79 /* SupervisionView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -230,6 +233,7 @@
 				C369A688240B34F000CB6E79 /* PrizesView.swift in Sources */,
 				C369A68424075A0D00CB6E79 /* RegistrationView.swift in Sources */,
 				C369A6802406E4F900CB6E79 /* DateModel.swift in Sources */,
+				C369A68E240F2F7700CB6E79 /* SupervisionView.swift in Sources */,
 				C369A68C240C8BF000CB6E79 /* PublicRelationInfoView.swift in Sources */,
 				C3A039DE23FFA840002BBE36 /* SceneDelegate.swift in Sources */,
 				C369A6712406C58C00CB6E79 /* RequestServices.swift in Sources */,
