@@ -21,6 +21,9 @@
 		C369A68A240B478400CB6E79 /* PublicRelationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C369A689240B478400CB6E79 /* PublicRelationsView.swift */; };
 		C369A68C240C8BF000CB6E79 /* PublicRelationInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C369A68B240C8BF000CB6E79 /* PublicRelationInfoView.swift */; };
 		C369A68E240F2F7700CB6E79 /* SupervisionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C369A68D240F2F7700CB6E79 /* SupervisionView.swift */; };
+		C369A6902411D33B00CB6E79 /* SupervisionListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C369A68F2411D33B00CB6E79 /* SupervisionListView.swift */; };
+		C369A6922411D5C500CB6E79 /* SupervisionInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C369A6912411D5C500CB6E79 /* SupervisionInfoView.swift */; };
+		C369A6942411E33C00CB6E79 /* SupervisionTeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C369A6932411E33C00CB6E79 /* SupervisionTeamView.swift */; };
 		C3A039DC23FFA840002BBE36 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A039DB23FFA840002BBE36 /* AppDelegate.swift */; };
 		C3A039DE23FFA840002BBE36 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A039DD23FFA840002BBE36 /* SceneDelegate.swift */; };
 		C3A039E023FFA840002BBE36 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A039DF23FFA840002BBE36 /* ContentView.swift */; };
@@ -46,6 +49,9 @@
 		C369A689240B478400CB6E79 /* PublicRelationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicRelationsView.swift; sourceTree = "<group>"; };
 		C369A68B240C8BF000CB6E79 /* PublicRelationInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicRelationInfoView.swift; sourceTree = "<group>"; };
 		C369A68D240F2F7700CB6E79 /* SupervisionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupervisionView.swift; sourceTree = "<group>"; };
+		C369A68F2411D33B00CB6E79 /* SupervisionListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupervisionListView.swift; sourceTree = "<group>"; };
+		C369A6912411D5C500CB6E79 /* SupervisionInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupervisionInfoView.swift; sourceTree = "<group>"; };
+		C369A6932411E33C00CB6E79 /* SupervisionTeamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupervisionTeamView.swift; sourceTree = "<group>"; };
 		C3A039D823FFA840002BBE36 /* mobden.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mobden.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3A039DB23FFA840002BBE36 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C3A039DD23FFA840002BBE36 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -82,6 +88,9 @@
 				C369A689240B478400CB6E79 /* PublicRelationsView.swift */,
 				C369A68B240C8BF000CB6E79 /* PublicRelationInfoView.swift */,
 				C369A68D240F2F7700CB6E79 /* SupervisionView.swift */,
+				C369A68F2411D33B00CB6E79 /* SupervisionListView.swift */,
+				C369A6912411D5C500CB6E79 /* SupervisionInfoView.swift */,
+				C369A6932411E33C00CB6E79 /* SupervisionTeamView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -240,9 +249,12 @@
 				C369A6772406C80F00CB6E79 /* ArticlesView.swift in Sources */,
 				C3A039E023FFA840002BBE36 /* ContentView.swift in Sources */,
 				C3A039F023FFA900002BBE36 /* SliderMenu.swift in Sources */,
+				C369A6902411D33B00CB6E79 /* SupervisionListView.swift in Sources */,
 				C369A66F2406C4D100CB6E79 /* DataObjects.swift in Sources */,
+				C369A6922411D5C500CB6E79 /* SupervisionInfoView.swift in Sources */,
 				C369A686240ACA8700CB6E79 /* WordView.swift in Sources */,
 				C369A6792406C87100CB6E79 /* ArticleView.swift in Sources */,
+				C369A6942411E33C00CB6E79 /* SupervisionTeamView.swift in Sources */,
 				C3A039F223FFA943002BBE36 /* PrimarySchoolSliderMenu.swift in Sources */,
 				C369A6752406C79800CB6E79 /* HomeMasterView.swift in Sources */,
 			);

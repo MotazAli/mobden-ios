@@ -51,74 +51,68 @@ struct SupervisionView: View {
      
      var body: some View{
          
-        NavigationView{
+        
          GeometryReader{ geometry in
+            NavigationView{
              VStack{
                  // NavigationView{
                     
+                
+                
+                
+                NavigationLink(destination: SupervisionListView()){
                     VStack(alignment:.center){
-                        
-                        
-                        
-                        
-                        if self.imageTransation {
-                        Image(systemName:"text.bubble.fill")// : "bubble.left.fill")
-                                                    .resizable()
-                                                    .scaledToFit()
-                                                            .frame(width:100 , height: 80)
-                            //.transition(AnyTransition.opacity.animation( Animation.easeInOut(duration: 0.8)))
-                            .transition(.repeating(from: Opacity(0), to: Opacity(1)))
-                            
-                            //.animation(self.foreverAnimation)
-                                                        
-                        
-                        }
-                        
-                        
-                            Text("الاشراف والتطوير المهنى").font(.title).fontWeight(.medium)
-                      
-                        
-                        
-                        
-                        
-                        
-                    }.frame(width:geometry.size.width,height: geometry.size.height / 3)
-                    .background(Color.gray)
-                .onAppear(){
-
-                    //if self.imageTransation {
-                        self.imageTransation.toggle()
-//                        DispatchQueue.main.async {
-//                            self.imageTransation.toggle()
-//                        }
-//                    }
-                       // self.imageTransation.toggle()
-
-
-
-                }
+                                           if self.imageTransation {
+                                           Image(systemName:"text.bubble.fill")// : "bubble.left.fill")
+                                                                       .resizable()
+                                                                       .scaledToFit()
+                                                                               .frame(width:100 , height: 80)
+                                               .transition(.repeating(from: Opacity(0), to: Opacity(1)))
+                                                                           
+                                           
+                                           }
+                                           Text("الاشراف والتطوير المهنى").font(.title).fontWeight(.medium)
+                                            
+                                       }.frame(width:geometry.size.width,height: geometry.size.height / 3)
+                                       .background(Color.gray)
+                                   .onAppear(){self.imageTransation.toggle() }
+                                   
+                }.buttonStyle(PlainButtonStyle())
+                
+                   
                 
                 
-                
-                
+                NavigationLink(destination: SupervisionTeamView()){
                     VStack(alignment:.center){
-                        Image(systemName: "gear")
-                        .resizable()
-                        .scaledToFit()
-                                .frame(width:100 , height:80)
-                            .rotationEffect(.degrees(self.spin ? 360: 0))
-                            .animation(Animation.linear(duration:1 ).repeatForever(autoreverses:false))
-                            .onAppear(){
-                                self.spin = true
-                        }
-                        Text("فريق العمل بقسم الاشراف والتطوير المهني").font(.title)
-                            .fontWeight(.medium)
-                            .multilineTextAlignment(.center).lineLimit(2)
-                        
-                        
-                        
-                    }.frame(width:geometry.size.width,height: geometry.size.height / 3)
-                    .background(Color.orange)
+                                           VStack{
+                                               Image(systemName: "gear")
+                                               .resizable()
+                                               .scaledToFit()
+                                                       .frame(width:100 , height:80)
+                                                   .rotationEffect(.degrees(self.spin ? 360: 0))
+                                               //.offset(x: 20, y: 200)
+                                                   //.animation(Animation.spring().repeatForever(autoreverses:false))
+                                                   .onAppear(){
+                                                       withAnimation(Animation.linear(duration: 1).repeatForever(autoreverses: false)){
+                                                           self.spin = true
+                                                       }
+                                                       
+                                                       
+                                               }
+                                           }
+                                           
+                                           Text("فريق العمل بقسم الاشراف والتطوير المهني").font(.title)
+                                               .fontWeight(.medium)
+                                               .multilineTextAlignment(.center).lineLimit(2)
+                                           
+                                           
+                                           
+                                       }.frame(width:geometry.size.width,height: geometry.size.height / 3)
+                                       .background(Color.orange)
+                }.buttonStyle(PlainButtonStyle())
+                
+                
+                   
                     
                     VStack(alignment:.center){
 
@@ -128,8 +122,8 @@ struct SupervisionView: View {
                             .resizable()
                             .scaledToFit()
                                     .frame(width:100 , height: 80)
-                                .offset(x: self.shaked ? -10 : 15)
-                                .animation(Animation.easeInOut.repeatForever().speed(2))
+                                .offset(x: self.shaked ? -5 : 0)
+                                .animation(Animation.easeInOut.repeatForever().speed(1))
                             Text("خطط الاشراف الجديدة").font(.title).fontWeight(.medium)
                         }
                         
@@ -154,7 +148,8 @@ struct SupervisionView: View {
          
          }//.padding(.top,10)
          
-         
+            .navigationBarTitle("رجوع")
+            .navigationBarHidden(true)
         }
            }
      
