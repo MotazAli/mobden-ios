@@ -22,7 +22,7 @@ struct SupervisionInfoView: View {
         
         var body: some View {
             
-            //GeometryReader{ geometry in
+            GeometryReader{ geometry in
             
             ScrollView{
             
@@ -68,7 +68,7 @@ struct SupervisionInfoView: View {
                          .lineSpacing(5)
                                        //.fixedSize(horizontal: false, vertical: true)
                          .multilineTextAlignment(.trailing)
-                .padding()
+                .padding(10)
                          //.lineLimit(Int.max)
 
                 //}
@@ -85,8 +85,8 @@ struct SupervisionInfoView: View {
                                 //.padding([.trailing],30)
                 .background(Color.gray.opacity(0.2))
                            // .cornerRadius(15)
-            }//.frame(width: geometry.size.width)
-            //}
+            }.frame(width: geometry.size.width - 20)
+            }
     .navigationBarTitle("توضيح",displayMode: .inline)
         }
 }

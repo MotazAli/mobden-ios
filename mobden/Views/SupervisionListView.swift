@@ -24,7 +24,7 @@ struct SupervisionListView: View {
          
          GeometryReader{ geometry in
              VStack{
-               //NavigationView{
+               NavigationView{
                   VStack{
                       
                     List(self.SDModel.supervisionAndDevelopments){ info in
@@ -59,7 +59,7 @@ struct SupervisionListView: View {
                       .frame(width:geometry.size.width)
                     .navigationBarTitle("الاشراف والتطوير المهنى",displayMode: .inline)
                     //.navigationBarHidden(true)
-                  //}.frame(width: geometry.size.width)
+                  }.frame(width: geometry.size.width)
                  
                  
                  
