@@ -1,21 +1,21 @@
 //
-//  SupervisionListView.swift
+//  SupervisionPlanListView.swift
 //  mobden
 //
-//  Created by administrator on 3/5/20.
+//  Created by administrator on 3/7/20.
 //  Copyright © 2020 motaz. All rights reserved.
 //
 
 import SwiftUI
 
-struct SupervisionListView: View {
-    
+struct SupervisionPlanListView: View {
+   
      @ObservedObject var SDModel = SupervisionAndDevelopmentModel()
      //var url = "https://mobdenapi.azurewebsites.net/"
      //var prizesUrl = "assets/prizes/"
      
      init(){
-        self.SDModel.getAboutSupervisions()
+        self.SDModel.GetManagmentDepartmentPlansByDep()
      }
      
      
@@ -27,7 +27,7 @@ struct SupervisionListView: View {
                NavigationView{
                   VStack{
                       
-                    List(self.SDModel.supervisionAndDevelopments){ info in
+                    List(self.SDModel.supervisionPlans){ info in
                         
                         
                         NavigationLink(destination: SupervisionInfoView(id: info.id) ){
@@ -35,7 +35,7 @@ struct SupervisionListView: View {
                             VStack{
                                 HStack{
                                         Spacer()
-                                        Text(info.title)
+                                    Text(info.linkTitle)
                                         .padding(8)
                                         .flipsForRightToLeftLayoutDirection(true)
                                         .lineSpacing(2)
@@ -57,7 +57,7 @@ struct SupervisionListView: View {
                                       
                   }//.padding([.trailing,.leading],10)
                       .frame(width:geometry.size.width)
-                    .navigationBarTitle(""الاشراف والتطوير المهنى"",displayMode: .inline)
+                    .navigationBarTitle("خطط الاشراف الجديدة",displayMode: .inline)
                     //.navigationBarHidden(true)
                   }.frame(width: geometry.size.width)
                  
@@ -76,8 +76,8 @@ struct SupervisionListView: View {
     
 }
 
-struct SupervisionListView_Previews: PreviewProvider {
+struct SupervisionPlanListView_Previews: PreviewProvider {
     static var previews: some View {
-        SupervisionListView()
+        SupervisionPlanListView()
     }
 }

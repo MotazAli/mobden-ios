@@ -68,7 +68,7 @@ struct SupervisionInfoView: View {
                          .lineSpacing(5)
                                        //.fixedSize(horizontal: false, vertical: true)
                          .multilineTextAlignment(.trailing)
-                .padding(10)
+                        .padding(10)
                          //.lineLimit(Int.max)
 
                 //}

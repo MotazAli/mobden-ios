@@ -677,6 +677,7 @@ final class SupervisionAndDevelopmentModel: ObservableObject{
     @Published var supervisionAndDevelopments = [SupervisionAndDevelopment]()
     @Published var supervisionAndDevelopmentInfo = SupervisionAndDevelopment(id: 0, title: "لا يوجد", description: "لا يوجد")
     @Published var supervisionTeams = [SupervisionTeam]()
+    @Published var supervisionPlans = [SupervisionPlan]()
     
 //    init() {
 //        fetchPosts()
@@ -876,6 +877,78 @@ final class SupervisionAndDevelopmentModel: ObservableObject{
         }
         
         
+        func GetManagmentDepartmentPlansByDep()
+            {
+
+                supervisionPlans.removeAll()
+                let MDPlanObject = ManagmentDepartmentPlan(id: 0, linkTitle: nil, planFile: nil, departmentID: 5, creationDate: nil, modifiedDate: nil, creationUserId: 0, modifiedUserId: 0)
+                
+                let url = URL(string: "https://mobdenapi.azurewebsites.net/MobdenAPI/ManagmentDepartmentPlans/GetManagmentDepartmentPlansByDep")
+                guard let requestUrl = url else { fatalError() }
+                // Create URL Request
+                var request = URLRequest(url: requestUrl)
+                // Specify HTTP Method to use
+                //request.httpMethod = "GET"
+                
+                
+                let jsonData = try! JSONEncoder().encode(MDPlanObject)
+                //let jsonString = String(data: jsonData, encoding: .utf8)!
+                request.httpMethod = "POST" //set http method as POST
+                request.setValue("application/json; charset=utf-8",
+                     forHTTPHeaderField: "Content-Type")
+                request.setValue("application/json; charset=utf-8",
+                     forHTTPHeaderField: "Accept")
+                request.httpBody = jsonData
+                
+                
+                
+                
+                // Send HTTP Request
+                let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                    
+                    // Check if Error took place
+                    if let error = error {
+                        print("Error took place \(error)")
+                        return
+                    }
+                    
+                    // Read HTTP Response Status code
+                    if let response = response as? HTTPURLResponse {
+                       
+                        print("Response HTTP Status code: \(response.statusCode)")
+                    }
+                    
+                    // Convert HTTP Response Data to a simple String
+                    if let data = data, let dataString = String(data: data, encoding: .utf8) {
+                        
+                        if dataString != "null"{
+                            let data = Data(dataString.utf8)
+                                           let supervisionPlansData = try! JSONDecoder().decode([SupervisionPlan].self, from: data)
+                                          
+                                           DispatchQueue.main.async {
+                                            print("done")
+                                            self.supervisionPlans = supervisionPlansData
+                                            
+                                           }
+                        }
+                       
+                        
+        //                print("Response data string:\n \(dataString)")
+        //
+        //                print("Response data string:\n \(String(describing: wordsData.title))")
+        //
+        //
+        //                print("Response data string:\n \(String(describing: self.words[0].title))")
+                        
+                    }
+                    
+                }
+                task.resume()
+                
+                
+                
+                
+            }
         
     
     

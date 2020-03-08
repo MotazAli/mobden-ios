@@ -24,6 +24,7 @@
 		C369A6902411D33B00CB6E79 /* SupervisionListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C369A68F2411D33B00CB6E79 /* SupervisionListView.swift */; };
 		C369A6922411D5C500CB6E79 /* SupervisionInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C369A6912411D5C500CB6E79 /* SupervisionInfoView.swift */; };
 		C369A6942411E33C00CB6E79 /* SupervisionTeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C369A6932411E33C00CB6E79 /* SupervisionTeamView.swift */; };
+		C369A6962414813900CB6E79 /* SupervisionPlanListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C369A6952414813900CB6E79 /* SupervisionPlanListView.swift */; };
 		C3A039DC23FFA840002BBE36 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A039DB23FFA840002BBE36 /* AppDelegate.swift */; };
 		C3A039DE23FFA840002BBE36 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A039DD23FFA840002BBE36 /* SceneDelegate.swift */; };
 		C3A039E023FFA840002BBE36 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A039DF23FFA840002BBE36 /* ContentView.swift */; };
@@ -52,6 +53,7 @@
 		C369A68F2411D33B00CB6E79 /* SupervisionListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupervisionListView.swift; sourceTree = "<group>"; };
 		C369A6912411D5C500CB6E79 /* SupervisionInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupervisionInfoView.swift; sourceTree = "<group>"; };
 		C369A6932411E33C00CB6E79 /* SupervisionTeamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupervisionTeamView.swift; sourceTree = "<group>"; };
+		C369A6952414813900CB6E79 /* SupervisionPlanListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupervisionPlanListView.swift; sourceTree = "<group>"; };
 		C3A039D823FFA840002BBE36 /* mobden.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mobden.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3A039DB23FFA840002BBE36 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C3A039DD23FFA840002BBE36 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 				C369A68F2411D33B00CB6E79 /* SupervisionListView.swift */,
 				C369A6912411D5C500CB6E79 /* SupervisionInfoView.swift */,
 				C369A6932411E33C00CB6E79 /* SupervisionTeamView.swift */,
+				C369A6952414813900CB6E79 /* SupervisionPlanListView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -241,6 +244,7 @@
 				C369A68A240B478400CB6E79 /* PublicRelationsView.swift in Sources */,
 				C369A688240B34F000CB6E79 /* PrizesView.swift in Sources */,
 				C369A68424075A0D00CB6E79 /* RegistrationView.swift in Sources */,
+				C369A6962414813900CB6E79 /* SupervisionPlanListView.swift in Sources */,
 				C369A6802406E4F900CB6E79 /* DateModel.swift in Sources */,
 				C369A68E240F2F7700CB6E79 /* SupervisionView.swift in Sources */,
 				C369A68C240C8BF000CB6E79 /* PublicRelationInfoView.swift in Sources */,

@@ -178,3 +178,39 @@ var status:String
     
 }
 
+
+struct SupervisionPlan : Decodable ,Identifiable{
+var id:Int
+var linkTitle:String
+var departmentID:Int
+var planFile:String
+
+
+}
+
+
+struct ManagmentDepartmentPlan :Codable , Identifiable {
+    var id:Int?
+    var linkTitle:String?
+    var planFile :String?
+    var departmentID :Int?
+    var creationDate:String?
+    var modifiedDate :String?
+    var creationUserId :Int?
+    var modifiedUserId :Int?
+
+
+
+    
+    enum CodingKeys : String ,CodingKey{
+
+        case id = "ID"
+        case linkTitle = "LinkTitle"
+        case planFile = "PlanFile"
+        case departmentID = "DepartmentID"
+        case creationDate = "CreationDate"
+        case modifiedDate = "ModifiedDate"
+        case creationUserId = "CreationUserId"
+        case modifiedUserId = "ModifiedUserId"
+    }
+}

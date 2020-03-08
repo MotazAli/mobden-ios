@@ -75,7 +75,7 @@ struct SupervisionView: View {
                     }
                     else if self.selectedTab == 3{
                        ZStack{
-                            EmptyView()
+                            SupervisionPlanListView()
                         }
                         .padding(.top,100)
                     }
