@@ -11,8 +11,8 @@ import SwiftUI
 struct SupervisionPlanListView: View {
    
      @ObservedObject var SDModel = SupervisionAndDevelopmentModel()
-     //var url = "https://mobdenapi.azurewebsites.net/"
-     //var prizesUrl = "assets/prizes/"
+     var url = "https://mobdenapi.azurewebsites.net/"
+     var plansPath = "assets/plans/"
      
      init(){
         self.SDModel.GetManagmentDepartmentPlansByDep()
@@ -30,7 +30,7 @@ struct SupervisionPlanListView: View {
                     List(self.SDModel.supervisionPlans){ info in
                         
                         
-                        NavigationLink(destination: SupervisionInfoView(id: info.id) ){
+                        NavigationLink(destination: SupervisionPlanInfoView(url: URL(string: self.url + self.plansPath + info.planFile  )!) ){
                             
                             VStack{
                                 HStack{

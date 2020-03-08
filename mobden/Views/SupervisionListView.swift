@@ -57,7 +57,7 @@ struct SupervisionListView: View {
                                       
                   }//.padding([.trailing,.leading],10)
                       .frame(width:geometry.size.width)
-                    .navigationBarTitle(""الاشراف والتطوير المهنى"",displayMode: .inline)
+                    .navigationBarTitle("الاشراف والتطوير المهنى",displayMode: .inline)
                     //.navigationBarHidden(true)
                   }.frame(width: geometry.size.width)
                  
