@@ -9,7 +9,7 @@
 import SwiftUI
 import PDFKit
 
-struct SupervisionPlanInfoView: View {
+struct PlanInfoView: View {
    var url: URL
 
     var body: some View {
@@ -23,7 +23,7 @@ struct SupervisionPlanInfoView: View {
 
 struct SupervisionPlanInfoView_Previews: PreviewProvider {
     static var previews: some View {
-        SupervisionPlanInfoView(url: URL(string: "cvdcvd")!)
+        PlanInfoView(url: URL(string: "cvdcvd")!)
     }
 }
 

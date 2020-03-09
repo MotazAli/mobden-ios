@@ -1092,5 +1092,318 @@ final class SupervisionAndDevelopmentModel: ObservableObject{
     
 }
 
+final class ComprehensiveModel: ObservableObject{
+    
+    @Published var comprehensives = [Comprehensive]()
+    @Published var comprehensiveInfo = Comprehensive(id: 0, title: "لا يوجد", description: "لا يوجد")
+    @Published var comprehensiveTeams = [DepartmentLeader]()
+    @Published var comprehensivePlans = [SupervisionPlan]()
+    
+//    init() {
+//        fetchPosts()
+//    }
+    
+    
+    
+     func getAboutComprehensive()
+    {
+
+        comprehensives.removeAll()
+        
+        let url = URL(string: "https://mobdenapi.azurewebsites.net/MobdenAPI/Comprehensive/GetAboutComprehensive")
+        guard let requestUrl = url else { fatalError() }
+        // Create URL Request
+        var request = URLRequest(url: requestUrl)
+        // Specify HTTP Method to use
+        request.httpMethod = "GET"
+        // Send HTTP Request
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            
+            // Check if Error took place
+            if let error = error {
+                print("Error took place \(error)")
+                return
+            }
+            
+            // Read HTTP Response Status code
+            if let response = response as? HTTPURLResponse {
+               
+                print("Response HTTP Status code: \(response.statusCode)")
+            }
+            
+            // Convert HTTP Response Data to a simple String
+            if let data = data, let dataString = String(data: data, encoding: .utf8) {
+                
+                if dataString != "null"{
+                    let data = Data(dataString.utf8)
+                                   let comprehensivesData = try! JSONDecoder().decode([Comprehensive].self, from: data)
+                                  
+                                   DispatchQueue.main.async {
+                                    //print("done")
+                                    self.comprehensives = comprehensivesData
+                                    
+                                   }
+                }
+               
+                
+//                print("Response data string:\n \(dataString)")
+//
+//                print("Response data string:\n \(String(describing: wordsData.title))")
+//
+//
+//                print("Response data string:\n \(String(describing: self.words[0].title))")
+                
+            }
+            
+        }
+        task.resume()
+        
+        
+        
+        
+    }
+    
+    
+    
+    
+    
+
+         func getAboutComprehensiveByID(id : Int)
+        {
+
+            
+            
+    //        let url = URL(string: "https://mobdenapi.azurewebsites.net/MobdenAPI/ManagmentArticles/GetArticles")
+    //        guard let requestUrl = url else { fatalError() }
+            
+            
+            
+            
+            
+            let urlComponent = NSURLComponents(string: "https://mobdenapi.azurewebsites.net/MobdenAPI/Comprehensive/GetAboutComprehensiveByID")
+            
+            urlComponent?.queryItems = [
+                (NSURLQueryItem(name: "id", value: String(describing: id)) as URLQueryItem)
+            ]
+            
+            
+            
+            //guard let requestUrl = url else { fatalError() }
+            guard let requestUrl = urlComponent?.url else { fatalError() }
+            
+            
+            // Create URL Request
+            var request = URLRequest(url: requestUrl)
+            // Specify HTTP Method to use
+            request.httpMethod = "GET"
+            // Send HTTP Request
+            let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                
+                // Check if Error took place
+                if let error = error {
+                    print("Error took place \(error)")
+                    return
+                }
+                
+                // Read HTTP Response Status code
+                if let response = response as? HTTPURLResponse {
+                    print("Response HTTP Status code: \(response.statusCode)")
+                }
+                
+                // Convert HTTP Response Data to a simple String
+                if let data = data, let dataString = String(data: data, encoding: .utf8) {
+                    
+                    if dataString != "null"{
+                    let data = Data(dataString.utf8)
+                    let infoData = try! JSONDecoder().decode(Comprehensive.self, from: data)
+                   
+                    DispatchQueue.main.async {
+                        self.comprehensiveInfo = infoData
+                        //self.articles.append( articlesData)
+                        //print("count \(self.articles.count)")
+                    }
+                    }
+                    
+
+                    
+                }
+                
+            }
+            task.resume()
+            
+            
+            
+            
+        }
+        
+        
+        
+    
+    
+    
+    func getManagmentDepartmentLeaderByDep()
+        {
+
+            comprehensiveTeams.removeAll()
+            let MDPlanObject = ManagmentDepartmentPlan(id: 0, linkTitle: nil, planFile: nil, departmentID: 4, creationDate: nil, modifiedDate: nil, creationUserId: 0, modifiedUserId: 0)
+            
+            let url = URL(string: "https://mobdenapi.azurewebsites.net/MobdenAPI/ManagmentDepartmentLeader/GetManagmentDepartmentLeaderByDep")
+            guard let requestUrl = url else { fatalError() }
+            // Create URL Request
+            var request = URLRequest(url: requestUrl)
+            // Specify HTTP Method to use
+            //request.httpMethod = "GET"
+            
+            
+            let jsonData = try! JSONEncoder().encode(MDPlanObject)
+            //let jsonString = String(data: jsonData, encoding: .utf8)!
+            request.httpMethod = "POST" //set http method as POST
+            request.setValue("application/json; charset=utf-8",
+                 forHTTPHeaderField: "Content-Type")
+            request.setValue("application/json; charset=utf-8",
+                 forHTTPHeaderField: "Accept")
+            request.httpBody = jsonData
+            
+            
+            
+            
+            // Send HTTP Request
+            let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                
+                // Check if Error took place
+                if let error = error {
+                    print("Error took place \(error)")
+                    return
+                }
+                
+                // Read HTTP Response Status code
+                if let response = response as? HTTPURLResponse {
+                   
+                    print("Response HTTP Status code: \(response.statusCode)")
+                }
+                
+                // Convert HTTP Response Data to a simple String
+                if let data = data, let dataString = String(data: data, encoding: .utf8) {
+                    
+                    if dataString != "null"{
+                        let data = Data(dataString.utf8)
+                                       let teamsData = try! JSONDecoder().decode([DepartmentLeader].self, from: data)
+                                      
+                                       DispatchQueue.main.async {
+                                        print("done")
+                                        self.comprehensiveTeams = teamsData
+                                        
+                                       }
+                    }
+                   
+                    
+    //                print("Response data string:\n \(dataString)")
+    //
+    //                print("Response data string:\n \(String(describing: wordsData.title))")
+    //
+    //
+    //                print("Response data string:\n \(String(describing: self.words[0].title))")
+                    
+                }
+                
+            }
+            task.resume()
+            
+            
+            
+            
+        }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        
+        
+        func getManagmentDepartmentPlansByDep()
+            {
+
+                comprehensivePlans.removeAll()
+                let MDPlanObject = ManagmentDepartmentPlan(id: 0, linkTitle: nil, planFile: nil, departmentID: 4, creationDate: nil, modifiedDate: nil, creationUserId: 0, modifiedUserId: 0)
+                
+                let url = URL(string: "https://mobdenapi.azurewebsites.net/MobdenAPI/ManagmentDepartmentPlans/GetManagmentDepartmentPlansByDep")
+                guard let requestUrl = url else { fatalError() }
+                // Create URL Request
+                var request = URLRequest(url: requestUrl)
+                // Specify HTTP Method to use
+                //request.httpMethod = "GET"
+                
+                
+                let jsonData = try! JSONEncoder().encode(MDPlanObject)
+                //let jsonString = String(data: jsonData, encoding: .utf8)!
+                request.httpMethod = "POST" //set http method as POST
+                request.setValue("application/json; charset=utf-8",
+                     forHTTPHeaderField: "Content-Type")
+                request.setValue("application/json; charset=utf-8",
+                     forHTTPHeaderField: "Accept")
+                request.httpBody = jsonData
+                
+                
+                
+                
+                // Send HTTP Request
+                let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                    
+                    // Check if Error took place
+                    if let error = error {
+                        print("Error took place \(error)")
+                        return
+                    }
+                    
+                    // Read HTTP Response Status code
+                    if let response = response as? HTTPURLResponse {
+                       
+                        print("Response HTTP Status code: \(response.statusCode)")
+                    }
+                    
+                    // Convert HTTP Response Data to a simple String
+                    if let data = data, let dataString = String(data: data, encoding: .utf8) {
+                        
+                        if dataString != "null"{
+                            let data = Data(dataString.utf8)
+                                           let PlansData = try! JSONDecoder().decode([SupervisionPlan].self, from: data)
+                                          
+                                           DispatchQueue.main.async {
+                                            print("done")
+                                            self.comprehensivePlans = PlansData
+                                            
+                                           }
+                        }
+                       
+                        
+        //                print("Response data string:\n \(dataString)")
+        //
+        //                print("Response data string:\n \(String(describing: wordsData.title))")
+        //
+        //
+        //                print("Response data string:\n \(String(describing: self.words[0].title))")
+                        
+                    }
+                    
+                }
+                task.resume()
+                
+                
+                
+                
+            }
+        
+    
+    
+    
+    
+}
+
+
+
 
 

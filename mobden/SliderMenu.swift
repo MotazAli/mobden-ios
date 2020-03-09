@@ -79,8 +79,18 @@ struct MasterMenuSlider : View {
                                        
                                    }
                                   HStack{
-                                      Text("الجودة الشاملة").padding(20)
-                                    .font(.title)
+                                    
+                                    Button(action:{
+                                        self.viewName = ViewScreen.comprehensiveView
+                                        self.isSheetPersented.toggle()
+                                    }){
+                                        Text("الجودة الشاملة")
+                                            .foregroundColor(.primary)
+                                            .padding(20)
+                                        .font(.title)
+                                    }
+                                    
+                                     
                                   }
                                   HStack{
                                     
@@ -170,6 +180,10 @@ struct MasterMenuSlider : View {
             }
             else if viewScreen == ViewScreen.supervisionView {
                 return AnyView( SupervisionView())
+                           
+            }
+        else if viewScreen == ViewScreen.comprehensiveView {
+                return AnyView( ComprehensiveView())
                            
             }
         else{

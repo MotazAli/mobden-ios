@@ -30,7 +30,7 @@ struct SupervisionPlanListView: View {
                     List(self.SDModel.supervisionPlans){ info in
                         
                         
-                        NavigationLink(destination: SupervisionPlanInfoView(url: URL(string: self.url + self.plansPath + info.planFile  )!) ){
+                        NavigationLink(destination: PlanInfoView(url: URL(string: self.url + self.plansPath + info.planFile  )!) ){
                             
                             VStack{
                                 HStack{

@@ -17,7 +17,7 @@ import Combine
 enum ViewScreen: Int {
     case noView = 0 ,wordView = 1, articlesView = 2 , articaleView = 3 , prizesView = 4,
     registrationView = 5 , publicRelation = 6 ,supervisionView = 7 , supervisionListView = 8 ,
-    supervisionInfoView = 9 , supervisionTeamView = 10
+    supervisionInfoView = 9 , supervisionTeamView = 10 , comprehensiveView = 11
     
     
 }
@@ -228,4 +228,28 @@ struct ManagmentDepartmentPlan :Codable , Identifiable {
         case creationUserId = "CreationUserId"
         case modifiedUserId = "ModifiedUserId"
     }
+}
+
+
+
+
+
+
+struct Comprehensive : Decodable ,Identifiable{
+var id:Int
+var title:String
+var description:String
+    
+    
+}
+
+
+
+struct DepartmentLeader : Decodable ,Identifiable{
+var id:Int
+var name:String
+var image:String
+var phone:String
+    
+    
 }

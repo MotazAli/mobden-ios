@@ -25,7 +25,8 @@
 		C369A6922411D5C500CB6E79 /* SupervisionInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C369A6912411D5C500CB6E79 /* SupervisionInfoView.swift */; };
 		C369A6942411E33C00CB6E79 /* SupervisionTeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C369A6932411E33C00CB6E79 /* SupervisionTeamView.swift */; };
 		C369A6962414813900CB6E79 /* SupervisionPlanListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C369A6952414813900CB6E79 /* SupervisionPlanListView.swift */; };
-		C369A6982414862B00CB6E79 /* SupervisionPlanInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C369A6972414862B00CB6E79 /* SupervisionPlanInfoView.swift */; };
+		C369A6982414862B00CB6E79 /* PlanInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C369A6972414862B00CB6E79 /* PlanInfoView.swift */; };
+		C369A69A2415DFD600CB6E79 /* ComprehensiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C369A6992415DFD600CB6E79 /* ComprehensiveView.swift */; };
 		C3A039DC23FFA840002BBE36 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A039DB23FFA840002BBE36 /* AppDelegate.swift */; };
 		C3A039DE23FFA840002BBE36 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A039DD23FFA840002BBE36 /* SceneDelegate.swift */; };
 		C3A039E023FFA840002BBE36 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A039DF23FFA840002BBE36 /* ContentView.swift */; };
@@ -55,7 +56,8 @@
 		C369A6912411D5C500CB6E79 /* SupervisionInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupervisionInfoView.swift; sourceTree = "<group>"; };
 		C369A6932411E33C00CB6E79 /* SupervisionTeamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupervisionTeamView.swift; sourceTree = "<group>"; };
 		C369A6952414813900CB6E79 /* SupervisionPlanListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupervisionPlanListView.swift; sourceTree = "<group>"; };
-		C369A6972414862B00CB6E79 /* SupervisionPlanInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupervisionPlanInfoView.swift; sourceTree = "<group>"; };
+		C369A6972414862B00CB6E79 /* PlanInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanInfoView.swift; sourceTree = "<group>"; };
+		C369A6992415DFD600CB6E79 /* ComprehensiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComprehensiveView.swift; sourceTree = "<group>"; };
 		C3A039D823FFA840002BBE36 /* mobden.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mobden.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3A039DB23FFA840002BBE36 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C3A039DD23FFA840002BBE36 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -96,7 +98,8 @@
 				C369A6912411D5C500CB6E79 /* SupervisionInfoView.swift */,
 				C369A6932411E33C00CB6E79 /* SupervisionTeamView.swift */,
 				C369A6952414813900CB6E79 /* SupervisionPlanListView.swift */,
-				C369A6972414862B00CB6E79 /* SupervisionPlanInfoView.swift */,
+				C369A6972414862B00CB6E79 /* PlanInfoView.swift */,
+				C369A6992415DFD600CB6E79 /* ComprehensiveView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -243,7 +246,7 @@
 			files = (
 				C369A67C2406C92B00CB6E79 /* ImageModel.swift in Sources */,
 				C3A039DC23FFA840002BBE36 /* AppDelegate.swift in Sources */,
-				C369A6982414862B00CB6E79 /* SupervisionPlanInfoView.swift in Sources */,
+				C369A6982414862B00CB6E79 /* PlanInfoView.swift in Sources */,
 				C369A67E2406C9A600CB6E79 /* UrlImageView.swift in Sources */,
 				C369A68A240B478400CB6E79 /* PublicRelationsView.swift in Sources */,
 				C369A688240B34F000CB6E79 /* PrizesView.swift in Sources */,
@@ -252,6 +255,7 @@
 				C369A6802406E4F900CB6E79 /* DateModel.swift in Sources */,
 				C369A68E240F2F7700CB6E79 /* SupervisionView.swift in Sources */,
 				C369A68C240C8BF000CB6E79 /* PublicRelationInfoView.swift in Sources */,
+				C369A69A2415DFD600CB6E79 /* ComprehensiveView.swift in Sources */,
 				C3A039DE23FFA840002BBE36 /* SceneDelegate.swift in Sources */,
 				C369A6712406C58C00CB6E79 /* RequestServices.swift in Sources */,
 				C369A6772406C80F00CB6E79 /* ArticlesView.swift in Sources */,
