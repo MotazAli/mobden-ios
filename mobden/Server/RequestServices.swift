@@ -376,7 +376,8 @@ final class HonorBoardlModel: ObservableObject{
 final class RegistrationModel: ObservableObject{
     
     @Published var registerFinances = [RegisterFinance]()
-    
+    @Published var registrationRequiredList = [RegistrationsRequired]()
+    @Published var registrationRequiredInfo = RegistrationsRequired(id: 0, title: "", description: "", creationDate: "")
 //    init() {
 //        getRegistrationFinanace()
 //    }
@@ -439,6 +440,141 @@ final class RegistrationModel: ObservableObject{
         
         
     }
+    
+    
+    
+    
+    
+
+          func getRequiredForRegistration()
+        {
+
+            registrationRequiredList.removeAll()
+            
+            let url = URL(string: "https://mobdenapi.azurewebsites.net/MobdenAPI/Registration/GetRequiredForRegistration")
+            guard let requestUrl = url else { fatalError() }
+            // Create URL Request
+            var request = URLRequest(url: requestUrl)
+            // Specify HTTP Method to use
+            request.httpMethod = "GET"
+            // Send HTTP Request
+            let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                
+                // Check if Error took place
+                if let error = error {
+                    print("Error took place \(error)")
+                    return
+                }
+                
+                // Read HTTP Response Status code
+                if let response = response as? HTTPURLResponse {
+                    print("Response HTTP Status code: \(response.statusCode)")
+                }
+                
+                // Convert HTTP Response Data to a simple String
+                if let data = data, let dataString = String(data: data, encoding: .utf8) {
+                    
+                    if dataString != "null"{
+                        let data = Data(dataString.utf8)
+                                       let rgisterData = try! JSONDecoder().decode([RegistrationsRequired].self, from: data)
+                                      print("done")
+                                       DispatchQueue.main.async {
+                                        self.registrationRequiredList = rgisterData
+                                        //print("done 2")
+    //                                    print("Response data string:\n \(String(describing: self.registerFinances[0].fees))")
+                                       }
+                    }
+                   
+                    
+    //                print("Response data string:\n \(dataString)")
+    //
+    //                print("Response data string:\n \(String(describing: self.registerFinances[0].fees))")
+    //
+    //
+    //                print("Response data string:\n \(String(describing: self.words[0].title))")
+                    
+                }
+                
+            }
+            task.resume()
+            
+            
+            
+            
+        }
+        
+    
+    
+
+         func getRequiredForRegistrationByID(id : Int)
+        {
+
+            
+            
+    //        let url = URL(string: "https://mobdenapi.azurewebsites.net/MobdenAPI/ManagmentArticles/GetArticles")
+    //        guard let requestUrl = url else { fatalError() }
+            
+            
+            
+            
+            
+            let urlComponent = NSURLComponents(string: "https://mobdenapi.azurewebsites.net/MobdenAPI/Registration/GetRequiredForRegistrationByID")
+            
+            urlComponent?.queryItems = [
+                (NSURLQueryItem(name: "id", value: String(describing: id)) as URLQueryItem)
+            ]
+            
+            
+            
+            //guard let requestUrl = url else { fatalError() }
+            guard let requestUrl = urlComponent?.url else { fatalError() }
+            
+            
+            // Create URL Request
+            var request = URLRequest(url: requestUrl)
+            // Specify HTTP Method to use
+            request.httpMethod = "GET"
+            // Send HTTP Request
+            let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                
+                // Check if Error took place
+                if let error = error {
+                    print("Error took place \(error)")
+                    return
+                }
+                
+                // Read HTTP Response Status code
+                if let response = response as? HTTPURLResponse {
+                    print("Response HTTP Status code: \(response.statusCode)")
+                }
+                
+                // Convert HTTP Response Data to a simple String
+                if let data = data, let dataString = String(data: data, encoding: .utf8) {
+                    
+                    if dataString != "null"{
+                    let data = Data(dataString.utf8)
+                    let infoData = try! JSONDecoder().decode(RegistrationsRequired.self, from: data)
+                   
+                    DispatchQueue.main.async {
+                        self.registrationRequiredInfo = infoData
+                        //self.articles.append( articlesData)
+                        //print("count \(self.articles.count)")
+                    }
+                    }
+                    
+
+                    
+                }
+                
+            }
+            task.resume()
+            
+            
+            
+            
+        }
+    
+    
     
     
 }

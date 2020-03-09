@@ -129,6 +129,21 @@ struct RegisterFinance : Decodable, Identifiable{
 }
 
 
+struct RegistrationsRequired : Decodable, Identifiable{
+    var id:Int
+    var title:String
+    var description:String
+    var creationDate:String
+    var arabicDate:String{
+        get{
+            
+            return SystemDates.getArabicDate(date:self.creationDate)
+                
+        }
+    }
+    
+    
+}
 
 
 struct Prize : Decodable ,Identifiable{

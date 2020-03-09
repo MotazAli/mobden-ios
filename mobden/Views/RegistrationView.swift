@@ -49,7 +49,7 @@ struct RegistrationView: View {
 //                        }
                         else if self.selectedTab == 3{
                            ZStack{
-                                EmptyView()
+                                RegistrationRequiredListView()
                             }
                             .padding(.top,100)
                         }
@@ -72,7 +72,7 @@ struct RegistrationView: View {
                                                     .frame(width:60 , height: 40)
                                                 .offset(x: self.shaked ? -5 : 0)
                                                 .animation(Animation.easeInOut.repeatForever().speed(1))
-                                Text("خطط الاشراف").fontWeight(.medium)
+                                Text("متطلبات التسجيل").fontWeight(.medium)
                                         //}
                                         
                                 //Spacer()
@@ -321,10 +321,177 @@ struct RegistrationInfoView: View {
 
 
 
+struct RegistrationRequiredListView: View {
+    
+     @ObservedObject var RModel = RegistrationModel()
+     //var url = "https://mobdenapi.azurewebsites.net/"
+     //var prizesUrl = "assets/prizes/"
+     
+     init(){
+        self.RModel.getRequiredForRegistration()
+     }
+     
+     
+     var body: some View{
+         
+         
+         GeometryReader{ geometry in
+            
+            
+            if self.RModel.registrationRequiredList.isEmpty {
+                VStack(alignment:.center){
+                    Text("فارغ").frame(width:200,height:200)
+                        .background(Color.red.opacity(0.3))
+                    .cornerRadius(9)
+                }.frame(height: 250).offset(x:(geometry.size.width / 2 ) - 100 , y: (geometry.size.height / 2) - 100)
+            }
+            else {
+                
+                
+                
+                 VStack{
+                   NavigationView{
+                      VStack{
+                          
+                        List(self.RModel.registrationRequiredList){ info in
+                            
+                            
+                            NavigationLink(destination: RegistrationRequiredInfoView(id: info.id) ){
+                                
+                                VStack{
+                                    HStack{
+                                            Spacer()
+                                            Text(info.title)
+                                            .padding(8)
+                                            .flipsForRightToLeftLayoutDirection(true)
+                                            .lineSpacing(2)
+                                            .multilineTextAlignment(.trailing)
+                                                                      
+                                          }.frame(alignment:.top)
+                                                              
+                                      }.frame(height:100)
+                                        .background(Color.gray.opacity(0.2))
+                                        .cornerRadius(8)
+                                
+                                
+                            }
+                            
+                                                              
+                         }
+                          
+                                          
+                                          
+                      }//.padding([.trailing,.leading],10)
+                          .frame(width:geometry.size.width)
+                        .navigationBarTitle("متطلبات التسجيل",displayMode: .inline)
+                        //.navigationBarHidden(true)
+                      }.frame(width: geometry.size.width)
+                     
+                     
+                     
+                   }
+                
+            }
+            
+            
+            
+            
+         
+         
+         
+         }//.padding(.top,10)
+         
+         
+         
+           }
+     
+    
+}
 
 
 
 
+struct RegistrationRequiredInfoView: View {
+    @ObservedObject var RModel = RegistrationModel() //ArticleModel(getArticleByID:)
+        //var url = "https://mobdenapi.azurewebsites.net/"
+        //var articleUrl = "assets/articles/"
+        
+        init(id: Int) {
+            
+            //self.articleModel = ArticleModel()
+            self.RModel.getRequiredForRegistrationByID(id: id)
+        }
+        
+        var body: some View {
+            
+            GeometryReader{ geometry in
+            
+            ScrollView{
+            
+            
+            VStack{
+                
+                //ForEach(self.articleModel.articles){ article in
+                    
+                                        VStack{
+                                         HStack{
+                                             Spacer()
+                                            Text(self.RModel.registrationRequiredInfo.arabicDate)
+                                             .padding([.trailing],5)
+                                             //.flipsForRightToLeftLayoutDirection(true)
+                                         }
+                                         HStack{
+                                             Spacer()
+                                            Text(self.RModel.registrationRequiredInfo.title)
+                                                 //.flipsForRightToLeftLayoutDirection(true)
+                                                 .font(.headline)
+                                                 .multilineTextAlignment(.trailing)
+                                                 .lineLimit(3)
+                                                 .padding([.trailing],5)
+                                                 //.alignmentGuide(.trailing){d in d[.trailing]}
+                                             
+                                         }
+                                         
+                        
+                        
+                                        }
+                                        
+                                       // VStack{
+    //                                        UrlImageView(urlString:(self.url + self.articleUrl + article.image),width: 400,height: 300)
+                 
+                 
+                                        
+                 //VStack{
+                Text(self.RModel.registrationRequiredInfo.description)
+                         //.flipsForRightToLeftLayoutDirection(true)
+                         .font(.body)
+                        //.padding()
+                    //.flipsForRightToLeftLayoutDirection(true)
+                         .lineSpacing(5)
+                                       //.fixedSize(horizontal: false, vertical: true)
+                         .multilineTextAlignment(.trailing)
+                        .padding(10)
+                         //.lineLimit(Int.max)
+
+                //}
+                                        
+                  
+                                                    
+                //}
+                
+                                
+                                
+            }//.padding(10)
+                //.frame(width:geometry.size.width )
+                            
+                                //.padding([.trailing],30)
+                .background(Color.gray.opacity(0.2))
+                           // .cornerRadius(15)
+            }.frame(width: geometry.size.width - 20)
+            }
+    .navigationBarTitle("توضيح",displayMode: .inline)
+        }
+}
 
 
 
