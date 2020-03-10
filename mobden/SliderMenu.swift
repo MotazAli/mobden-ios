@@ -14,16 +14,13 @@ import Combine
 
 struct MasterMenuSlider : View {
  
-    @ObservedObject var registrationModel = RegistrationModel()
+    
     @Binding var masterSilderOpen: Bool
     @State var viewName : ViewScreen = ViewScreen.noView
     @State var isSheetPersented = false
     var width: CGFloat = 270
     
-//
-//    func show(){
-//        self.registrationModel.getRegistrationFinanace()
-//    }
+
     
     
     var body: some View{
@@ -31,23 +28,23 @@ struct MasterMenuSlider : View {
         ZStack{
          GeometryReader { geometry in
                      
-            VStack(alignment: .trailing) {
-                                  
+            VStack {
+                                  Spacer()
                                   HStack{
-                                    Spacer()
-                                    
                                    
                                     
-                                      Text("الرئيسية")
-                                    .padding(20)
-                                        .font(.title)
+                                    Image("logo").resizable().scaledToFit()
+                                        .clipShape(Circle())
+                                        .frame(width:200,height:200)
+                                    
+                                    
                                 
                                     
                                       
                                   }
                                   HStack{
                                     
-                                    
+                                    Spacer()
                                     
                                     Button(action:{
                                         self.viewName = ViewScreen.registrationView
@@ -64,7 +61,7 @@ struct MasterMenuSlider : View {
                                   
                                    HStack{
                                     
-                                    
+                                    Spacer()
                                     Button(action:{
                                         self.viewName = ViewScreen.prizesView
                                         self.isSheetPersented.toggle()
@@ -80,6 +77,7 @@ struct MasterMenuSlider : View {
                                    }
                                   HStack{
                                     
+                                    Spacer()
                                     Button(action:{
                                         self.viewName = ViewScreen.comprehensiveView
                                         self.isSheetPersented.toggle()
@@ -93,15 +91,15 @@ struct MasterMenuSlider : View {
                                      
                                   }
                                   HStack{
-                                    
+                                    Spacer()
                                     Button(action:{
                                         self.viewName = ViewScreen.supervisionView
                                         self.isSheetPersented.toggle()
                                     }){
-                                        Text("الاشراف و التطوير المهني")
+                                        Text("الاشراف و التطوير المهني").fontWeight(.medium)
                                             .foregroundColor(.primary)
                                             .padding(20)
-                                        .font(.system(size: 25))
+                                            .font(.system(size: 22))
                                         .scaledToFit()
                                         
                                     }
@@ -112,9 +110,9 @@ struct MasterMenuSlider : View {
                                       
                                   }
                                   HStack{
-                                    
+                                    Spacer()
                                     Button(action:{
-                                        self.viewName = ViewScreen.publicRelation
+                                        self.viewName = ViewScreen.publicRelationView
                                         self.isSheetPersented.toggle()
                                     }){
                                         Text("العلاقات العامة")
@@ -127,30 +125,53 @@ struct MasterMenuSlider : View {
                                     
                                   }
                                   HStack{
-                                      Text("النقل المدرسي").padding(20)
-                                    .font(.title)
+                                    Spacer()
+                                    
+                                    Button(action:{
+                                        self.viewName = ViewScreen.transferView
+                                        self.isSheetPersented.toggle()
+                                    }){
+                                        Text("النقل المدرسي")
+                                            .foregroundColor(.primary)
+                                            .padding(20)
+                                        .font(.title)
+                                    }
+                                    
+                                    
+                                    
+                                     
                                   }
                                   HStack{
+                                    Spacer()
                                       Text("اتصل بنا").padding(20)
                                     .font(.title)
                                   }
-                                  
+                                    Spacer()
                                 
                                   }
                                   .frame(width: 270,height:geometry.size.height, alignment: .topLeading)
-                                  .background(Color.red)
+                                  .background(Color.red.opacity(0.9))
                                   .offset(x: 80)
-                                  
+                                
                                   
                   }
                    
-                  .background(Color.gray.opacity(0.3))
-         .opacity(self.masterSilderOpen ? 0.8 : 0.0)
-                  .animation(Animation.easeIn.delay(0.25))
-            .edgesIgnoringSafeArea(.bottom)
+         .background(Color.white.opacity(0.05))
+         //.opacity(self.masterSilderOpen ? 0.8 : 0.0)
+            .offset(x: self.masterSilderOpen ? 0 : UIScreen.main.bounds.width * 2)
+            .animation(Animation.default.speed(1))
+            .edgesIgnoringSafeArea(.all)
                   .onTapGesture {
                       self.masterSilderOpen.toggle()
+                    //print("tap")
                   }
+            .gesture(DragGesture()
+                    
+                    .onEnded { value in
+                       self.masterSilderOpen.toggle()
+                        //print("drag")
+                    }
+            )
             
         
         }.sheet(isPresented: self.$isSheetPersented){
@@ -174,7 +195,7 @@ struct MasterMenuSlider : View {
             return AnyView( PrizesView())
                        
         }
-            else if viewScreen == ViewScreen.publicRelation {
+            else if viewScreen == ViewScreen.publicRelationView {
                 return AnyView( PublicRelationsView())
                            
             }
@@ -186,6 +207,10 @@ struct MasterMenuSlider : View {
                 return AnyView( ComprehensiveView())
                            
             }
+            else if viewScreen == ViewScreen.transferView {
+                           return AnyView( TransferView())
+                                      
+                       }
         else{
             return AnyView( EmptyView())
         }

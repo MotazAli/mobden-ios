@@ -1405,5 +1405,277 @@ final class ComprehensiveModel: ObservableObject{
 
 
 
+final class TransferModel: ObservableObject{
+    
+    @Published var transferDescriptions = [TransferDescription]()
+    @Published var transferDescriptionInfo = TransferDescription(id: 0, title: "لا يوجد", description: "لا يوجد")
+    @Published var transferTeams = [Team]()
+    @Published var transferFees = [Fees]()
+    
+//    init() {
+//        fetchPosts()
+//    }
+    
+    
+    
+     func getTransferDescriptions()
+    {
+
+        transferDescriptions.removeAll()
+        
+        let url = URL(string: "https://mobdenapi.azurewebsites.net/MobdenAPI/Transfer/GetTransferDescriptions")
+        guard let requestUrl = url else { fatalError() }
+        // Create URL Request
+        var request = URLRequest(url: requestUrl)
+        // Specify HTTP Method to use
+        request.httpMethod = "GET"
+        // Send HTTP Request
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            
+            // Check if Error took place
+            if let error = error {
+                print("Error took place \(error)")
+                return
+            }
+            
+            // Read HTTP Response Status code
+            if let response = response as? HTTPURLResponse {
+               
+                print("Response HTTP Status code: \(response.statusCode)")
+            }
+            
+            // Convert HTTP Response Data to a simple String
+            if let data = data, let dataString = String(data: data, encoding: .utf8) {
+                
+                if dataString != "null"{
+                    let data = Data(dataString.utf8)
+                                   let TData = try! JSONDecoder().decode([TransferDescription].self, from: data)
+                                  
+                                   DispatchQueue.main.async {
+                                    //print("done")
+                                    self.transferDescriptions = TData
+                                    
+                                   }
+                }
+               
+                
+//                print("Response data string:\n \(dataString)")
+//
+//                print("Response data string:\n \(String(describing: wordsData.title))")
+//
+//
+//                print("Response data string:\n \(String(describing: self.words[0].title))")
+                
+            }
+            
+        }
+        task.resume()
+        
+        
+        
+        
+    }
+    
+    
+    
+    
+    
+
+         func getTransferDescriptionByID(id : Int)
+        {
+
+            
+            
+    //        let url = URL(string: "https://mobdenapi.azurewebsites.net/MobdenAPI/ManagmentArticles/GetArticles")
+    //        guard let requestUrl = url else { fatalError() }
+            
+            
+            
+            
+            
+            let urlComponent = NSURLComponents(string: "https://mobdenapi.azurewebsites.net/MobdenAPI/Transfer/GetTransferDescriptionByID")
+            
+            urlComponent?.queryItems = [
+                (NSURLQueryItem(name: "id", value: String(describing: id)) as URLQueryItem)
+            ]
+            
+            
+            
+            //guard let requestUrl = url else { fatalError() }
+            guard let requestUrl = urlComponent?.url else { fatalError() }
+            
+            
+            // Create URL Request
+            var request = URLRequest(url: requestUrl)
+            // Specify HTTP Method to use
+            request.httpMethod = "GET"
+            // Send HTTP Request
+            let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                
+                // Check if Error took place
+                if let error = error {
+                    print("Error took place \(error)")
+                    return
+                }
+                
+                // Read HTTP Response Status code
+                if let response = response as? HTTPURLResponse {
+                    print("Response HTTP Status code: \(response.statusCode)")
+                }
+                
+                // Convert HTTP Response Data to a simple String
+                if let data = data, let dataString = String(data: data, encoding: .utf8) {
+                    
+                    if dataString != "null"{
+                    let data = Data(dataString.utf8)
+                    let infoData = try! JSONDecoder().decode(TransferDescription.self, from: data)
+                   
+                    DispatchQueue.main.async {
+                        self.transferDescriptionInfo = infoData
+                        //self.articles.append( articlesData)
+                        //print("count \(self.articles.count)")
+                    }
+                    }
+                    
+
+                    
+                }
+                
+            }
+            task.resume()
+            
+            
+            
+            
+        }
+        
+        
+        
+    func getTransferTeam()
+        {
+
+            transferTeams.removeAll()
+            
+            let url = URL(string: "https://mobdenapi.azurewebsites.net/MobdenAPI/Transfer/GetTransferTeam")
+            guard let requestUrl = url else { fatalError() }
+            // Create URL Request
+            var request = URLRequest(url: requestUrl)
+            // Specify HTTP Method to use
+            request.httpMethod = "GET"
+            // Send HTTP Request
+            let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                
+                // Check if Error took place
+                if let error = error {
+                    print("Error took place \(error)")
+                    return
+                }
+                
+                // Read HTTP Response Status code
+                if let response = response as? HTTPURLResponse {
+                   
+                    print("Response HTTP Status code: \(response.statusCode)")
+                }
+                
+                // Convert HTTP Response Data to a simple String
+                if let data = data, let dataString = String(data: data, encoding: .utf8) {
+                    
+                    if dataString != "null"{
+                        let data = Data(dataString.utf8)
+                                       let TData = try! JSONDecoder().decode([Team].self, from: data)
+                                      
+                                       DispatchQueue.main.async {
+                                        //print("done")
+                                        self.transferTeams = TData
+                                        
+                                       }
+                    }
+                   
+                    
+    //                print("Response data string:\n \(dataString)")
+    //
+    //                print("Response data string:\n \(String(describing: wordsData.title))")
+    //
+    //
+    //                print("Response data string:\n \(String(describing: self.words[0].title))")
+                    
+                }
+                
+            }
+            task.resume()
+            
+            
+            
+            
+        }
+        
+    
+    
+    
+    func getTrnasferFees()
+        {
+
+            transferFees.removeAll()
+            
+            let url = URL(string: "https://mobdenapi.azurewebsites.net/MobdenAPI/Transfer/GetTrnasferFees")
+            guard let requestUrl = url else { fatalError() }
+            // Create URL Request
+            var request = URLRequest(url: requestUrl)
+            // Specify HTTP Method to use
+            request.httpMethod = "GET"
+            // Send HTTP Request
+            let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                
+                // Check if Error took place
+                if let error = error {
+                    print("Error took place \(error)")
+                    return
+                }
+                
+                // Read HTTP Response Status code
+                if let response = response as? HTTPURLResponse {
+                   
+                    print("Response HTTP Status code: \(response.statusCode)")
+                }
+                
+                // Convert HTTP Response Data to a simple String
+                if let data = data, let dataString = String(data: data, encoding: .utf8) {
+                    
+                    if dataString != "null"{
+                        let data = Data(dataString.utf8)
+                                       let TData = try! JSONDecoder().decode([Fees].self, from: data)
+                                      
+                                       DispatchQueue.main.async {
+                                        //print("done")
+                                        self.transferFees = TData
+                                        
+                                       }
+                    }
+                   
+                    
+    //                print("Response data string:\n \(dataString)")
+    //
+    //                print("Response data string:\n \(String(describing: wordsData.title))")
+    //
+    //
+    //                print("Response data string:\n \(String(describing: self.words[0].title))")
+                    
+                }
+                
+            }
+            task.resume()
+            
+            
+            
+            
+        }
+        
+    
+    
+    
+    
+    
+}
+
 
 

@@ -139,7 +139,7 @@ struct ContentView: View {
             PrimarySchoolSliderMenu(primarySchoolSliderOpen: self.$primarySchoolSliderOpen)
             
         }
-        .background(self.isMasterHomeView ? Color.red.opacity(0.8).edgesIgnoringSafeArea(.all): Color.blue.edgesIgnoringSafeArea(.all) )
+        .background(self.isMasterHomeView ? Color.red.opacity(0.8).edgesIgnoringSafeArea(.all): Color.blue.opacity(0.8).edgesIgnoringSafeArea(.all) )
        
         
     }

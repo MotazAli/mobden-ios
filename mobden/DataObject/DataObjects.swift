@@ -16,8 +16,8 @@ import Combine
 
 enum ViewScreen: Int {
     case noView = 0 ,wordView = 1, articlesView = 2 , articaleView = 3 , prizesView = 4,
-    registrationView = 5 , publicRelation = 6 ,supervisionView = 7 , supervisionListView = 8 ,
-    supervisionInfoView = 9 , supervisionTeamView = 10 , comprehensiveView = 11
+    registrationView = 5 , publicRelationView = 6 ,supervisionView = 7 , supervisionListView = 8 ,
+    supervisionInfoView = 9 , supervisionTeamView = 10 , comprehensiveView = 11 , transferView = 12
     
     
 }
@@ -252,4 +252,52 @@ var image:String
 var phone:String
     
     
+}
+
+
+
+struct TransferDescription : Decodable ,Identifiable{
+var id:Int
+var title:String
+var description:String
+    
+    
+}
+
+
+
+
+struct Team : Decodable ,Identifiable{
+var id:Int
+var name:String
+var image:String
+var status:String
+var roleDescription:String
+
+}
+
+
+
+
+
+
+
+struct Fees : Decodable, Identifiable{
+    var id:Int
+    var name:String
+    var fees:Int
+
+    var creationDate:String
+    var notes:String
+        var arabicDate:String{
+            get{
+                
+                return SystemDates.getArabicDate(date:self.creationDate)
+                    
+            }
+        }
+   
+    var feesString :String { return String(self.fees)}
+    
+        
 }
