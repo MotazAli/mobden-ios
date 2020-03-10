@@ -39,9 +39,11 @@ struct ContentView: View {
             VStack{
                 
                 HStack{
+                    
+                    Image("logo2").resizable().scaledToFit().frame(width:90,height:80)
                     Spacer()
-                    Text(" طلائع المبدعين الاهلية للبنين").font(.title).lineLimit(nil)
-                   
+                    Text(" طلائع المبدعين الاهلية للبنين").font(.system(size: 20)).fontWeight(.bold)
+                   Spacer()
                     Button(action: {
                         
                         
@@ -61,8 +63,9 @@ struct ContentView: View {
                             .imageScale(.large)
                             .foregroundColor(.black)
                     }
+                    Spacer()
                     
-                }.padding(.horizontal,10)
+                }.padding(.horizontal,10).frame(height:50)
                 
                 //Spacer()
                 
