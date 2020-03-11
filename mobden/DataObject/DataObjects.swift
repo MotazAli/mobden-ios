@@ -35,12 +35,16 @@ struct Word : Decodable, Identifiable{
 
 
 
-struct Article : Decodable, Identifiable{
-    var id:Int
-    var image:String
-    var title:String
-    var description:String
-    var creationDate:String
+struct Article : Codable, Identifiable{
+    var id:Int = 0
+    var image:String = ""
+    var title:String = ""
+    var stage:Int = 0
+    var description:String = ""
+    var creationDate:String = ""
+    var lastModifiedDate:String = ""
+    var creationUserId : Int = 0
+    var modifiedUserId : Int = 0
     var arabicDate:String{
         get{
             
@@ -48,6 +52,38 @@ struct Article : Decodable, Identifiable{
                 
         }
     }
+    
+    init(){  }
+    
+     init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.id = try container.decodeIfPresent(Int.self, forKey: .id) ?? 0
+        self.image = try container.decodeIfPresent(String.self, forKey: .image) ?? ""
+        self.title = try container.decodeIfPresent(String.self, forKey: .title) ?? ""
+        self.stage = try container.decodeIfPresent(Int.self, forKey: .stage) ?? 0
+        self.description = try container.decodeIfPresent(String.self, forKey: .description) ?? ""
+        self.creationDate = try container.decodeIfPresent(String.self, forKey: .creationDate) ?? ""
+        self.lastModifiedDate = try container.decodeIfPresent(String.self, forKey: .lastModifiedDate) ?? ""
+        self.creationUserId = try container.decodeIfPresent(Int.self, forKey: .creationUserId) ?? 0
+        self.modifiedUserId = try container.decodeIfPresent(Int.self, forKey: .modifiedUserId) ?? 0
+        
+    }
+    
+    
+    
+    enum CodingKeys : String ,CodingKey{
+
+        case id = "id"
+        case image = "image"
+        case title = "title"
+        case stage = "stage"
+        case description = "description"
+        case creationDate = "creationDate"
+        case lastModifiedDate = "lastModifiedDate"
+        case creationUserId = "creationUserId"
+        case modifiedUserId = "modifiedUserId"
+    }
+    
     
     
 }

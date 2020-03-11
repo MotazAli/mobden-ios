@@ -51,8 +51,8 @@ struct PrimarySchoolSliderMenu : View {
                                            self.viewName = ViewScreen.registrationView
                                            self.isSheetPersented.toggle()
                                        }){
-                                           Text("القبول و التسجيل")
-                                               .foregroundColor(Color.black)
+                                        Text("القيادة المدرسية").fontWeight(.bold)
+                                               .foregroundColor(Color.white)
                                                .padding(20)
                                                .font(.title)
 
@@ -67,8 +67,8 @@ struct PrimarySchoolSliderMenu : View {
                                            self.viewName = ViewScreen.prizesView
                                            self.isSheetPersented.toggle()
                                        }){
-                                           Text("الجوائز")
-                                               .foregroundColor(.primary)
+                                           Text("الخطة التشغيلية").fontWeight(.bold)
+                                           .foregroundColor(Color.white)
                                                .padding(20)
                                            .font(.title)
                                        }
@@ -83,8 +83,8 @@ struct PrimarySchoolSliderMenu : View {
                                            self.viewName = ViewScreen.comprehensiveView
                                            self.isSheetPersented.toggle()
                                        }){
-                                           Text("الجودة الشاملة")
-                                               .foregroundColor(.primary)
+                                           Text("الإرشاد الطلابي").fontWeight(.bold)
+                                           .foregroundColor(Color.white)
                                                .padding(20)
                                            .font(.title)
                                        }
@@ -97,10 +97,10 @@ struct PrimarySchoolSliderMenu : View {
                                            self.viewName = ViewScreen.supervisionView
                                            self.isSheetPersented.toggle()
                                        }){
-                                           Text("الاشراف و التطوير المهني").fontWeight(.medium)
-                                               .foregroundColor(.primary)
+                                           Text("النشاط الطلابي").fontWeight(.bold)
+                                           .foregroundColor(Color.white)
                                                .padding(20)
-                                               .font(.system(size: 22))
+                                               .font(.title)
                                            .scaledToFit()
                                            
                                        }
@@ -116,8 +116,8 @@ struct PrimarySchoolSliderMenu : View {
                                            self.viewName = ViewScreen.publicRelationView
                                            self.isSheetPersented.toggle()
                                        }){
-                                           Text("العلاقات العامة")
-                                               .foregroundColor(.primary)
+                                           Text("المصادر والمعامل").fontWeight(.bold)
+                                           .foregroundColor(Color.white)
                                                .padding(20)
                                            .font(.title)
                                        }
@@ -132,8 +132,8 @@ struct PrimarySchoolSliderMenu : View {
                                            self.viewName = ViewScreen.transferView
                                            self.isSheetPersented.toggle()
                                        }){
-                                           Text("النقل المدرسي")
-                                               .foregroundColor(.primary)
+                                           Text("الواجبات المدرسية").fontWeight(.bold)
+                                           .foregroundColor(Color.white)
                                                .padding(20)
                                            .font(.title)
                                        }
@@ -142,11 +142,11 @@ struct PrimarySchoolSliderMenu : View {
                                        
                                         
                                      }
-                                     HStack{
-                                       Spacer()
-                                         Text("اتصل بنا").padding(20)
-                                       .font(.title)
-                                     }
+//                                     HStack{
+//                                       Spacer()
+//                                         Text("اتصل بنا").padding(20)
+//                                       .font(.title)
+//                                     }
                                        Spacer()
                                    
                                      }

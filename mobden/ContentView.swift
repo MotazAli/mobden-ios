@@ -84,7 +84,7 @@ struct ContentView: View {
                     
                     Text("المتوسط").tabItem{
                         VStack{
-                            Image(systemName: "person.2.fill").font(.title)
+                            Image(systemName: "person.2.square.stack.fill").font(.title)//systemName: "person.2.fill").font(.title)
                             Text("المتوسط").font(.largeTitle)
                         }
                         
@@ -93,21 +93,18 @@ struct ContentView: View {
                     
                     
                     
-                    VStack{
-                    
-                        Text("الابتدائي")
-                        
-                    }.tabItem{
+                    PrimarySchoolHomeView().tabItem{
                             
                             VStack{
-                                Image(systemName: "person.fill").font(.title)
+                                Image(systemName: "rectangle.stack.person.crop.fill").font(.title)//systemName: "person.fill").font(.title)
                                 Text("الابتدائي").font(.largeTitle)
                             }
                         
                         
                         
                         
-                        }.tag(1).onAppear(){
+                    }.tag(1).padding([.horizontal, .top],10)
+                        .onAppear(){
                             self.isMasterHomeView = false
                             UITabBar.appearance().barTintColor  = UIColor.blue
                             
@@ -123,7 +120,7 @@ struct ContentView: View {
                         }
                         
                         
-                    }.tag(0).padding(.horizontal,10)
+                    }.tag(0).padding([.horizontal, .top],10)
                         .onAppear(){
                         self.isMasterHomeView = true
                         
