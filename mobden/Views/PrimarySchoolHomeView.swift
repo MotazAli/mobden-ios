@@ -13,23 +13,25 @@ struct PrimarySchoolHomeView: View {
             @State var isSheetPersented = false
         //@State var isWordViewPersented = false
             @State var articleID :Int = 0
+    @State var newsID : Int = 0
         @State var viewName : ViewScreen = ViewScreen.noView
              @ObservedObject var model = WordModel()
             @ObservedObject var articleModel = ArticleModel()
-            @ObservedObject var aboutSchoolModel = AboutSchoolModel()
+            @ObservedObject var newsModel = NewsModel()
         @ObservedObject var honorBoardModel = HonorBoardlModel()
              var url = "https://mobdenapi.azurewebsites.net/"
              var wordUrl = "assets/Word/"
                var articleUrl = "assets/articles/"
             var aboutSchoolUrl = "assets/about/"
         var honorBoardUrl = "assets/honorBoards/"
+    var newsUrl = "assets/images/news/"
             
             
             init() {
                 self.model.getWord()
                 //self.articleModel = ArticleModel()
                 self.articleModel.getTopThreeArticleByStage(id: 1)
-                self.aboutSchoolModel.getAboutSchool()
+                self.newsModel.getThreeNewsByStage(id: 1)
                 self.honorBoardModel.getAllHonorBoard()
                 
             }
@@ -142,7 +144,7 @@ struct PrimarySchoolHomeView: View {
 
 
                         VStack{
-                            NavigationLink(destination: ArticlesView()){
+                            NavigationLink(destination: NewsView(stageID: 1)){
                                 HStack{
                                     Text("شاهد الكل").foregroundColor(Color.blue)
                                     Spacer()
@@ -159,7 +161,7 @@ struct PrimarySchoolHomeView: View {
                             
                             
                             
-                            if aboutSchoolModel.aboutSchoolList.isEmpty{
+                            if newsModel.topThreeNews.isEmpty{
                                 VStack(alignment:.center){
                                     Text("فارغ").frame(width:200,height:200)
                                         .background(Color.blue.opacity(0.3))
@@ -168,11 +170,58 @@ struct PrimarySchoolHomeView: View {
                             }
                             else{
                             
-                            VStack(alignment:.center){
-                                Text("فارغ").frame(width:200,height:200)
-                                    .background(Color.blue.opacity(0.3))
-                                .cornerRadius(9)
-                            }.frame(height: 250)
+                            ScrollView(.horizontal,showsIndicators: false){
+                                                            
+                                                            HStack(spacing:20){
+                                                                
+                                                                ForEach(newsModel.topThreeNews){ news in
+                                                                    
+                                                                    GeometryReader{ geometry in
+                                                                        
+                                                                        
+                                                                        VStack{
+                                                                            Button(action: {
+                                                                                         self.viewName = ViewScreen.newsView
+                                                                                        self.newsID = news.id
+                                                                                        self.isSheetPersented.toggle()
+                                                                                        
+                                                                                    }){
+                                                                                        VStack(alignment: .center){
+                                                                                            
+                                                                                            UrlImageView(urlString:(self.url + self.newsUrl + news.image),width: 270,height: 200)
+                                                                                                .clipShape(Rectangle())
+                                                                                                .cornerRadius(8)
+                                                                                                .padding(.horizontal , 10)
+                                                                                            
+                                                                                            
+                                                                                            Text(news.title).foregroundColor(.primary)
+                                                                                            .padding(.horizontal , 10)
+                                                                                            }
+                                                                                            
+                                                                                        
+                                                                            }
+                                                                        }.frame(width:300,height:380)
+                                                                        .background(Color.blue.opacity(0.3))
+                                                                            
+                                                                        .clipShape(Rectangle())
+                                                                        .cornerRadius(15)
+                                                                            .rotation3DEffect(Angle(degrees:(Double(geometry.frame(in: .global).minX) - 30) / -20), axis: (x: 0, y: 10.0, z: 0))
+                                                                        
+                                                                        
+                                                                    }.frame(width:300 , height: 200)
+                                                                    .padding(.top,80)
+                                                                    
+                                                                }
+                                                                
+                                                                
+                                                                
+                                                            }.padding(30)
+                                                            
+                                                            Spacer()
+                                                            
+                                                    
+                                                }.frame(height:430)
+                            
                                
                             }
 
@@ -356,6 +405,10 @@ struct PrimarySchoolHomeView: View {
             }
             else if viewScreen == ViewScreen.prizesView {
                 return AnyView( PrizesView())
+                           
+            }
+            else if viewScreen == ViewScreen.newsView {
+                return AnyView( NewsDetailsView(newsID: self.newsID))
                            
             }
             else{

@@ -1756,5 +1756,306 @@ final class TransferModel: ObservableObject{
     
 }
 
+final class NewsModel: ObservableObject{
+    
+    @Published var newsList = [News]()
+    @Published var topThreeNews = [News]()
+    //@Published var primaryNews = [News]()
+    @Published var news = News()
+    //@Binding var getArticleByID : Int
+    
+//    init()
+//    {
+//        self.fetchPosts()
+//    }
+    
+//    init(getArticleByID: Int = 0) {
+//
+//
+//
+//        if getArticleByID > 0 {
+//            self.getArticleByID(id:getArticleByID)
+//        }
+//
+//    }
+    
+    
+    
+     func getNews()
+    {
+
+        newsList.removeAll()
+        
+        let url = URL(string: "https://mobdenapi.azurewebsites.net/MobdenAPI/News/GetNews")
+        guard let requestUrl = url else { fatalError() }
+        // Create URL Request
+        var request = URLRequest(url: requestUrl)
+        // Specify HTTP Method to use
+        request.httpMethod = "GET"
+        // Send HTTP Request
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            
+            // Check if Error took place
+            if let error = error {
+                print("Error took place \(error)")
+                return
+            }
+            
+            // Read HTTP Response Status code
+            if let response = response as? HTTPURLResponse {
+                print("Response HTTP Status code: \(response.statusCode)")
+            }
+            
+            // Convert HTTP Response Data to a simple String
+            if let data = data, let dataString = String(data: data, encoding: .utf8) {
+                
+                if dataString != "null"{
+                
+                let data = Data(dataString.utf8)
+                let newsData = try! JSONDecoder().decode([News].self, from: data)
+               
+                DispatchQueue.main.async {
+                                 self.newsList = newsData
+                }
+                }
+
+                
+            }
+            
+        }
+        task.resume()
+        
+        
+        
+        
+    }
+    
+    
+    
+    
+     func getNewsByID(id : Int)
+    {
+
+        
+        
+        
+        let urlComponent = NSURLComponents(string: "https://mobdenapi.azurewebsites.net/MobdenAPI/News/GetNewsByID")
+        
+        urlComponent?.queryItems = [
+            (NSURLQueryItem(name: "id", value: String(describing: id)) as URLQueryItem)
+        ]
+        
+        
+        
+        //guard let requestUrl = url else { fatalError() }
+        guard let requestUrl = urlComponent?.url else { fatalError() }
+        
+        
+        // Create URL Request
+        var request = URLRequest(url: requestUrl)
+        // Specify HTTP Method to use
+        request.httpMethod = "GET"
+        // Send HTTP Request
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            
+            // Check if Error took place
+            if let error = error {
+                print("Error took place \(error)")
+                return
+            }
+            
+            // Read HTTP Response Status code
+            if let response = response as? HTTPURLResponse {
+                print("Response HTTP Status code: \(response.statusCode)")
+            }
+            
+            // Convert HTTP Response Data to a simple String
+            if let data = data, let dataString = String(data: data, encoding: .utf8) {
+                
+                if dataString != "null"{
+                let data = Data(dataString.utf8)
+                let newsData = try! JSONDecoder().decode(News.self, from: data)
+               
+                DispatchQueue.main.async {
+                    self.news = newsData
+                    
+                }
+                }
+                
+
+                
+            }
+            
+        }
+        task.resume()
+        
+        
+        
+        
+    }
+    
+    
+    
+    func getThreeNewsByStage(id: Int)
+        {
+
+            topThreeNews.removeAll()
+            var tempNews = News()
+            tempNews.stage = id
+            
+//            let url = URL(string: "https://mobdenapi.azurewebsites.net/MobdenAPI/Article/GetTopThreeArticleByStage")
+            
+            
+            let url = URL(string: "https://mobdenapi.azurewebsites.net/MobdenAPI/News/GetThreeNewsByStage")
+            
+            guard let requestUrl = url else { fatalError() }
+            // Create URL Request
+            var request = URLRequest(url: requestUrl)
+            // Specify HTTP Method to use
+            //request.httpMethod = "GET"
+            
+            
+            let jsonData = try! JSONEncoder().encode(tempNews)
+            //let jsonString = String(data: jsonData, encoding: .utf8)!
+            request.httpMethod = "POST" //set http method as POST
+            request.setValue("application/json; charset=utf-8",
+                 forHTTPHeaderField: "Content-Type")
+            request.setValue("application/json; charset=utf-8",
+                 forHTTPHeaderField: "Accept")
+            request.httpBody = jsonData
+            
+            
+            
+            
+            // Send HTTP Request
+            let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                
+                // Check if Error took place
+                if let error = error {
+                    print("Error took place \(error)")
+                    return
+                }
+                
+                // Read HTTP Response Status code
+                if let response = response as? HTTPURLResponse {
+                   
+                    print("Response HTTP Status code: \(response.statusCode)")
+                }
+                
+                // Convert HTTP Response Data to a simple String
+                if let data = data, let dataString = String(data: data, encoding: .utf8) {
+                    
+                    if dataString != "null"{
+                        let data = Data(dataString.utf8)
+                                       let newsData = try! JSONDecoder().decode([News].self, from: data)
+                                      
+                                       DispatchQueue.main.async {
+                                        print("done")
+                                        self.topThreeNews = newsData
+                                        
+                                       }
+                    }
+                   
+                    
+    //                print("Response data string:\n \(dataString)")
+    //
+    //                print("Response data string:\n \(String(describing: wordsData.title))")
+    //
+    //
+    //                print("Response data string:\n \(String(describing: self.words[0].title))")
+                    
+                }
+                
+            }
+            task.resume()
+            
+            
+            
+            
+        }
+    
+    
+    func getNewsByCategoryID(id: Int)
+            {
+
+                newsList.removeAll()
+                var tempNews = News()
+                tempNews.stage = id
+                
+    //            let url = URL(string: "https://mobdenapi.azurewebsites.net/MobdenAPI/Article/GetTopThreeArticleByStage")
+                
+                
+                let url = URL(string: "https://mobdenapi.azurewebsites.net/MobdenAPI/News/GetNewsByCategoryID")
+                
+                guard let requestUrl = url else { fatalError() }
+                // Create URL Request
+                var request = URLRequest(url: requestUrl)
+                // Specify HTTP Method to use
+                //request.httpMethod = "GET"
+                
+                
+                let jsonData = try! JSONEncoder().encode(tempNews)
+                //let jsonString = String(data: jsonData, encoding: .utf8)!
+                request.httpMethod = "POST" //set http method as POST
+                request.setValue("application/json; charset=utf-8",
+                     forHTTPHeaderField: "Content-Type")
+                request.setValue("application/json; charset=utf-8",
+                     forHTTPHeaderField: "Accept")
+                request.httpBody = jsonData
+                
+                
+                
+                
+                // Send HTTP Request
+                let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                    
+                    // Check if Error took place
+                    if let error = error {
+                        print("Error took place \(error)")
+                        return
+                    }
+                    
+                    // Read HTTP Response Status code
+                    if let response = response as? HTTPURLResponse {
+                       
+                        print("Response HTTP Status code: \(response.statusCode)")
+                    }
+                    
+                    // Convert HTTP Response Data to a simple String
+                    if let data = data, let dataString = String(data: data, encoding: .utf8) {
+                        
+                        if dataString != "null"{
+                            let data = Data(dataString.utf8)
+                                           let newsData = try! JSONDecoder().decode([News].self, from: data)
+                                          
+                                           DispatchQueue.main.async {
+                                            print("done")
+                                            self.newsList = newsData
+                                            
+                                           }
+                        }
+                       
+                        
+        //                print("Response data string:\n \(dataString)")
+        //
+        //                print("Response data string:\n \(String(describing: wordsData.title))")
+        //
+        //
+        //                print("Response data string:\n \(String(describing: self.words[0].title))")
+                        
+                    }
+                    
+                }
+                task.resume()
+                
+                
+                
+                
+            }
+        
+        
+    
+    
+}
 
 

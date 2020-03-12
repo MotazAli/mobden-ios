@@ -17,7 +17,8 @@ import Combine
 enum ViewScreen: Int {
     case noView = 0 ,wordView = 1, articlesView = 2 , articaleView = 3 , prizesView = 4,
     registrationView = 5 , publicRelationView = 6 ,supervisionView = 7 , supervisionListView = 8 ,
-    supervisionInfoView = 9 , supervisionTeamView = 10 , comprehensiveView = 11 , transferView = 12
+    supervisionInfoView = 9 , supervisionTeamView = 10 , comprehensiveView = 11 , transferView = 12,
+    newsView = 13
     
     
 }
@@ -87,6 +88,71 @@ struct Article : Codable, Identifiable{
     
     
 }
+
+
+struct News : Codable, Identifiable{
+    var id:Int = 0
+    var image:String = ""
+    var title:String = ""
+    var stage:Int = 0
+    var description:String = ""
+    var creationDate:String = ""
+    var modifiedDate:String = ""
+    var creationUserId : Int = 0
+    var modifiedUserId : Int = 0
+    var facebookUrl :String = ""
+    var arabicDate:String{
+        get{
+            
+            return SystemDates.getArabicDate(date:self.creationDate)
+                
+        }
+    }
+    
+    init(){  }
+    
+     init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.id = try container.decodeIfPresent(Int.self, forKey: .id) ?? 0
+        self.image = try container.decodeIfPresent(String.self, forKey: .image) ?? ""
+        self.title = try container.decodeIfPresent(String.self, forKey: .title) ?? ""
+        self.stage = try container.decodeIfPresent(Int.self, forKey: .stage) ?? 0
+        self.description = try container.decodeIfPresent(String.self, forKey: .description) ?? ""
+        self.creationDate = try container.decodeIfPresent(String.self, forKey: .creationDate) ?? ""
+        self.modifiedDate = try container.decodeIfPresent(String.self, forKey: .modifiedDate) ?? ""
+        self.creationUserId = try container.decodeIfPresent(Int.self, forKey: .creationUserId) ?? 0
+        self.modifiedUserId = try container.decodeIfPresent(Int.self, forKey: .modifiedUserId) ?? 0
+        self.facebookUrl = try container.decodeIfPresent(String.self, forKey: .facebookUrl) ?? ""
+        
+    }
+    
+    
+    
+    enum CodingKeys : String ,CodingKey{
+
+        case id = "id"
+        case image = "image"
+        case title = "title"
+        case stage = "stage"
+        case description = "description"
+        case creationDate = "creationDate"
+        case modifiedDate = "modifiedDate"
+        case creationUserId = "creationUserId"
+        case modifiedUserId = "modifiedUserId"
+        case facebookUrl = "facebookUrl"
+    }
+    
+    
+    
+}
+
+
+
+
+
+
+
+
 
 struct AboutSchool : Decodable, Identifiable{
     var id:Int
