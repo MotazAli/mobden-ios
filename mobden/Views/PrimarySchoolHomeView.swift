@@ -11,28 +11,24 @@ import SwiftUI
 struct PrimarySchoolHomeView: View {
       @State var authenticated: Bool = false
             @State var isSheetPersented = false
-        //@State var isWordViewPersented = false
             @State var articleID :Int = 0
     @State var newsID : Int = 0
         @State var viewName : ViewScreen = ViewScreen.noView
-             @ObservedObject var model = WordModel()
+             
             @ObservedObject var articleModel = ArticleModel()
             @ObservedObject var newsModel = NewsModel()
         @ObservedObject var honorBoardModel = HonorBoardlModel()
              var url = "https://mobdenapi.azurewebsites.net/"
-             var wordUrl = "assets/Word/"
                var articleUrl = "assets/articles/"
-            var aboutSchoolUrl = "assets/about/"
         var honorBoardUrl = "assets/honorBoards/"
     var newsUrl = "assets/images/news/"
             
             
             init() {
-                self.model.getWord()
-                //self.articleModel = ArticleModel()
+                
                 self.articleModel.getTopThreeArticleByStage(id: 1)
                 self.newsModel.getThreeNewsByStage(id: 1)
-                self.honorBoardModel.getAllHonorBoard()
+                self.honorBoardModel.getPrimaryHonorBoards()
                 
             }
             
@@ -248,7 +244,7 @@ struct PrimarySchoolHomeView: View {
                             //}
                             
                             
-                            if honorBoardModel.honorBoardList.isEmpty{
+                            if honorBoardModel.primaryHonorBoardList.isEmpty{
                                 VStack(alignment:.center){
                                     Text("فارغ").frame(width:200,height:200)
                                         .background(Color.blue.opacity(0.3))
@@ -262,7 +258,7 @@ struct PrimarySchoolHomeView: View {
                                     
                                     HStack(spacing:20){
                                         
-                                        ForEach(honorBoardModel.honorBoardList){ honor in
+                                        ForEach(honorBoardModel.primaryHonorBoardList){ honor in
                                             
                                             GeometryReader{ geometry in
                                                 
@@ -279,9 +275,7 @@ struct PrimarySchoolHomeView: View {
                                                                         .cornerRadius(8)
                                                                         .padding(.horizontal , 10)
                                                                     
-                                                                    
-    //                                                                Text(honor.description).foregroundColor(.primary)
-    //                                                                .padding(.horizontal , 10)
+ 
                                                                     }
                                                                     
                                                                 
@@ -312,44 +306,6 @@ struct PrimarySchoolHomeView: View {
                                     
                                     
                                     
-                                    
-                                    
-                                    
-                                    
-                                    
-    //                                        VStack(alignment:.leading){
-    //
-    //                                    HStack{
-    //                                       ForEach(honorBoardModel.honorBoardList){ honor in
-    //
-    //                                        VStack{
-    //
-    //                                            Button(action: {
-    //
-    //
-    //
-    //                                            }){
-    //                                                VStack(alignment: .center){
-    //
-    //                                                    UrlImageView(urlString:(self.url + self.honorBoardUrl + honor.image),width: 300,height: 200)
-    //                                                    Text(honor.description).foregroundColor(.primary)
-    //                                                    }
-    //
-    //
-    //                                            }
-    //                                        }.frame(height: 400).padding(10)
-    //                                            .cornerRadius(20)
-    //                                        .background(Color.blue.opacity(0.15))
-    //
-    //
-    //
-    //
-    //                                       }
-    //
-    //
-    //                                    }
-    //
-    //                                        }.frame(minWidth: 0, idealWidth: nil, maxWidth: .infinity, minHeight: 0, idealHeight: nil, maxHeight: .infinity, alignment: .leading)
                                     
                                 }.frame(height:430)
                                 
