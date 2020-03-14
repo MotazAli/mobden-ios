@@ -101,6 +101,7 @@ struct News : Codable, Identifiable{
     var creationUserId : Int = 0
     var modifiedUserId : Int = 0
     var facebookUrl :String = ""
+    var newsImages = [NewsImage]()
     var arabicDate:String{
         get{
             
@@ -123,7 +124,8 @@ struct News : Codable, Identifiable{
         self.creationUserId = try container.decodeIfPresent(Int.self, forKey: .creationUserId) ?? 0
         self.modifiedUserId = try container.decodeIfPresent(Int.self, forKey: .modifiedUserId) ?? 0
         self.facebookUrl = try container.decodeIfPresent(String.self, forKey: .facebookUrl) ?? ""
-        
+        self.newsImages = try container.decodeIfPresent([NewsImage].self, forKey: .newsImages) ?? [NewsImage]()
+
     }
     
     
@@ -140,6 +142,7 @@ struct News : Codable, Identifiable{
         case creationUserId = "creationUserId"
         case modifiedUserId = "modifiedUserId"
         case facebookUrl = "facebookUrl"
+        case newsImages = "newsImages"
     }
     
     
@@ -148,7 +151,36 @@ struct News : Codable, Identifiable{
 
 
 
+struct NewsImage : Codable, Identifiable{
+    var id:Int = 0
+    var image:String = ""
+    var stage:Int =  0
+    var newsId:Int = 0
+    
+    init(){  }
+    
+     init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.id = try container.decodeIfPresent(Int.self, forKey: .id) ?? 0
+        self.image = try container.decodeIfPresent(String.self, forKey: .image) ?? ""
+        self.newsId = try container.decodeIfPresent(Int.self, forKey: .newsId) ?? 0
+        self.stage = try container.decodeIfPresent(Int.self, forKey: .stage) ?? 0
+        
 
+    }
+    
+    
+    enum CodingKeys : String , CodingKey{
+       case id = "id"
+        case image = "image"
+        case newsId = "newsId"
+        case stage = "stage"
+    }
+    
+    
+    
+    
+}
 
 
 
