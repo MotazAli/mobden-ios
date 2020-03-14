@@ -18,7 +18,7 @@ enum ViewScreen: Int {
     case noView = 0 ,wordView = 1, articlesView = 2 , articaleView = 3 , prizesView = 4,
     registrationView = 5 , publicRelationView = 6 ,supervisionView = 7 , supervisionListView = 8 ,
     supervisionInfoView = 9 , supervisionTeamView = 10 , comprehensiveView = 11 , transferView = 12,
-    newsView = 13
+    newsView = 13 , leadership = 14
     
     
 }
@@ -379,14 +379,14 @@ var description:String
 
 
 
-struct DepartmentLeader : Decodable ,Identifiable{
-var id:Int
-var name:String
-var image:String
-var phone:String
-    
-    
-}
+//struct DepartmentLeader : Decodable ,Identifiable{
+//var id:Int
+//var name:String
+//var image:String
+//var phone:String
+//    
+//    
+//}
 
 
 
@@ -411,7 +411,97 @@ var roleDescription:String
 }
 
 
+struct Leadership : Codable , Identifiable{
+    var id:Int = 0
+    var name:String = ""
+    var image:String = ""
+    var job:String = ""
+    var councilStatus:Int = 0
+    var stage:Int = 0
+    var councilStatusName : String {
+        
+        if councilStatus == 1 {return "قائد المدرسة"}
+        else if councilStatus == 2 {return "نائب الرئيس"}
+        else if councilStatus == 3 {return "عضو"}
+        else {return ""}
+        
+    }
+    
+    init() {}
+    
+   init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.id = try container.decodeIfPresent(Int.self, forKey: .id) ?? 0
+        self.image = try container.decodeIfPresent(String.self, forKey: .image) ?? ""
+        self.name = try container.decodeIfPresent(String.self, forKey: .name) ?? ""
+        self.job = try container.decodeIfPresent(String.self, forKey: .job) ?? ""
+        self.stage = try container.decodeIfPresent(Int.self, forKey: .stage) ?? 0
+        self.councilStatus = try container.decodeIfPresent(Int.self, forKey: .councilStatus) ?? 0
+        
 
+    }
+    
+    
+    enum CodingKeys : String , CodingKey{
+       case id = "id"
+        case image = "image"
+        case name = "name"
+        case job = "job"
+        case councilStatus = "councilStatus"
+        case stage = "stage"
+    }
+    
+}
+
+
+
+struct DepartmentLeader : Codable , Identifiable{
+    var id:Int = 0
+    var name:String = ""
+    var image:String = ""
+    var departmentID:Int = 0
+    var phone:String = ""
+    var deleted:Bool = false
+    var stage:Int = 0
+    var creationDate:String = ""
+    var modifiedDate:String = ""
+    var creationUserId:Int = 0
+    var modifiedUserId:Int = 0
+    
+    init() {}
+    
+   init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.id = try container.decodeIfPresent(Int.self, forKey: .id) ?? 0
+        self.image = try container.decodeIfPresent(String.self, forKey: .image) ?? ""
+        self.name = try container.decodeIfPresent(String.self, forKey: .name) ?? ""
+        self.phone = try container.decodeIfPresent(String.self, forKey: .phone) ?? ""
+        self.stage = try container.decodeIfPresent(Int.self, forKey: .stage) ?? 0
+        self.departmentID = try container.decodeIfPresent(Int.self, forKey: .departmentID) ?? 0
+        self.deleted = try container.decodeIfPresent(Bool.self, forKey: .deleted) ?? false
+        self.creationDate = try container.decodeIfPresent(String.self, forKey: .creationDate) ?? ""
+        self.modifiedDate = try container.decodeIfPresent(String.self, forKey: .modifiedDate) ?? ""
+        self.creationUserId = try container.decodeIfPresent(Int.self, forKey: .creationUserId) ?? 0
+        self.modifiedUserId = try container.decodeIfPresent(Int.self, forKey: .modifiedUserId) ?? 0
+
+    }
+    
+    
+    enum CodingKeys : String , CodingKey{
+       case id = "id"
+        case image = "image"
+        case name = "name"
+        case departmentID = "departmentID"
+        case phone = "phone"
+        case deleted = "deleted"
+        case stage = "stage"
+        case creationDate = "creationDate"
+        case modifiedDate = "modifiedDate"
+        case creationUserId = "creationUserId"
+        case modifiedUserId = "modifiedUserId"
+    }
+    
+}
 
 
 

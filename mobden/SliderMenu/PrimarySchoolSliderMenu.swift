@@ -19,6 +19,7 @@ struct PrimarySchoolSliderMenu : View {
        
        @State var viewName : ViewScreen = ViewScreen.noView
        @State var isSheetPersented = false
+        let stageId : Int = 1
        var width: CGFloat = 270
        
 
@@ -48,7 +49,8 @@ struct PrimarySchoolSliderMenu : View {
                                        Spacer()
                                        
                                        Button(action:{
-                                           self.viewName = ViewScreen.registrationView
+                                        
+                                           self.viewName = ViewScreen.leadership
                                            self.isSheetPersented.toggle()
                                        }){
                                         Text("القيادة المدرسية").fontWeight(.bold)
@@ -188,8 +190,8 @@ struct PrimarySchoolSliderMenu : View {
        
        
        func getViewByID(viewScreen: ViewScreen) -> AnyView {
-           if viewScreen == ViewScreen.registrationView {
-               return AnyView( RegistrationView())
+           if viewScreen == ViewScreen.leadership {
+            return AnyView( LeadershipView(stageId: self.stageId))
                           
            }
            else if viewScreen == ViewScreen.prizesView {

@@ -2131,4 +2131,195 @@ final class NewsModel: ObservableObject{
     
 }
 
+final class LeadershipModel: ObservableObject{
+    
+    @Published var leadershipList = [Leadership]()
+    //@Published var topThreeNews = [News]()
+    //@Published var primaryNews = [News]()
+    //@Published var news = News()
+    
+    
+    
+    
+     
+        func getLeadershipByStage(id: Int)
+            {
+
+                leadershipList.removeAll()
+                var tempLeadership = Leadership()
+                tempLeadership.stage = id
+               
+                
+                let url = URL(string: "https://mobdenapi.azurewebsites.net/MobdenAPI/Leadership/GetLeadershipByStage")
+                
+                guard let requestUrl = url else { fatalError() }
+                // Create URL Request
+                var request = URLRequest(url: requestUrl)
+                // Specify HTTP Method to use
+                //request.httpMethod = "GET"
+                
+                
+                let jsonData = try! JSONEncoder().encode(tempLeadership)
+                //let jsonString = String(data: jsonData, encoding: .utf8)!
+                request.httpMethod = "POST" //set http method as POST
+                request.setValue("application/json; charset=utf-8",
+                     forHTTPHeaderField: "Content-Type")
+                request.setValue("application/json; charset=utf-8",
+                     forHTTPHeaderField: "Accept")
+                request.httpBody = jsonData
+                
+                
+                
+                
+                // Send HTTP Request
+                let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                    
+                    // Check if Error took place
+                    if let error = error {
+                        print("Error took place \(error)")
+                        return
+                    }
+                    
+                    // Read HTTP Response Status code
+                    if let response = response as? HTTPURLResponse {
+                       
+                        print("Response HTTP Status code: \(response.statusCode)")
+                    }
+                    
+                    // Convert HTTP Response Data to a simple String
+                    if let data = data, let dataString = String(data: data, encoding: .utf8) {
+                        
+                        if dataString != "null"{
+                            let data = Data(dataString.utf8)
+                                           let leadershipData = try! JSONDecoder().decode([Leadership].self, from: data)
+                                          
+                                           DispatchQueue.main.async {
+                                            print("done")
+                                            self.leadershipList = leadershipData
+                                            
+                                           }
+                        }
+                       
+                        
+        //                print("Response data string:\n \(dataString)")
+        //
+        //                print("Response data string:\n \(String(describing: wordsData.title))")
+        //
+        //
+        //                print("Response data string:\n \(String(describing: self.words[0].title))")
+                        
+                    }
+                    
+                }
+                task.resume()
+                
+                
+                
+                
+            }
+        
+       
+    
+    
+}
+
+
+
+
+
+final class DepartmentLeaderModel: ObservableObject{
+    
+    @Published var departmentLeaderList = [DepartmentLeader]()
+    //@Published var topThreeNews = [News]()
+    //@Published var primaryNews = [News]()
+    @Published var departmentLeader = DepartmentLeader()
+    
+    
+    
+    func getStageDepartmentLeaderByStageAndDep(stageId: Int,departmentId:Int)
+           {
+
+               departmentLeaderList.removeAll()
+               var tempDepartmentLeader = DepartmentLeader()
+               tempDepartmentLeader.stage = stageId
+            tempDepartmentLeader.departmentID = departmentId
+              
+               
+               let url = URL(string: "https://mobdenapi.azurewebsites.net/MobdenAPI/StageDepartmentLeader/GetStageDepartmentLeaderByStageAndDep")
+               
+               guard let requestUrl = url else { fatalError() }
+               // Create URL Request
+               var request = URLRequest(url: requestUrl)
+               // Specify HTTP Method to use
+               //request.httpMethod = "GET"
+               
+               
+               let jsonData = try! JSONEncoder().encode(tempDepartmentLeader)
+               //let jsonString = String(data: jsonData, encoding: .utf8)!
+               request.httpMethod = "POST" //set http method as POST
+               request.setValue("application/json; charset=utf-8",
+                    forHTTPHeaderField: "Content-Type")
+               request.setValue("application/json; charset=utf-8",
+                    forHTTPHeaderField: "Accept")
+               request.httpBody = jsonData
+               
+               
+               
+               
+               // Send HTTP Request
+               let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                   
+                   // Check if Error took place
+                   if let error = error {
+                       print("Error took place \(error)")
+                       return
+                   }
+                   
+                   // Read HTTP Response Status code
+                   if let response = response as? HTTPURLResponse {
+                      
+                       print("Response HTTP Status code: \(response.statusCode)")
+                   }
+                   
+                   // Convert HTTP Response Data to a simple String
+                   if let data = data, let dataString = String(data: data, encoding: .utf8) {
+                       
+                       if dataString != "null"{
+                           let data = Data(dataString.utf8)
+                                          let DLData = try! JSONDecoder().decode([DepartmentLeader].self, from: data)
+                                         
+                                          DispatchQueue.main.async {
+                                           print("done")
+                                           self.departmentLeaderList = DLData
+                                           
+                                          }
+                       }
+                      
+                       
+       //                print("Response data string:\n \(dataString)")
+       //
+       //                print("Response data string:\n \(String(describing: wordsData.title))")
+       //
+       //
+       //                print("Response data string:\n \(String(describing: self.words[0].title))")
+                       
+                   }
+                   
+               }
+               task.resume()
+               
+               
+               
+               
+           }
+       
+    
+    
+    
+}
+
+
+
+
+
 
