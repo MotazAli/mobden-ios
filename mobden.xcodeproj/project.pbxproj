@@ -30,6 +30,10 @@
 		C369A69C24172B5700CB6E79 /* TransferView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C369A69B24172B5700CB6E79 /* TransferView.swift */; };
 		C369A69E2417531900CB6E79 /* PrimarySchoolHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C369A69D2417531900CB6E79 /* PrimarySchoolHomeView.swift */; };
 		C369A6A0241ACB2200CB6E79 /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C369A69F241ACB2200CB6E79 /* NewsView.swift */; };
+		C369A6A2241C6C2000CB6E79 /* MiddleSchoolHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C369A6A1241C6C2000CB6E79 /* MiddleSchoolHomeView.swift */; };
+		C369A6A5241C71FA00CB6E79 /* MiddleSchoolSliderMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = C369A6A4241C71FA00CB6E79 /* MiddleSchoolSliderMenu.swift */; };
+		C369A6A7241C743100CB6E79 /* HighSchoolHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C369A6A6241C743100CB6E79 /* HighSchoolHomeView.swift */; };
+		C369A6A9241C754A00CB6E79 /* HighSchoolSliderMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = C369A6A8241C754A00CB6E79 /* HighSchoolSliderMenu.swift */; };
 		C3A039DC23FFA840002BBE36 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A039DB23FFA840002BBE36 /* AppDelegate.swift */; };
 		C3A039DE23FFA840002BBE36 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A039DD23FFA840002BBE36 /* SceneDelegate.swift */; };
 		C3A039E023FFA840002BBE36 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A039DF23FFA840002BBE36 /* ContentView.swift */; };
@@ -64,6 +68,10 @@
 		C369A69B24172B5700CB6E79 /* TransferView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferView.swift; sourceTree = "<group>"; };
 		C369A69D2417531900CB6E79 /* PrimarySchoolHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimarySchoolHomeView.swift; sourceTree = "<group>"; };
 		C369A69F241ACB2200CB6E79 /* NewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsView.swift; sourceTree = "<group>"; };
+		C369A6A1241C6C2000CB6E79 /* MiddleSchoolHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiddleSchoolHomeView.swift; sourceTree = "<group>"; };
+		C369A6A4241C71FA00CB6E79 /* MiddleSchoolSliderMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiddleSchoolSliderMenu.swift; sourceTree = "<group>"; };
+		C369A6A6241C743100CB6E79 /* HighSchoolHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighSchoolHomeView.swift; sourceTree = "<group>"; };
+		C369A6A8241C754A00CB6E79 /* HighSchoolSliderMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighSchoolSliderMenu.swift; sourceTree = "<group>"; };
 		C3A039D823FFA840002BBE36 /* mobden.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mobden.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3A039DB23FFA840002BBE36 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C3A039DD23FFA840002BBE36 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -109,6 +117,8 @@
 				C369A69B24172B5700CB6E79 /* TransferView.swift */,
 				C369A69D2417531900CB6E79 /* PrimarySchoolHomeView.swift */,
 				C369A69F241ACB2200CB6E79 /* NewsView.swift */,
+				C369A6A1241C6C2000CB6E79 /* MiddleSchoolHomeView.swift */,
+				C369A6A6241C743100CB6E79 /* HighSchoolHomeView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -138,6 +148,17 @@
 			path = Handler;
 			sourceTree = "<group>";
 		};
+		C369A6A3241C71BF00CB6E79 /* SliderMenu */ = {
+			isa = PBXGroup;
+			children = (
+				C369A6A4241C71FA00CB6E79 /* MiddleSchoolSliderMenu.swift */,
+				C3A039EF23FFA900002BBE36 /* SliderMenu.swift */,
+				C3A039F123FFA943002BBE36 /* PrimarySchoolSliderMenu.swift */,
+				C369A6A8241C754A00CB6E79 /* HighSchoolSliderMenu.swift */,
+			);
+			path = SliderMenu;
+			sourceTree = "<group>";
+		};
 		C3A039CF23FFA840002BBE36 = {
 			isa = PBXGroup;
 			children = (
@@ -157,6 +178,7 @@
 		C3A039DA23FFA840002BBE36 /* mobden */ = {
 			isa = PBXGroup;
 			children = (
+				C369A6A3241C71BF00CB6E79 /* SliderMenu */,
 				C369A67A2406C8EF00CB6E79 /* Handler */,
 				C369A66D2406C4A000CB6E79 /* DataObject */,
 				C369A66C2406C42800CB6E79 /* Server */,
@@ -168,8 +190,6 @@
 				C3A039E623FFA845002BBE36 /* LaunchScreen.storyboard */,
 				C3A039E923FFA845002BBE36 /* Info.plist */,
 				C3A039E323FFA845002BBE36 /* Preview Content */,
-				C3A039EF23FFA900002BBE36 /* SliderMenu.swift */,
-				C3A039F123FFA943002BBE36 /* PrimarySchoolSliderMenu.swift */,
 			);
 			path = mobden;
 			sourceTree = "<group>";
@@ -263,19 +283,23 @@
 				C369A6962414813900CB6E79 /* SupervisionPlanListView.swift in Sources */,
 				C369A6802406E4F900CB6E79 /* DateModel.swift in Sources */,
 				C369A69C24172B5700CB6E79 /* TransferView.swift in Sources */,
+				C369A6A7241C743100CB6E79 /* HighSchoolHomeView.swift in Sources */,
 				C369A68E240F2F7700CB6E79 /* SupervisionView.swift in Sources */,
 				C369A68C240C8BF000CB6E79 /* PublicRelationInfoView.swift in Sources */,
 				C369A69A2415DFD600CB6E79 /* ComprehensiveView.swift in Sources */,
 				C3A039DE23FFA840002BBE36 /* SceneDelegate.swift in Sources */,
 				C369A6712406C58C00CB6E79 /* RequestServices.swift in Sources */,
 				C369A69E2417531900CB6E79 /* PrimarySchoolHomeView.swift in Sources */,
+				C369A6A2241C6C2000CB6E79 /* MiddleSchoolHomeView.swift in Sources */,
 				C369A6772406C80F00CB6E79 /* ArticlesView.swift in Sources */,
 				C369A6A0241ACB2200CB6E79 /* NewsView.swift in Sources */,
 				C3A039E023FFA840002BBE36 /* ContentView.swift in Sources */,
+				C369A6A9241C754A00CB6E79 /* HighSchoolSliderMenu.swift in Sources */,
 				C3A039F023FFA900002BBE36 /* SliderMenu.swift in Sources */,
 				C369A6902411D33B00CB6E79 /* SupervisionListView.swift in Sources */,
 				C369A66F2406C4D100CB6E79 /* DataObjects.swift in Sources */,
 				C369A6922411D5C500CB6E79 /* SupervisionInfoView.swift in Sources */,
+				C369A6A5241C71FA00CB6E79 /* MiddleSchoolSliderMenu.swift in Sources */,
 				C369A686240ACA8700CB6E79 /* WordView.swift in Sources */,
 				C369A6792406C87100CB6E79 /* ArticleView.swift in Sources */,
 				C369A6942411E33C00CB6E79 /* SupervisionTeamView.swift in Sources */,

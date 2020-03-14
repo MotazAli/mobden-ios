@@ -57,6 +57,16 @@ struct ContentView: View {
                             
                         }
                         
+                        if self.selectedTabView == 2{
+                            self.middleSchoolSliderOpen.toggle()
+                            
+                        }
+                        
+                        if self.selectedTabView == 3{
+                            self.highSchoolSliderOpen.toggle()
+                            
+                        }
+                        
                     })
                     {
                         Image(systemName: "line.horizontal.3")
@@ -72,24 +82,26 @@ struct ContentView: View {
                 
                 TabView(selection: self.$selectedTabView){
                     
-                    Text("الثانوي").tabItem{
+                    HighSchoolHomeView().tabItem{
                         VStack{
                             Image(systemName: "person.3.fill").font(.title)
                             Text("الثانوي").font(.largeTitle)
                         }
-                        //Text("الثانوي")
+                       
                         
-                    }.tag(3)
+                    }.tag(3).tag(2).padding([.horizontal, .top],10)
+                    .onAppear(){self.isMasterHomeView = false}
                     
                     
-                    Text("المتوسط").tabItem{
+                    MiddleSchoolHomeView().tabItem{
                         VStack{
                             Image(systemName: "person.2.square.stack.fill").font(.title)//systemName: "person.2.fill").font(.title)
                             Text("المتوسط").font(.largeTitle)
                         }
                         
                         
-                    }.tag(2)
+                    }.tag(2).padding([.horizontal, .top],10)
+                    .onAppear(){self.isMasterHomeView = false}
                     
                     
                     
@@ -104,11 +116,7 @@ struct ContentView: View {
                         
                         
                     }.tag(1).padding([.horizontal, .top],10)
-                        .onAppear(){
-                            self.isMasterHomeView = false
-                            UITabBar.appearance().barTintColor  = UIColor.blue
-                            
-                    }
+                        .onAppear(){self.isMasterHomeView = false}
                     
                     HomeMasterView().tabItem{
                         VStack{
@@ -121,10 +129,7 @@ struct ContentView: View {
                         
                         
                     }.tag(0).padding([.horizontal, .top],10)
-                        .onAppear(){
-                        self.isMasterHomeView = true
-                        
-                    }
+                        .onAppear(){ self.isMasterHomeView = true}
                     
                 }
                 
@@ -137,6 +142,10 @@ struct ContentView: View {
             MasterMenuSlider(masterSilderOpen: self.$masterSilderOpen)
             
             PrimarySchoolSliderMenu(primarySchoolSliderOpen: self.$primarySchoolSliderOpen)
+            
+            MiddleSchoolSliderMenu(middleSchoolSliderOpen: self.$middleSchoolSliderOpen)
+            
+            HighSchoolSliderMenu(highSchoolSliderOpen: self.$highSchoolSliderOpen)
             
         }
         .background(self.isMasterHomeView ? Color.red.opacity(0.8).edgesIgnoringSafeArea(.all): Color.blue.opacity(0.8).edgesIgnoringSafeArea(.all) )

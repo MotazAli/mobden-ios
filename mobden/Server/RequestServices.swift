@@ -385,7 +385,7 @@ final class AboutSchoolModel: ObservableObject{
 final class HonorBoardlModel: ObservableObject{
     
     @Published var honorBoardList = [HonorBoard]()
-    @Published var primaryHonorBoardList = [HonorBoard]()
+    @Published var honorBoardStageList = [HonorBoard]()
 //    init() {
 //        fetchPosts()
 //    }
@@ -454,12 +454,27 @@ final class HonorBoardlModel: ObservableObject{
     
     
     
-    func getPrimaryHonorBoards()
+    func getHonorBoardByStage(id : Int)
         {
 
-            primaryHonorBoardList.removeAll()
+            honorBoardStageList.removeAll()
             
-            let url = URL(string: "https://mobdenapi.azurewebsites.net/MobdenAPI/HonorBoard/GetPrimaryHonorBoards")
+            var urlString = ""
+            if id == 1 {
+                urlString  =  "https://mobdenapi.azurewebsites.net/MobdenAPI/HonorBoard/GetPrimaryHonorBoards"
+            }
+            else if id == 2 {
+                urlString  =  "https://mobdenapi.azurewebsites.net/MobdenAPI/HonorBoard/GetMiddleHonorBoards"
+            }
+            else if id == 3 {
+                urlString  =  "https://mobdenapi.azurewebsites.net/MobdenAPI/HonorBoard/GetHighHonorBoards"
+            }
+            
+            
+            
+            
+            let url = URL(string:urlString)
+            
             guard let requestUrl = url else { fatalError() }
             // Create URL Request
             var request = URLRequest(url: requestUrl)
@@ -487,7 +502,7 @@ final class HonorBoardlModel: ObservableObject{
                                        let honorBoardlData = try! JSONDecoder().decode([HonorBoard].self, from: data)
                                       
                                        DispatchQueue.main.async {
-                                                        self.primaryHonorBoardList = honorBoardlData
+                                                        self.honorBoardStageList = honorBoardlData
                                        }
                     }
                    

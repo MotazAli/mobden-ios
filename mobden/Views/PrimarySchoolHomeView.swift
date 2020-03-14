@@ -28,7 +28,7 @@ struct PrimarySchoolHomeView: View {
                 
                 self.articleModel.getTopThreeArticleByStage(id: 1)
                 self.newsModel.getThreeNewsByStage(id: 1)
-                self.honorBoardModel.getPrimaryHonorBoards()
+                self.honorBoardModel.getHonorBoardByStage(id: 1)
                 
             }
             
@@ -244,7 +244,7 @@ struct PrimarySchoolHomeView: View {
                             //}
                             
                             
-                            if honorBoardModel.primaryHonorBoardList.isEmpty{
+                            if honorBoardModel.honorBoardStageList.isEmpty{
                                 VStack(alignment:.center){
                                     Text("فارغ").frame(width:200,height:200)
                                         .background(Color.blue.opacity(0.3))
@@ -258,7 +258,7 @@ struct PrimarySchoolHomeView: View {
                                     
                                     HStack(spacing:20){
                                         
-                                        ForEach(honorBoardModel.primaryHonorBoardList){ honor in
+                                        ForEach(honorBoardModel.honorBoardStageList){ honor in
                                             
                                             GeometryReader{ geometry in
                                                 
