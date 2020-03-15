@@ -101,7 +101,8 @@ struct PrimarySchoolSliderMenu : View {
                                      HStack{
                                        Spacer()
                                        Button(action:{
-                                           self.viewName = ViewScreen.supervisionView
+                                        self.departmentId = 5
+                                           self.viewName = ViewScreen.studentActivityView
                                            self.isSheetPersented.toggle()
                                        }){
                                            Text("النشاط الطلابي").fontWeight(.bold)
@@ -225,8 +226,8 @@ struct PrimarySchoolSliderMenu : View {
             return AnyView( StudentSupervisionView(stageId: self.stageId,departmentId: self.departmentId))
                               
                }
-               else if viewScreen == ViewScreen.supervisionView {
-                   return AnyView( SupervisionView())
+               else if viewScreen == ViewScreen.studentActivityView {
+            return AnyView( StudentActivityView(stageId: self.stageId, departmentId: self.departmentId))
                               
                }
            else if viewScreen == ViewScreen.comprehensiveView {
