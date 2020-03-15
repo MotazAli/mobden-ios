@@ -18,7 +18,7 @@ enum ViewScreen: Int {
     case noView = 0 ,wordView = 1, articlesView = 2 , articaleView = 3 , prizesView = 4,
     registrationView = 5 , publicRelationView = 6 ,supervisionView = 7 , supervisionListView = 8 ,
     supervisionInfoView = 9 , supervisionTeamView = 10 , comprehensiveView = 11 , transferView = 12,
-    newsView = 13 , leadership = 14
+    newsView = 13 , leadership = 14 ,planWork = 15
     
     
 }

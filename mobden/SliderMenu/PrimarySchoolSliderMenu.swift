@@ -20,6 +20,8 @@ struct PrimarySchoolSliderMenu : View {
        @State var viewName : ViewScreen = ViewScreen.noView
        @State var isSheetPersented = false
         let stageId : Int = 1
+    let departmentId : Int = 2
+    let primaryPlanWorkUrl : String = "https://mobden.azurewebsites.net/pdf/working_plan.pdf"
        var width: CGFloat = 270
        
 
@@ -66,7 +68,7 @@ struct PrimarySchoolSliderMenu : View {
                                        
                                        Spacer()
                                        Button(action:{
-                                           self.viewName = ViewScreen.prizesView
+                                           self.viewName = ViewScreen.planWork
                                            self.isSheetPersented.toggle()
                                        }){
                                            Text("الخطة التشغيلية").fontWeight(.bold)
@@ -180,7 +182,25 @@ struct PrimarySchoolSliderMenu : View {
            }.sheet(isPresented: self.$isSheetPersented){
                
                //ArticleView(articleID: 65)
-               self.getViewByID(viewScreen: self.viewName)
+            VStack{
+                
+                if self.viewName == ViewScreen.planWork{
+                    VStack{
+                            Button(action: {self.isSheetPersented.toggle()}){
+                            Text("اغلاق").font(.headline)
+                                .frame(width: 400, height: 50)
+                                .background(Color.gray.opacity(0.5))
+                            .cornerRadius(10)
+                             .padding([.top,.trailing,.leading],10)
+                    
+                        }
+                            
+                        }
+                }
+                
+                self.getViewByID(viewScreen: self.viewName)
+            }
+               
            }
            
        }
@@ -191,11 +211,11 @@ struct PrimarySchoolSliderMenu : View {
        
        func getViewByID(viewScreen: ViewScreen) -> AnyView {
            if viewScreen == ViewScreen.leadership {
-            return AnyView( LeadershipView(stageId: self.stageId))
+            return AnyView( LeadershipView(stageId: self.stageId,departmentId: self.departmentId))
                           
            }
-           else if viewScreen == ViewScreen.prizesView {
-               return AnyView( PrizesView())
+           else if viewScreen == ViewScreen.planWork {
+            return AnyView( PlanInfoView(url: URL(string: self.primaryPlanWorkUrl)!))
                           
            }
                else if viewScreen == ViewScreen.publicRelationView {

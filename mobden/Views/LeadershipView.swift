@@ -10,11 +10,13 @@ import SwiftUI
 
 struct LeadershipView: View {
     @ObservedObject var LModel = LeadershipModel()
+    @ObservedObject var DLModel = DepartmentLeaderModel()
          var url = "https://mobdenapi.azurewebsites.net/"
          var personUrl = "assets/persons/"
          
-    init(stageId:Int){
+    init(stageId:Int , departmentId: Int){
             self.LModel.getLeadershipByStage(id: stageId)
+        self.DLModel.getStageDepartmentLeaderByStageAndDep(stageId: stageId, departmentId: departmentId)
          }
          
          
@@ -33,6 +35,44 @@ struct LeadershipView: View {
                         
                       
                       VStack{
+                        
+                        VStack{
+                        Text("القيادة المدرسية")
+                            .font(.headline)
+                            .frame(width: 400, height: 50, alignment: .center)
+                            .background(Color.blue.opacity(0.5))
+                        .cornerRadius(10)
+                         .padding([.top,.trailing,.leading],10)
+                            ForEach(self.DLModel.departmentLeaderList){ info in
+                                HStack{
+                                    //Spacer()
+                                    VStack{
+                                        Text(info.name)
+                                         //.padding(8)
+                                        //.flipsForRightToLeftLayoutDirection(true)
+                                           .lineSpacing(2)
+                                        .multilineTextAlignment(.trailing)
+                                        Text(info.phone)
+                                         //.padding(8)
+                                        //.flipsForRightToLeftLayoutDirection(true)
+                                           .lineSpacing(2)
+                                        .multilineTextAlignment(.trailing)
+                                        
+                                    }
+                                    
+                                    
+                                    UrlImageView(urlString:(self.url + self.personUrl + info.image),width: 100,height: 100)
+                                        .cornerRadius(8)
+                                    .padding(8)
+                                    
+                                    
+                                }
+                                
+                            }
+                        }.background(Color.gray.opacity(0.12))
+                        
+                        
+                        
                           
                         List(self.LModel.leadershipList){ info in
                             
@@ -45,32 +85,63 @@ struct LeadershipView: View {
                                         Spacer()
                                         
                                         VStack{
-                                            Text(info.name)
-                                            .padding(8)
-                                            .flipsForRightToLeftLayoutDirection(true)
-                                            .lineSpacing(2)
-                                            .multilineTextAlignment(.trailing)
-                                            Text(info.job)
-                                                .foregroundColor(.secondary)
-                                            .padding(8)
-                                            .flipsForRightToLeftLayoutDirection(true)
-                                            .lineSpacing(2)
-                                            .multilineTextAlignment(.trailing)
-                                            Text(info.councilStatusName)
-                                                .foregroundColor(.secondary)
-                                            .padding(8)
-                                            .flipsForRightToLeftLayoutDirection(true)
-                                            .lineSpacing(2)
-                                            .multilineTextAlignment(.trailing)
+                                            HStack{
+                                                Spacer()
+                                                Text(info.name)
+                                                //.padding(8)
+//                                                .flipsForRightToLeftLayoutDirection(true)
+                                                .lineSpacing(2)
+                                                .multilineTextAlignment(.trailing)
+                                                Text("الاسم :")
+                                                
+                                            }
+                                            HStack{
+                                                Spacer()
+                                                Text(info.job).foregroundColor(.secondary)
+                                                    
+                                                //.padding(8)
+//                                                .flipsForRightToLeftLayoutDirection(true)
+                                                .lineSpacing(2)
+                                                .multilineTextAlignment(.trailing)
+                                                Text("الوظيفة :")
+                                            }
+                                            HStack{
+                                                   Spacer()
+                                                                                   
+                                                                                   
+                                                    Text(info.councilStatusName)
+                                                        .foregroundColor(.secondary)
+                                                    //.padding(8)
+                                                    //.flipsForRightToLeftLayoutDirection(true)
+                                                    .lineSpacing(2)
+                                                    .multilineTextAlignment(.trailing)
+                                                    Text("صفته :")
+                                                                                   
+                                                                               
+                                            }
+//                                            Text(info.name)
+//                                            .padding(8)
+//                                            .flipsForRightToLeftLayoutDirection(true)
+//                                            .lineSpacing(2)
+//                                            .multilineTextAlignment(.trailing)
+//                                            Text(info.job)
+//                                                .foregroundColor(.secondary)
+//                                            .padding(8)
+//                                            .flipsForRightToLeftLayoutDirection(true)
+//                                            .lineSpacing(2)
+//                                            .multilineTextAlignment(.trailing)
+                                            
                                         }
                                         UrlImageView(urlString:(self.url + self.personUrl + info.image),width: 100,height: 100)
                                             .cornerRadius(8)
+                                        .padding(8)
                                         
                                                                       
                                           }
+                                   
                                                               
-                                }.frame(height:100)
-                                        .background(Color.gray.opacity(0.2))
+                                }.frame(height:110)
+                                        .background(Color.blue.opacity(0.12))
                                         .cornerRadius(8)
                                     //.padding(.trailing,10)
                                 
@@ -113,6 +184,6 @@ struct LeadershipView: View {
 
 struct LeadershipView_Previews: PreviewProvider {
     static var previews: some View {
-        LeadershipView(stageId: 0)
+        LeadershipView(stageId: 0,departmentId: 0)
     }
 }
