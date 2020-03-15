@@ -20,7 +20,7 @@ struct PrimarySchoolSliderMenu : View {
        @State var viewName : ViewScreen = ViewScreen.noView
        @State var isSheetPersented = false
         let stageId : Int = 1
-    let departmentId : Int = 2
+    @State var departmentId  = 0
     let primaryPlanWorkUrl : String = "https://mobden.azurewebsites.net/pdf/working_plan.pdf"
        var width: CGFloat = 270
        
@@ -52,6 +52,7 @@ struct PrimarySchoolSliderMenu : View {
                                        
                                        Button(action:{
                                         
+                                        self.departmentId = 2
                                            self.viewName = ViewScreen.leadership
                                            self.isSheetPersented.toggle()
                                        }){
@@ -84,8 +85,10 @@ struct PrimarySchoolSliderMenu : View {
                                        
                                        Spacer()
                                        Button(action:{
+                                        self.departmentId = 4
                                         self.viewName = ViewScreen.studentSupervisionView
                                            self.isSheetPersented.toggle()
+                                        
                                        }){
                                            Text("الإرشاد الطلابي").fontWeight(.bold)
                                            .foregroundColor(Color.white)
@@ -219,7 +222,7 @@ struct PrimarySchoolSliderMenu : View {
                           
            }
                else if viewScreen == ViewScreen.studentSupervisionView {
-            return AnyView( StudentSupervisionView(stageId: self.stageId))
+            return AnyView( StudentSupervisionView(stageId: self.stageId,departmentId: self.departmentId))
                               
                }
                else if viewScreen == ViewScreen.supervisionView {

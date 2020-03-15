@@ -14,6 +14,7 @@ struct StudentSupervisionView: View {
             @State var shaked = false
             @State var selectedTab : Int = 1
     var stageId : Int
+    var departmentId:Int
              //var url = "https://mobdenapi.azurewebsites.net/"
              //var prizesUrl = "assets/prizes/"
              
@@ -35,7 +36,7 @@ struct StudentSupervisionView: View {
                             
                             if self.selectedTab == 1 {
                                 ZStack{
-                                    StudentSupervisionListView(stageId: self.stageId)
+                                    StudentSupervisionListView(stageId: self.stageId,departmentId: self.departmentId)
                                 }
                                 .padding(.top,100)
                             }
@@ -48,7 +49,7 @@ struct StudentSupervisionView: View {
     //                        }
                             else if self.selectedTab == 3{
                                ZStack{
-                                    RegistrationRequiredListView()
+                                StudentSupervisionPlanListView(stageId: self.stageId, departmentId: self.departmentId)
                                 }
                                 .padding(.top,100)
                             }
@@ -71,7 +72,7 @@ struct StudentSupervisionView: View {
                                                         .frame(width:60 , height: 40)
                                                     .offset(x: self.shaked ? -5 : 0)
                                                     .animation(Animation.easeInOut.repeatForever().speed(1))
-                                    Text("خطط الارشاد").fontWeight(.medium)
+                                    Text("خطط الارشاد").fontWeight(.medium).fixedSize()
                                             //}
                                             
                                     //Spacer()
@@ -79,6 +80,7 @@ struct StudentSupervisionView: View {
                                       //  }
                                 }.frame(width:(geometry.size.width / 2))
                                 .padding(.bottom,100)
+                                    
                                     //.border(self.selectedTab == 3 ? Color.orange : Color.white , width: 4)
                                  .foregroundColor(self.selectedTab == 3 ? .black : .gray)
                                  .onTapGesture {
@@ -109,6 +111,7 @@ struct StudentSupervisionView: View {
                                     
                                 }.frame(width:(geometry.size.width / 2))
                                 .padding(.bottom,100)
+                                
                                 //.border(self.selectedTab == 1 ? Color.orange : Color.white , width: 4)
                                 .foregroundColor(self.selectedTab == 1 ? .black : .gray)
                                 .onTapGesture {
@@ -144,11 +147,13 @@ struct StudentSupervisionView: View {
 struct StudentSupervisionListView: View {
     
      @ObservedObject var SModel = SupervisionAndDevelopmentModel()
-     //var url = "https://mobdenapi.azurewebsites.net/"
-     //var prizesUrl = "assets/prizes/"
+    //@ObservedObject var DLModel = DepartmentLeaderModel()
+     let url = "https://mobdenapi.azurewebsites.net/"
+     let personUrl = "assets/persons/"
      
-    init(stageId:Int){
+    init(stageId:Int,departmentId:Int){
         self.SModel.getStudentSupervisionBy(stageId: stageId)
+        //self.DLModel.getStageDepartmentLeaderByStageAndDep(stageId: stageId, departmentId: departmentId)
      }
      
      
@@ -157,7 +162,49 @@ struct StudentSupervisionListView: View {
          
          GeometryReader{ geometry in
              VStack{
+                
+                
+                
+//                VStack{
+//                    ForEach(self.DLModel.departmentLeaderList){ info in
+//                        HStack{
+//                            //Spacer()
+//                            VStack{
+//                                Text(info.name)
+//                                 //.padding(8)
+//                                //.flipsForRightToLeftLayoutDirection(true)
+//                                   .lineSpacing(2)
+//                                .multilineTextAlignment(.trailing)
+//                                Text(info.phone)
+//                                 //.padding(8)
+//                                //.flipsForRightToLeftLayoutDirection(true)
+//                                   .lineSpacing(2)
+//                                .multilineTextAlignment(.trailing)
+//
+//                            }
+//
+//
+//                            UrlImageView(urlString:(self.url + self.personUrl + info.image),width: 100,height: 100)
+//                                .cornerRadius(8)
+//                            .padding(8)
+//
+//
+//                        }
+//
+//                    }
+//                }.background(Color.gray.opacity(0.12))
+
+                
+                
+                
+                
                NavigationView{
+
+                
+                
+                
+                
+                
                   VStack{
                       
                     List(self.SModel.studentSupervisionList){ info in
@@ -296,12 +343,79 @@ struct StudentSupervisionInfoView: View {
 
 
 
+struct StudentSupervisionPlanListView: View {
+   
+     @ObservedObject var SDModel = SupervisionAndDevelopmentModel()
+     var url = "https://mobdenapi.azurewebsites.net/"
+     var plansPath = "assets/plans/"
+     
+    init(stageId:Int , departmentId:Int){
+        self.SDModel.GetStageDepartmentPlanBy(stageId: stageId, departmentId: departmentId)
+     }
+     
+     
+     var body: some View{
+         
+         
+         GeometryReader{ geometry in
+             VStack{
+               NavigationView{
+                  VStack{
+                      
+                    List(self.SDModel.supervisionPlans){ info in
+                        
+                        
+                        NavigationLink(destination: PlanInfoView(url: URL(string: self.url + self.plansPath + info.planFile  )!) ){
+                            
+                            VStack{
+                                HStack{
+                                        Spacer()
+                                    Text(info.linkTitle)
+                                        .padding(8)
+                                        .flipsForRightToLeftLayoutDirection(true)
+                                        .lineSpacing(2)
+                                        .multilineTextAlignment(.trailing)
+                                                                  
+                                      }.frame(alignment:.top)
+                                                          
+                                  }.frame(height:100)
+                                    .background(Color.gray.opacity(0.2))
+                                    .cornerRadius(8)
+                            
+                            
+                        }
+                        
+                                                          
+                     }
+                      
+                                      
+                                      
+                  }//.padding([.trailing,.leading],10)
+                      .frame(width:geometry.size.width)
+                    .navigationBarTitle("خطط الارشاد الجديدة",displayMode: .inline)
+                    //.navigationBarHidden(true)
+                  }.frame(width: geometry.size.width)
+                 
+                 
+                 
+               }
+         
+         
+         
+         }//.padding(.top,10)
+         
+         
+         
+           }
+     
+    
+}
 
 
 
 
 struct StudentSupervisionView_Previews: PreviewProvider {
     static var previews: some View {
-        StudentSupervisionView(stageId: 0)
+        StudentSupervisionView(stageId: 0,departmentId: 0)
     }
 }
