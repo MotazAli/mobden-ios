@@ -966,6 +966,8 @@ final class SupervisionAndDevelopmentModel: ObservableObject{
     @Published var supervisionAndDevelopmentInfo = SupervisionAndDevelopment(id: 0, title: "لا يوجد", description: "لا يوجد")
     @Published var supervisionTeams = [SupervisionTeam]()
     @Published var supervisionPlans = [SupervisionPlan]()
+    @Published var studentSupervisionList = [StudentSupervision]()
+    @Published var studentSupervisionInfo = StudentSupervision()
     
 //    init() {
 //        fetchPosts()
@@ -1239,6 +1241,147 @@ final class SupervisionAndDevelopmentModel: ObservableObject{
             }
         
     
+    func getStudentSupervisionBy(stageId: Int)
+        {
+
+            studentSupervisionList.removeAll()
+            var SV_temp = StudentSupervision()
+            SV_temp.stage = stageId
+            
+            let url = URL(string: "https://mobdenapi.azurewebsites.net/MobdenAPI/StudentSupervision/GetStudentSupervisionByStage")
+            guard let requestUrl = url else { fatalError() }
+            // Create URL Request
+            var request = URLRequest(url: requestUrl)
+            // Specify HTTP Method to use
+            //request.httpMethod = "GET"
+            
+            
+            let jsonData = try! JSONEncoder().encode(SV_temp)
+            //let jsonString = String(data: jsonData, encoding: .utf8)!
+            request.httpMethod = "POST" //set http method as POST
+            request.setValue("application/json; charset=utf-8",
+                 forHTTPHeaderField: "Content-Type")
+            request.setValue("application/json; charset=utf-8",
+                 forHTTPHeaderField: "Accept")
+            request.httpBody = jsonData
+            
+            
+            
+            
+            // Send HTTP Request
+            let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                
+                // Check if Error took place
+                if let error = error {
+                    print("Error took place \(error)")
+                    return
+                }
+                
+                // Read HTTP Response Status code
+                if let response = response as? HTTPURLResponse {
+                   
+                    print("Response HTTP Status code: \(response.statusCode)")
+                }
+                
+                // Convert HTTP Response Data to a simple String
+                if let data = data, let dataString = String(data: data, encoding: .utf8) {
+                    
+                    if dataString != "null"{
+                        let data = Data(dataString.utf8)
+                                       let SVData = try! JSONDecoder().decode([StudentSupervision].self, from: data)
+                                      
+                                       DispatchQueue.main.async {
+                                        print("done")
+                                        self.studentSupervisionList = SVData
+                                        
+                                       }
+                    }
+                   
+                    
+    //                print("Response data string:\n \(dataString)")
+    //
+    //                print("Response data string:\n \(String(describing: wordsData.title))")
+    //
+    //
+    //                print("Response data string:\n \(String(describing: self.words[0].title))")
+                    
+                }
+                
+            }
+            task.resume()
+            
+            
+            
+            
+        }
+    
+    
+    
+    
+    func getStudentSupervisionBy(id : Int)
+        {
+
+       
+            
+            
+            
+            let urlComponent = NSURLComponents(string: "https://mobdenapi.azurewebsites.net/MobdenAPI/StudentSupervision/GetStudentSupervisionByID")
+            
+            urlComponent?.queryItems = [
+                (NSURLQueryItem(name: "id", value: String(describing: id)) as URLQueryItem)
+            ]
+            
+            
+            
+            //guard let requestUrl = url else { fatalError() }
+            guard let requestUrl = urlComponent?.url else { fatalError() }
+            
+            
+            // Create URL Request
+            var request = URLRequest(url: requestUrl)
+            // Specify HTTP Method to use
+            request.httpMethod = "GET"
+            // Send HTTP Request
+            let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                
+                // Check if Error took place
+                if let error = error {
+                    print("Error took place \(error)")
+                    return
+                }
+                
+                // Read HTTP Response Status code
+                if let response = response as? HTTPURLResponse {
+                    print("Response HTTP Status code: \(response.statusCode)")
+                }
+                
+                // Convert HTTP Response Data to a simple String
+                if let data = data, let dataString = String(data: data, encoding: .utf8) {
+                    
+                    if dataString != "null"{
+                    let data = Data(dataString.utf8)
+                    let infoData = try! JSONDecoder().decode(StudentSupervision.self, from: data)
+                   
+                    DispatchQueue.main.async {
+                        self.studentSupervisionInfo = infoData
+                        //self.articles.append( articlesData)
+                        //print("count \(self.articles.count)")
+                    }
+                    }
+                    
+
+                    
+                }
+                
+            }
+            task.resume()
+            
+            
+            
+            
+        }
+        
+        
     
     
     
@@ -1951,7 +2094,7 @@ final class NewsModel: ObservableObject{
                
                 DispatchQueue.main.async {
                     self.news = newsData
-                    
+                    print(self.news.newsImages)
                 }
                 }
                 

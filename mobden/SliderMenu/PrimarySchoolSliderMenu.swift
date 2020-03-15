@@ -84,7 +84,7 @@ struct PrimarySchoolSliderMenu : View {
                                        
                                        Spacer()
                                        Button(action:{
-                                           self.viewName = ViewScreen.comprehensiveView
+                                        self.viewName = ViewScreen.studentSupervisionView
                                            self.isSheetPersented.toggle()
                                        }){
                                            Text("الإرشاد الطلابي").fontWeight(.bold)
@@ -218,8 +218,8 @@ struct PrimarySchoolSliderMenu : View {
             return AnyView( PlanInfoView(url: URL(string: self.primaryPlanWorkUrl)!))
                           
            }
-               else if viewScreen == ViewScreen.publicRelationView {
-                   return AnyView( PublicRelationsView())
+               else if viewScreen == ViewScreen.studentSupervisionView {
+            return AnyView( StudentSupervisionView(stageId: self.stageId))
                               
                }
                else if viewScreen == ViewScreen.supervisionView {

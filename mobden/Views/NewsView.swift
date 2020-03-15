@@ -179,7 +179,15 @@ struct NewsDetailsView: View {
                         //.lineLimit(Int.max)
 
                 }
-                                       
+                 
+            
+            
+            
+            
+            
+            
+            
+            
                  
                                                    
             //}
@@ -191,6 +199,20 @@ struct NewsDetailsView: View {
                            
                                //.padding([.trailing],30)
                                .background(Color.gray.opacity(0.2))
+            
+            
+            
+            VStack{
+                List(self.newsModel.news.newsImages){ img in
+                    
+                    UrlImageView(urlString:(self.url + self.newsUrl + img.image),width: 350,height: 200).padding(8)
+                    
+                    
+                }
+            }.frame(height:geometry.size.height / 2)
+            
+            
+            
                           // .cornerRadius(15)
            }.frame(width: geometry.size.width)
         }

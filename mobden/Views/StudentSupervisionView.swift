@@ -1,0 +1,307 @@
+//
+//  StudentSupervisionView.swift
+//  mobden
+//
+//  Created by administrator on 3/15/20.
+//  Copyright © 2020 motaz. All rights reserved.
+//
+
+import SwiftUI
+
+struct StudentSupervisionView: View {
+    @State var spin = false
+            @State var imageTransation = false
+            @State var shaked = false
+            @State var selectedTab : Int = 1
+    var stageId : Int
+             //var url = "https://mobdenapi.azurewebsites.net/"
+             //var prizesUrl = "assets/prizes/"
+             
+        //     init(){
+        //        self.supervisionAndDevelopmentModel.getAboutSupervisions()
+        //     }
+             
+             
+             var body: some View{
+                 
+                
+                 GeometryReader{ geometry in
+                    //NavigationView{
+                     VStack{
+                         // NavigationView{
+                            
+                        
+                        VStack{
+                            
+                            if self.selectedTab == 1 {
+                                ZStack{
+                                    StudentSupervisionListView(stageId: self.stageId)
+                                }
+                                .padding(.top,100)
+                            }
+                            
+    //                        else if self.selectedTab == 2 {
+    //                            ZStack{
+    //                                SupervisionTeamView()
+    //                            }
+    //                            .padding(.top,120)
+    //                        }
+                            else if self.selectedTab == 3{
+                               ZStack{
+                                    RegistrationRequiredListView()
+                                }
+                                .padding(.top,100)
+                            }
+                            
+                            
+                            //Color.red
+                        }.frame(width:geometry.size.width,height: geometry.size.height / 1)
+                        
+                        HStack{
+                            
+                            HStack{
+                                VStack(alignment:.center){
+                                   //VStack(alignment:.center){
+
+                                            //VStack{
+                                                
+                                                Image(systemName: "pencil.and.ellipsis.rectangle")
+                                                .resizable()
+                                                .scaledToFit()
+                                                        .frame(width:60 , height: 40)
+                                                    .offset(x: self.shaked ? -5 : 0)
+                                                    .animation(Animation.easeInOut.repeatForever().speed(1))
+                                    Text("خطط الارشاد").fontWeight(.medium)
+                                            //}
+                                            
+                                    //Spacer()
+
+                                      //  }
+                                }.frame(width:(geometry.size.width / 2))
+                                .padding(.bottom,100)
+                                    //.border(self.selectedTab == 3 ? Color.orange : Color.white , width: 4)
+                                 .foregroundColor(self.selectedTab == 3 ? .black : .gray)
+                                 .onTapGesture {
+                                        self.selectedTab = 3
+                                }
+                                .onAppear(){
+                                            self.shaked = true
+                                }
+                                
+                                
+                                VStack(alignment: .center){
+                                    //VStack(alignment:.center){
+                                    //Spacer()
+                                            if self.imageTransation {
+                                            Image(systemName:"square.and.pencil")// : "bubble.left.fill")
+                                                                        .resizable()
+                                                                        .scaledToFit()
+                                                                                .frame(width:60 , height: 40)
+                                                .transition(.repeating(from: Opacity(0), to: Opacity(1)))
+                                                                            
+                                            
+                                            }
+                                    Text("الإرشاد الطلابي").fontWeight(.medium)//.frame(width:100)
+                                             
+                                        //}.onAppear(){self.imageTransation = true }
+                                    
+                                    //Spacer()
+                                    
+                                }.frame(width:(geometry.size.width / 2))
+                                .padding(.bottom,100)
+                                //.border(self.selectedTab == 1 ? Color.orange : Color.white , width: 4)
+                                .foregroundColor(self.selectedTab == 1 ? .black : .gray)
+                                .onTapGesture {
+                                        self.selectedTab = 1
+                                }
+                                .onAppear(){self.imageTransation = true }
+                                
+                            }
+                        }.frame(width:geometry.size.width,height: (geometry.size.height / 4) )
+                        .background(Color.white.shadow(radius: 2))
+                           
+                         
+                         
+                         
+                       }.frame(width: geometry.size.width,height: geometry.size.height  )
+                 
+               
+                       
+                }
+                   }
+             
+        
+        
+        
+    }
+
+
+
+
+
+
+
+struct StudentSupervisionListView: View {
+    
+     @ObservedObject var SModel = SupervisionAndDevelopmentModel()
+     //var url = "https://mobdenapi.azurewebsites.net/"
+     //var prizesUrl = "assets/prizes/"
+     
+    init(stageId:Int){
+        self.SModel.getStudentSupervisionBy(stageId: stageId)
+     }
+     
+     
+     var body: some View{
+         
+         
+         GeometryReader{ geometry in
+             VStack{
+               NavigationView{
+                  VStack{
+                      
+                    List(self.SModel.studentSupervisionList){ info in
+                        
+                        
+                        NavigationLink(destination: StudentSupervisionInfoView(id: info.id) ){
+                            
+                            VStack{
+                                HStack{
+                                        Spacer()
+                                        Text(info.title)
+                                        .padding(8)
+                                        .flipsForRightToLeftLayoutDirection(true)
+                                        .lineSpacing(2)
+                                        .multilineTextAlignment(.trailing)
+                                                                  
+                                      }.frame(alignment:.top)
+                                                          
+                                  }.frame(height:100)
+                                    .background(Color.gray.opacity(0.2))
+                                    .cornerRadius(8)
+                            
+                            
+                        }
+                        
+                                                          
+                     }
+                      
+                                      
+                                      
+                  }//.padding([.trailing,.leading],10)
+                      .frame(width:geometry.size.width)
+                    .navigationBarTitle("الإرشاد الطلابي",displayMode: .inline)
+                    //.navigationBarHidden(true)
+                  }.frame(width: geometry.size.width)
+                 
+                 
+                 
+               }
+         
+         
+         
+         }//.padding(.top,10)
+         
+         
+         
+           }
+     
+    
+}
+
+
+
+
+struct StudentSupervisionInfoView: View {
+    @ObservedObject var SModel = SupervisionAndDevelopmentModel() //ArticleModel(getArticleByID:)
+        //var url = "https://mobdenapi.azurewebsites.net/"
+        //var articleUrl = "assets/articles/"
+        
+        init(id: Int) {
+            
+            //self.articleModel = ArticleModel()
+            self.SModel.getStudentSupervisionBy(id: id)
+        }
+        
+        var body: some View {
+            
+            GeometryReader{ geometry in
+            
+            ScrollView{
+            
+            
+            VStack{
+                
+                //ForEach(self.articleModel.articles){ article in
+                    
+                                        VStack{
+                                         HStack{
+                                             Spacer()
+                                             Text(self.SModel.studentSupervisionInfo.arabicDate)
+                                             .padding([.trailing],5)
+                                             //.flipsForRightToLeftLayoutDirection(true)
+                                         }
+                                         HStack{
+                                             Spacer()
+                                            Text(self.SModel.studentSupervisionInfo.title)
+                                                 //.flipsForRightToLeftLayoutDirection(true)
+                                                 .font(.headline)
+                                                 .multilineTextAlignment(.trailing)
+                                                 .lineLimit(3)
+                                                 .padding([.trailing],5)
+                                                 //.alignmentGuide(.trailing){d in d[.trailing]}
+                                             
+                                         }
+                                         
+                        
+                        
+                                        }
+                                        
+                                       // VStack{
+    //                                        UrlImageView(urlString:(self.url + self.articleUrl + article.image),width: 400,height: 300)
+                 
+                 
+                                        
+                 //VStack{
+                Text(self.SModel.studentSupervisionInfo.description)
+                         //.flipsForRightToLeftLayoutDirection(true)
+                         .font(.body)
+                        //.padding()
+                    //.flipsForRightToLeftLayoutDirection(true)
+                         .lineSpacing(5)
+                                       //.fixedSize(horizontal: false, vertical: true)
+                         .multilineTextAlignment(.trailing)
+                        .padding(10)
+                         //.lineLimit(Int.max)
+
+                //}
+                                        
+                  
+                                                    
+                //}
+                
+                                
+                                
+            }//.padding(10)
+                //.frame(width:geometry.size.width )
+                            
+                                //.padding([.trailing],30)
+                .background(Color.gray.opacity(0.2))
+                           // .cornerRadius(15)
+            }.frame(width: geometry.size.width - 20)
+            }
+    .navigationBarTitle("توضيح",displayMode: .inline)
+        }
+}
+
+
+
+
+
+
+
+struct StudentSupervisionView_Previews: PreviewProvider {
+    static var previews: some View {
+        StudentSupervisionView(stageId: 0)
+    }
+}
