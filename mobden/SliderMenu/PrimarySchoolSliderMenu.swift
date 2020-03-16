@@ -138,7 +138,8 @@ struct PrimarySchoolSliderMenu : View {
                                        Spacer()
                                        
                                        Button(action:{
-                                           self.viewName = ViewScreen.transferView
+                                            self.departmentId = 6
+                                           self.viewName = ViewScreen.homework
                                            self.isSheetPersented.toggle()
                                        }){
                                            Text("الواجبات المدرسية").fontWeight(.bold)
@@ -235,8 +236,8 @@ struct PrimarySchoolSliderMenu : View {
             return AnyView( ResourcesLaboratoryView(stageId: self.stageId, departmentId: self.departmentId))
                               
                }
-               else if viewScreen == ViewScreen.transferView {
-                              return AnyView( TransferView())
+               else if viewScreen == ViewScreen.homework {
+            return AnyView( HomeworkView(stageId: self.stageId, departmentId: self.departmentId))
                                          
                           }
            else{

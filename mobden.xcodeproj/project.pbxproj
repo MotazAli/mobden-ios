@@ -38,6 +38,7 @@
 		C369A6AD241EB32F00CB6E79 /* StudentSupervisionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C369A6AC241EB32F00CB6E79 /* StudentSupervisionView.swift */; };
 		C369A6AF241EE6F600CB6E79 /* StudentActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C369A6AE241EE6F600CB6E79 /* StudentActivityView.swift */; };
 		C369A6B1241FEB5400CB6E79 /* ResourcesLaboratoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C369A6B0241FEB5400CB6E79 /* ResourcesLaboratoryView.swift */; };
+		C369A6B3242026BF00CB6E79 /* HomeworkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C369A6B2242026BF00CB6E79 /* HomeworkView.swift */; };
 		C3A039DC23FFA840002BBE36 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A039DB23FFA840002BBE36 /* AppDelegate.swift */; };
 		C3A039DE23FFA840002BBE36 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A039DD23FFA840002BBE36 /* SceneDelegate.swift */; };
 		C3A039E023FFA840002BBE36 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A039DF23FFA840002BBE36 /* ContentView.swift */; };
@@ -80,6 +81,7 @@
 		C369A6AC241EB32F00CB6E79 /* StudentSupervisionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentSupervisionView.swift; sourceTree = "<group>"; };
 		C369A6AE241EE6F600CB6E79 /* StudentActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentActivityView.swift; sourceTree = "<group>"; };
 		C369A6B0241FEB5400CB6E79 /* ResourcesLaboratoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcesLaboratoryView.swift; sourceTree = "<group>"; };
+		C369A6B2242026BF00CB6E79 /* HomeworkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkView.swift; sourceTree = "<group>"; };
 		C3A039D823FFA840002BBE36 /* mobden.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mobden.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3A039DB23FFA840002BBE36 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C3A039DD23FFA840002BBE36 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 				C369A6AC241EB32F00CB6E79 /* StudentSupervisionView.swift */,
 				C369A6AE241EE6F600CB6E79 /* StudentActivityView.swift */,
 				C369A6B0241FEB5400CB6E79 /* ResourcesLaboratoryView.swift */,
+				C369A6B2242026BF00CB6E79 /* HomeworkView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -315,6 +318,7 @@
 				C369A6902411D33B00CB6E79 /* SupervisionListView.swift in Sources */,
 				C369A66F2406C4D100CB6E79 /* DataObjects.swift in Sources */,
 				C369A6922411D5C500CB6E79 /* SupervisionInfoView.swift in Sources */,
+				C369A6B3242026BF00CB6E79 /* HomeworkView.swift in Sources */,
 				C369A6A5241C71FA00CB6E79 /* MiddleSchoolSliderMenu.swift in Sources */,
 				C369A686240ACA8700CB6E79 /* WordView.swift in Sources */,
 				C369A6792406C87100CB6E79 /* ArticleView.swift in Sources */,

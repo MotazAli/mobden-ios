@@ -19,7 +19,7 @@ enum ViewScreen: Int {
     registrationView = 5 , publicRelationView = 6 ,supervisionView = 7 , supervisionListView = 8 ,
     supervisionInfoView = 9 , supervisionTeamView = 10 , comprehensiveView = 11 , transferView = 12,
     newsView = 13 , leadership = 14 ,planWork = 15 ,studentSupervisionView = 16 ,
-    studentActivityView = 17 , resourcesLaboratory = 18
+    studentActivityView = 17 , resourcesLaboratory = 18 , homework = 19
     
     
 }
@@ -694,6 +694,117 @@ struct ResourcesLaboratory : Codable, Identifiable{
     
     
 }
+
+
+
+struct Homework : Codable, Identifiable{
+    var id:Int = 0
+    var title:String = ""
+    var stage:Int = 0
+    var classId:Int = 0
+    var week:Int = 0
+    var file:String = ""
+    var description:String = ""
+    var creationDate:String = ""
+    var modifiedDate:String = ""
+    var startDate:String = ""
+    var endDate:String = ""
+    var creationUserId : Int = 0
+    var modifiedUserId : Int = 0
+    
+    var arabicDate:String{
+        get{
+            
+            return SystemDates.getArabicDate(date:self.creationDate)
+                
+        }
+    }
+    
+    
+    var className : String {
+        if classId == 1 {return "الصف الاول"}
+        else if classId == 2 {return "الصف الثانى"}
+        else if classId == 3 {return "الصف الثالث"}
+        else if classId == 4 {return "الصف الرابع"}
+        else if classId == 5 {return "الصف الخامس"}
+        else if classId == 6 {return "الصف السادس"}
+        
+        else { return "لا يوجد"}
+    }
+    
+    var weekName : String {
+        if week == 1 {return "الاسبوع الاول"}
+        else if week == 2 {return "الاسبوع الثانى"}
+        else if week == 3 {return "الاسبوع الثالث"}
+        else if week == 4 {return "الاسبوع الرابع"}
+        else if week == 5 {return "الاسبوع الخامس"}
+        else if week == 6 {return "الاسبوع السادس"}
+        else if week == 7 {return "الاسبوع السابع"}
+        else if week == 8 {return "الاسبوع الثامن"}
+        else if week == 9 {return "الاسبوع التاسع"}
+        else if week == 10 {return "الاسبوع العاشر"}
+        else if week == 11 {return "الاسبوع الحادى عشر"}
+        else if week == 12 {return "الاسبوع الثانى عشر"}
+        else if week == 13 {return "الاسبوع الثالث عشر"}
+        else if week == 14 {return "الاسبوع الرابع عشر"}
+        else if week == 15 {return "الاسبوع الخامس عشر"}
+        else if week == 16 {return "الاسبوع السادس عشر"}
+        else if week == 17 {return "الاسبوع السابع عشر"}
+        else if week == 18 {return "الاسبوع الثامن عشر"}
+        else if week == 19 {return "الاسبوع التاسع عشر"}
+        else if week == 20 {return "الاسبوع العشرون"}
+        else { return "لا يوجد"}
+    }
+    
+    
+    
+    init(){  }
+    
+     init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.id = try container.decodeIfPresent(Int.self, forKey: .id) ?? 0
+        self.title = try container.decodeIfPresent(String.self, forKey: .title) ?? ""
+        self.stage = try container.decodeIfPresent(Int.self, forKey: .stage) ?? 0
+        self.classId = try container.decodeIfPresent(Int.self, forKey: .classId) ?? 0
+        self.week = try container.decodeIfPresent(Int.self, forKey: .week) ?? 0
+        self.file = try container.decodeIfPresent(String.self, forKey: .file) ?? ""
+        self.description = try container.decodeIfPresent(String.self, forKey: .description) ?? ""
+        self.creationDate = try container.decodeIfPresent(String.self, forKey: .creationDate) ?? ""
+        self.modifiedDate = try container.decodeIfPresent(String.self, forKey: .modifiedDate) ?? ""
+        self.startDate = try container.decodeIfPresent(String.self, forKey: .startDate) ?? ""
+        self.endDate = try container.decodeIfPresent(String.self, forKey: .endDate) ?? ""
+        self.creationUserId = try container.decodeIfPresent(Int.self, forKey: .creationUserId) ?? 0
+        self.modifiedUserId = try container.decodeIfPresent(Int.self, forKey: .modifiedUserId) ?? 0
+        
+
+    }
+    
+    
+    
+    enum CodingKeys : String ,CodingKey{
+
+        case id = "id"
+        case title = "title"
+        case stage = "stage"
+        case classId = "class"
+        case week = "weak"
+        case file = "file"
+        case description = "description"
+        case creationDate = "creationDate"
+        case modifiedDate = "modifiedDate"
+        case startDate = "startDate"
+        case endDate = "endDAte"
+        case creationUserId = "creationUserId"
+        case modifiedUserId = "modifiedUserId"
+        
+    }
+    
+    
+    
+}
+
+
+
 
 
 

@@ -2847,6 +2847,328 @@ final class ResourcesLaboratoryModel: ObservableObject{
 }
 
 
+final class HomeworkModel: ObservableObject{
+    
+    @Published var homeworkDescriptionList = [Homework]()
+    
+    @Published var homeworkDescriptionInfo = Homework()
+    @Published var homeworkList = [Homework]()
+    
+    
+    func getAboutHomeworksBy(stageId: Int)
+           {
+
+               homeworkDescriptionList.removeAll()
+               var temp = Homework()
+               temp.stage = stageId
+              
+               
+               let url = URL(string: "https://mobdenapi.azurewebsites.net/MobdenAPI/AboutHomework/GetAboutHomeworksByStage")
+               
+               guard let requestUrl = url else { fatalError() }
+               // Create URL Request
+               var request = URLRequest(url: requestUrl)
+               // Specify HTTP Method to use
+               //request.httpMethod = "GET"
+               
+               
+               let jsonData = try! JSONEncoder().encode(temp)
+               //let jsonString = String(data: jsonData, encoding: .utf8)!
+               request.httpMethod = "POST" //set http method as POST
+               request.setValue("application/json; charset=utf-8",
+                    forHTTPHeaderField: "Content-Type")
+               request.setValue("application/json; charset=utf-8",
+                    forHTTPHeaderField: "Accept")
+               request.httpBody = jsonData
+               
+               
+               
+               
+               // Send HTTP Request
+               let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                   
+                   // Check if Error took place
+                   if let error = error {
+                       print("Error took place \(error)")
+                       return
+                   }
+                   
+                   // Read HTTP Response Status code
+                   if let response = response as? HTTPURLResponse {
+                      
+                       print("Response HTTP Status code: \(response.statusCode)")
+                   }
+                   
+                   // Convert HTTP Response Data to a simple String
+                   if let data = data, let dataString = String(data: data, encoding: .utf8) {
+                       
+                       if dataString != "null"{
+                           let data = Data(dataString.utf8)
+                                          let HData = try! JSONDecoder().decode([Homework].self, from: data)
+                                         
+                                          DispatchQueue.main.async {
+                                           print("done")
+                                           self.homeworkDescriptionList = HData
+                                           
+                                          }
+                       }
+                      
+                       
+       //                print("Response data string:\n \(dataString)")
+       //
+       //                print("Response data string:\n \(String(describing: wordsData.title))")
+       //
+       //
+       //                print("Response data string:\n \(String(describing: self.words[0].title))")
+                       
+                   }
+                   
+               }
+               task.resume()
+               
+               
+               
+               
+           }
+       
+    
+    func getAboutHomeworkBy(id : Int)
+       {
+
+           
+           
+           
+           let urlComponent = NSURLComponents(string: "https://mobdenapi.azurewebsites.net/MobdenAPI/AboutHomework/GetAboutHomeworkByID")
+           
+           urlComponent?.queryItems = [
+               (NSURLQueryItem(name: "id", value: String(describing: id)) as URLQueryItem)
+           ]
+           
+           
+           
+           //guard let requestUrl = url else { fatalError() }
+           guard let requestUrl = urlComponent?.url else { fatalError() }
+           
+           
+           // Create URL Request
+           var request = URLRequest(url: requestUrl)
+           // Specify HTTP Method to use
+           request.httpMethod = "GET"
+           // Send HTTP Request
+           let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+               
+               // Check if Error took place
+               if let error = error {
+                   print("Error took place \(error)")
+                   return
+               }
+               
+               // Read HTTP Response Status code
+               if let response = response as? HTTPURLResponse {
+                   print("Response HTTP Status code: \(response.statusCode)")
+               }
+               
+               // Convert HTTP Response Data to a simple String
+               if let data = data, let dataString = String(data: data, encoding: .utf8) {
+                   
+                   if dataString != "null"{
+                   let data = Data(dataString.utf8)
+                   let infoData = try! JSONDecoder().decode(Homework.self, from: data)
+                  
+                   DispatchQueue.main.async {
+                       self.homeworkDescriptionInfo = infoData
+                   }
+                   }
+                   
+
+                   
+               }
+               
+           }
+           task.resume()
+           
+           
+           
+           
+       }
+       
+    
+    
+    
+    
+    
+    
+    func GetHomeworksBy(classId:Int,stageId: Int)
+           {
+
+               homeworkList.removeAll()
+               var temp = Homework()
+               temp.stage = stageId
+            temp.classId = classId
+              
+               
+               let url = URL(string: "https://mobdenapi.azurewebsites.net/MobdenAPI/Homeworks/GetHomeworksByClassAndStage")
+               
+               guard let requestUrl = url else { fatalError() }
+               // Create URL Request
+               var request = URLRequest(url: requestUrl)
+               // Specify HTTP Method to use
+               //request.httpMethod = "GET"
+               
+               
+               let jsonData = try! JSONEncoder().encode(temp)
+               //let jsonString = String(data: jsonData, encoding: .utf8)!
+               request.httpMethod = "POST" //set http method as POST
+               request.setValue("application/json; charset=utf-8",
+                    forHTTPHeaderField: "Content-Type")
+               request.setValue("application/json; charset=utf-8",
+                    forHTTPHeaderField: "Accept")
+               request.httpBody = jsonData
+               
+               
+               
+               
+               // Send HTTP Request
+               let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                   
+                   // Check if Error took place
+                   if let error = error {
+                       print("Error took place \(error)")
+                       return
+                   }
+                   
+                   // Read HTTP Response Status code
+                   if let response = response as? HTTPURLResponse {
+                      
+                       print("Response HTTP Status code: \(response.statusCode)")
+                   }
+                   
+                   // Convert HTTP Response Data to a simple String
+                   if let data = data, let dataString = String(data: data, encoding: .utf8) {
+                       
+                       if dataString != "null"{
+                           let data = Data(dataString.utf8)
+                                          let HData = try! JSONDecoder().decode([Homework].self, from: data)
+                                         
+                                          DispatchQueue.main.async {
+                                           print("done")
+                                           self.homeworkList = HData
+                                           
+                                          }
+                       }
+                      
+                       
+       //                print("Response data string:\n \(dataString)")
+       //
+       //                print("Response data string:\n \(String(describing: wordsData.title))")
+       //
+       //
+       //                print("Response data string:\n \(String(describing: self.words[0].title))")
+                       
+                   }
+                   
+               }
+               task.resume()
+               
+               
+               
+               
+           }
+    
+    
+    
+    
+    func getTodayHomeworksBy(classId:Int,stageId: Int)
+           {
+
+               homeworkList.removeAll()
+               var temp = Homework()
+               temp.stage = stageId
+            temp.classId = classId
+              
+               
+               let url = URL(string: "https://mobdenapi.azurewebsites.net/MobdenAPI/Homeworks/GetHomeworksByDate")
+               
+               guard let requestUrl = url else { fatalError() }
+               // Create URL Request
+               var request = URLRequest(url: requestUrl)
+               // Specify HTTP Method to use
+               //request.httpMethod = "GET"
+               
+               
+               let jsonData = try! JSONEncoder().encode(temp)
+               //let jsonString = String(data: jsonData, encoding: .utf8)!
+               request.httpMethod = "POST" //set http method as POST
+               request.setValue("application/json; charset=utf-8",
+                    forHTTPHeaderField: "Content-Type")
+               request.setValue("application/json; charset=utf-8",
+                    forHTTPHeaderField: "Accept")
+               request.httpBody = jsonData
+               
+               
+               
+               
+               // Send HTTP Request
+               let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                   
+                   // Check if Error took place
+                   if let error = error {
+                       print("Error took place \(error)")
+                       return
+                   }
+                   
+                   // Read HTTP Response Status code
+                   if let response = response as? HTTPURLResponse {
+                      
+                       print("Response HTTP Status code: \(response.statusCode)")
+                   }
+                   
+                   // Convert HTTP Response Data to a simple String
+                   if let data = data, let dataString = String(data: data, encoding: .utf8) {
+                       
+                       if dataString != "null"{
+                           let data = Data(dataString.utf8)
+                                          let HData = try! JSONDecoder().decode([Homework].self, from: data)
+                                         
+                                          DispatchQueue.main.async {
+                                           print("done")
+                                           self.homeworkList = HData
+                                           
+                                          }
+                       }
+                      
+                       
+       //                print("Response data string:\n \(dataString)")
+       //
+       //                print("Response data string:\n \(String(describing: wordsData.title))")
+       //
+       //
+       //                print("Response data string:\n \(String(describing: self.words[0].title))")
+                       
+                   }
+                   
+               }
+               task.resume()
+               
+               
+               
+               
+           }
+    
+    
+    
+    
+       
+    
+}
+
+
+
+
+
+
+
+
 
 
 
