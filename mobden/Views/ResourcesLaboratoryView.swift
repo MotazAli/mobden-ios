@@ -1,15 +1,15 @@
 //
-//  StudentActivityView.swift
+//  ResourcesLaboratoryView.swift
 //  mobden
 //
-//  Created by administrator on 3/15/20.
+//  Created by administrator on 3/16/20.
 //  Copyright © 2020 motaz. All rights reserved.
 //
 
 import SwiftUI
 
-struct StudentActivityView: View {
-     @State var spin = false
+struct ResourcesLaboratoryView: View {
+    @State var spin = false
                 @State var imageTransation = false
                 @State var shaked = false
                 @State var selectedTab : Int = 1
@@ -36,7 +36,7 @@ struct StudentActivityView: View {
                                 
                                 if self.selectedTab == 1 {
                                     ZStack{
-                                        StudentActivityListView(stageId: self.stageId,departmentId: self.departmentId)
+                                        ResourcesLaboratoryListView(stageId: self.stageId,departmentId: self.departmentId)
                                     }
                                     .padding(.top,100)
                                 }
@@ -49,7 +49,7 @@ struct StudentActivityView: View {
         //                        }
                                 else if self.selectedTab == 3{
                                    ZStack{
-                                    StudentActivityPlanListView(stageId: self.stageId, departmentId: self.departmentId)
+                                    ResourcesLaboratoryPlanListView(stageId: self.stageId, departmentId: self.departmentId)
                                     }
                                     .padding(.top,100)
                                 }
@@ -72,7 +72,7 @@ struct StudentActivityView: View {
                                                             .frame(width:60 , height: 40)
                                                         .offset(x: self.shaked ? -5 : 0)
                                                         .animation(Animation.easeInOut.repeatForever().speed(1))
-                                        Text("خطط النشاط").fontWeight(.medium).fixedSize()
+                                        Text("خطط المصادر").fontWeight(.medium).fixedSize()
                                                 //}
                                                 
                                         //Spacer()
@@ -95,7 +95,7 @@ struct StudentActivityView: View {
                                         //VStack(alignment:.center){
                                         //Spacer()
                                                 if self.imageTransation {
-                                                Image(systemName:"square.and.pencil")// : "bubble.left.fill")
+                                                Image(systemName:"rectangle.and.paperclip")// : "bubble.left.fill")
                                                                             .resizable()
                                                                             .scaledToFit()
                                                                                     .frame(width:60 , height: 40)
@@ -103,7 +103,7 @@ struct StudentActivityView: View {
                                                                                 
                                                 
                                                 }
-                                        Text("النشاط الطلابي").fontWeight(.medium)//.frame(width:100)
+                                        Text("المصادر والمعامل").fontWeight(.medium)//.frame(width:100)
                                                  
                                             //}.onAppear(){self.imageTransation = true }
                                         
@@ -144,15 +144,15 @@ struct StudentActivityView: View {
 
 
 
-    struct StudentActivityListView: View {
+    struct ResourcesLaboratoryListView: View {
         
-         @ObservedObject var SAModel = StudentActivityModel()
+         @ObservedObject var RLModel = ResourcesLaboratoryModel()
         //@ObservedObject var DLModel = DepartmentLeaderModel()
-         let url = "https://mobdenapi.azurewebsites.net/"
-         let studentActivityUrl = "assets/studentactivities/"
+         //let url = "https://mobdenapi.azurewebsites.net/"
+         //let studentActivityUrl = "assets/studentactivities/"
          
         init(stageId:Int,departmentId:Int){
-            self.SAModel.getStudentActivityBy(stageId: stageId)
+            self.RLModel.getResourcesLaboratoryBy(stageId: stageId)
             //self.DLModel.getStageDepartmentLeaderByStageAndDep(stageId: stageId, departmentId: departmentId)
          }
          
@@ -207,10 +207,10 @@ struct StudentActivityView: View {
                     
                       VStack{
                           
-                        List(self.SAModel.studentActivitiesList){ info in
+                        List(self.RLModel.resourcesList){ info in
                             
                             
-                            NavigationLink(destination: StudentActivityInfoView(id: info.id) ){
+                            NavigationLink(destination: ResourcesLaboratoryInfoView(id: info.id) ){
                                 
                                 VStack{
                                     HStack{
@@ -220,13 +220,11 @@ struct StudentActivityView: View {
                                             .flipsForRightToLeftLayoutDirection(true)
                                             .lineSpacing(2)
                                             .multilineTextAlignment(.trailing)
-                                        UrlImageView(urlString:(self.url + self.studentActivityUrl + info.image),width: 100,height: 100)
-                                                                        .cornerRadius(8)
-                                                                    .padding(8)
+                                        
                                                                       
                                           }.frame(alignment:.top)
                                                               
-                                      }.frame(height:120)
+                                      }.frame(height:100)
                                         .background(Color.blue.opacity(0.2))
                                         .cornerRadius(8)
                                 
@@ -240,7 +238,7 @@ struct StudentActivityView: View {
                                           
                       }//.padding([.trailing,.leading],10)
                           .frame(width:geometry.size.width)
-                        .navigationBarTitle("النشاط الطلابي",displayMode: .inline)
+                        .navigationBarTitle("المصادر والمعامل",displayMode: .inline)
                         //.navigationBarHidden(true)
                       }.frame(width: geometry.size.width)
                      
@@ -262,15 +260,15 @@ struct StudentActivityView: View {
 
 
 
-    struct StudentActivityInfoView: View {
-        @ObservedObject var SAModel = StudentActivityModel() //ArticleModel(getArticleByID:)
+    struct ResourcesLaboratoryInfoView: View {
+        @ObservedObject var RLModel = ResourcesLaboratoryModel() //ArticleModel(getArticleByID:)
             var url = "https://mobdenapi.azurewebsites.net/"
             let studentActivityUrl = "assets/studentactivities/"
             
             init(id: Int) {
                 
                 //self.articleModel = ArticleModel()
-                self.SAModel.GetStudentActivityBy(id: id)
+                self.RLModel.getResourcesLaporatoriesBy(id: id)
             }
             
             var body: some View {
@@ -287,13 +285,13 @@ struct StudentActivityView: View {
                                             VStack{
                                              HStack{
                                                  Spacer()
-                                                Text(self.SAModel.studentActivityInfo.arabicDate)
+                                                Text(self.RLModel.resourcesInfo.arabicDate)
                                                  .padding([.trailing],5)
                                                  //.flipsForRightToLeftLayoutDirection(true)
                                              }
                                              HStack{
                                                  Spacer()
-                                                Text(self.SAModel.studentActivityInfo.title)
+                                                Text(self.RLModel.resourcesInfo.title)
                                                      //.flipsForRightToLeftLayoutDirection(true)
                                                      .font(.headline)
                                                      .multilineTextAlignment(.trailing)
@@ -308,12 +306,12 @@ struct StudentActivityView: View {
                                             }
                                             
                                            // VStack{
-                    UrlImageView(urlString:(self.url + self.studentActivityUrl + self.SAModel.studentActivityInfo.image),width: 400,height: 300)
+//                    UrlImageView(urlString:(self.url + self.studentActivityUrl + self.SAModel.studentActivityInfo.image),width: 400,height: 300)
                      
                      
                                             
                      //VStack{
-                    Text(self.SAModel.studentActivityInfo.description)
+                    Text(self.RLModel.resourcesInfo.description)
                              //.flipsForRightToLeftLayoutDirection(true)
                              .font(.body)
                             //.padding()
@@ -346,7 +344,7 @@ struct StudentActivityView: View {
 
 
 
-    struct StudentActivityPlanListView: View {
+    struct ResourcesLaboratoryPlanListView: View {
        
          @ObservedObject var SDModel = SupervisionAndDevelopmentModel()
          var url = "https://mobdenapi.azurewebsites.net/"
@@ -395,7 +393,7 @@ struct StudentActivityView: View {
                                           
                       }//.padding([.trailing,.leading],10)
                           .frame(width:geometry.size.width)
-                        .navigationBarTitle("خطط الارشاد الجديدة",displayMode: .inline)
+                        .navigationBarTitle("خطط المصادر الجديدة",displayMode: .inline)
                         //.navigationBarHidden(true)
                       }.frame(width: geometry.size.width)
                      
@@ -417,9 +415,8 @@ struct StudentActivityView: View {
 
 
 
-
-struct StudentActivityView_Previews: PreviewProvider {
+struct ResourcesLaboratoryView_Previews: PreviewProvider {
     static var previews: some View {
-        StudentActivityView(stageId: 0, departmentId: 0)
+        ResourcesLaboratoryView(stageId: 0, departmentId: 0)
     }
 }

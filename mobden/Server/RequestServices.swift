@@ -2697,6 +2697,159 @@ final class StudentActivityModel: ObservableObject{
 }
 
 
+final class ResourcesLaboratoryModel: ObservableObject{
+    
+    @Published var resourcesList = [ResourcesLaboratory]()
+    
+    @Published var resourcesInfo = ResourcesLaboratory()
+    
+    
+    
+    func getResourcesLaboratoryBy(stageId: Int)
+           {
+
+               resourcesList.removeAll()
+               var tempResources = ResourcesLaboratory()
+               tempResources.stage = stageId
+              
+               
+               let url = URL(string: "https://mobdenapi.azurewebsites.net/MobdenAPI/ResourcesLaporatories/GetResourcesLaboratoryByStage")
+               
+               guard let requestUrl = url else { fatalError() }
+               // Create URL Request
+               var request = URLRequest(url: requestUrl)
+               // Specify HTTP Method to use
+               //request.httpMethod = "GET"
+               
+               
+               let jsonData = try! JSONEncoder().encode(tempResources)
+               //let jsonString = String(data: jsonData, encoding: .utf8)!
+               request.httpMethod = "POST" //set http method as POST
+               request.setValue("application/json; charset=utf-8",
+                    forHTTPHeaderField: "Content-Type")
+               request.setValue("application/json; charset=utf-8",
+                    forHTTPHeaderField: "Accept")
+               request.httpBody = jsonData
+               
+               
+               
+               
+               // Send HTTP Request
+               let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                   
+                   // Check if Error took place
+                   if let error = error {
+                       print("Error took place \(error)")
+                       return
+                   }
+                   
+                   // Read HTTP Response Status code
+                   if let response = response as? HTTPURLResponse {
+                      
+                       print("Response HTTP Status code: \(response.statusCode)")
+                   }
+                   
+                   // Convert HTTP Response Data to a simple String
+                   if let data = data, let dataString = String(data: data, encoding: .utf8) {
+                       
+                       if dataString != "null"{
+                           let data = Data(dataString.utf8)
+                                          let RData = try! JSONDecoder().decode([ResourcesLaboratory].self, from: data)
+                                         
+                                          DispatchQueue.main.async {
+                                           print("done")
+                                           self.resourcesList = RData
+                                           
+                                          }
+                       }
+                      
+                       
+       //                print("Response data string:\n \(dataString)")
+       //
+       //                print("Response data string:\n \(String(describing: wordsData.title))")
+       //
+       //
+       //                print("Response data string:\n \(String(describing: self.words[0].title))")
+                       
+                   }
+                   
+               }
+               task.resume()
+               
+               
+               
+               
+           }
+       
+    
+    func getResourcesLaporatoriesBy(id : Int)
+       {
+
+           
+           
+           
+           let urlComponent = NSURLComponents(string: "https://mobdenapi.azurewebsites.net/MobdenAPI/ResourcesLaporatories/GetResourcesLaporatoriesByID")
+           
+           urlComponent?.queryItems = [
+               (NSURLQueryItem(name: "id", value: String(describing: id)) as URLQueryItem)
+           ]
+           
+           
+           
+           //guard let requestUrl = url else { fatalError() }
+           guard let requestUrl = urlComponent?.url else { fatalError() }
+           
+           
+           // Create URL Request
+           var request = URLRequest(url: requestUrl)
+           // Specify HTTP Method to use
+           request.httpMethod = "GET"
+           // Send HTTP Request
+           let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+               
+               // Check if Error took place
+               if let error = error {
+                   print("Error took place \(error)")
+                   return
+               }
+               
+               // Read HTTP Response Status code
+               if let response = response as? HTTPURLResponse {
+                   print("Response HTTP Status code: \(response.statusCode)")
+               }
+               
+               // Convert HTTP Response Data to a simple String
+               if let data = data, let dataString = String(data: data, encoding: .utf8) {
+                   
+                   if dataString != "null"{
+                   let data = Data(dataString.utf8)
+                   let infoData = try! JSONDecoder().decode(ResourcesLaboratory.self, from: data)
+                  
+                   DispatchQueue.main.async {
+                       self.resourcesInfo = infoData
+                   }
+                   }
+                   
+
+                   
+               }
+               
+           }
+           task.resume()
+           
+           
+           
+           
+       }
+       
+       
+    
+}
+
+
+
+
+
 
 
 
