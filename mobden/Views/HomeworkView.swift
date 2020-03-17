@@ -240,7 +240,7 @@ struct HomeworkView: View {
                                           
                       }//.padding([.trailing,.leading],10)
                           .frame(width:geometry.size.width)
-                        .navigationBarTitle("النشاط الطلابي",displayMode: .inline)
+                        .navigationBarTitle("مواضيع",displayMode: .inline)
                         //.navigationBarHidden(true)
                       }.frame(width: geometry.size.width)
                      
@@ -380,7 +380,7 @@ struct HomeworkClassListView: View {
                     List(self.homeworkClasses){ info in
                         
                         
-                        NavigationLink(destination: PlanInfoView(url: URL(string: self.url + self.plansPath + info.title  )!) ){
+                        NavigationLink(destination: HomeworkWeeklyListView(stageId: info.stage, classId: info.classId) ){
                             
                             VStack{
                                 HStack{
@@ -434,14 +434,22 @@ struct HomeworkClassListView: View {
 
 
 
-    struct HomeworkListView: View {
+    struct HomeworkWeeklyListView: View {
        
-         @ObservedObject var SDModel = SupervisionAndDevelopmentModel()
+         @ObservedObject var HModel = HomeworkModel()
          var url = "https://mobdenapi.azurewebsites.net/"
-         var plansPath = "assets/plans/"
-         
-        init(stageId:Int , departmentId:Int){
-            self.SDModel.GetStageDepartmentPlanBy(stageId: stageId, departmentId: departmentId)
+         var homeworkPath = "assets/homework/"
+        var stageId : Int
+        var classId : Int
+        var className : String = ""
+        
+        
+        init(stageId:Int,classId:Int){
+            self.stageId = stageId
+            self.classId = classId
+            self.className = Homework.getClassName(classId:classId)
+            self.HModel.getTodayHomeworksBy(classId: classId, stageId: stageId)
+            
          }
          
          
@@ -450,43 +458,94 @@ struct HomeworkClassListView: View {
              
              GeometryReader{ geometry in
                  VStack{
-                   NavigationView{
+                   //NavigationView{
                       VStack{
+                        
+                        
+                        if self.HModel.homeworkList.isEmpty {
+                            VStack{
+                            HStack{
+                                    //Spacer()
+                                Text("لا يوجد واجب هذا الاسبوع").font(.title)
+                                    .padding(8)
+                                    //.flipsForRightToLeftLayoutDirection(true)
+                                    //.lineSpacing(2)
+                                    //.multilineTextAlignment(.trailing)
+                                                              
+                                  }.frame(alignment:.top)
+                                                      
+                              }.frame(height:100)
+                                .background(Color.blue.opacity(0.2))
+                                .cornerRadius(8)
+                        }
+                        else {
+                            List(self.HModel.homeworkList){ info in
+                                
+                                
+                                NavigationLink(destination: PlanInfoView(url: URL(string: self.url + self.homeworkPath + info.file  )!)){
+                                    
+                                    VStack{
+                                        HStack{
+                                                Spacer()
+                                            Text(info.weekName).font(.largeTitle)
+                                                .padding(8)
+                                                .flipsForRightToLeftLayoutDirection(true)
+                                                .lineSpacing(2)
+                                                .multilineTextAlignment(.trailing)
+                                                               
+                                            
+                                            
+                                            
+                                            
+                                              }.frame(alignment:.top)
+                                                                  
+                                          }.frame(height:100)
+                                            .background(Color.blue.opacity(0.2))
+                                            .cornerRadius(8)
+                                    
+                                    
+                                }
+                                
+                                                                  
+                             }
+                            
+                        }
                           
-                        List(self.SDModel.supervisionPlans){ info in
-                            
-                            
-                            NavigationLink(destination: PlanInfoView(url: URL(string: self.url + self.plansPath + info.planFile  )!) ){
-                                
-                                VStack{
-                                    HStack{
-                                            Spacer()
-                                        Text(info.linkTitle)
-                                            .padding(8)
-                                            .flipsForRightToLeftLayoutDirection(true)
-                                            .lineSpacing(2)
-                                            .multilineTextAlignment(.trailing)
-                                                                      
-                                          }.frame(alignment:.top)
-                                                              
-                                      }.frame(height:100)
-                                        .background(Color.blue.opacity(0.2))
-                                        .cornerRadius(8)
-                                
-                                
-                            }
-                            
-                                                              
-                         }
                           
                                           
                                           
                       }//.padding([.trailing,.leading],10)
                           .frame(width:geometry.size.width)
-                        .navigationBarTitle("الواجبات",displayMode: .inline)
+                        .navigationBarTitle(Text("واجبات" + " " + self.className ),displayMode: .inline)
                         //.navigationBarHidden(true)
-                      }.frame(width: geometry.size.width)
-                     
+                      //}.frame(width: geometry.size.width)
+                    VStack{
+                        
+                        NavigationLink(destination: HomeworkAllListView(stageId: self.stageId, classId: self.classId) ){
+                            
+                            VStack{
+                                HStack{
+                                        Spacer()
+                                    Text("جميع الواجبات").font(.largeTitle)
+                                        .padding(8)
+                                        .flipsForRightToLeftLayoutDirection(true)
+                                        .lineSpacing(2)
+                                        .multilineTextAlignment(.trailing)
+                                    
+                                    Image(systemName:"book.circle")
+                                    .resizable()
+                                    .scaledToFit()
+                                     .frame(width:60 , height: 40)
+                                                                  
+                                      }.frame(alignment:.top)
+                                                          
+                                  }.frame(height:100)
+                                    .background(Color.blue.opacity(0.2))
+                                    .cornerRadius(8)
+                            
+                            
+                        }.buttonStyle(PlainButtonStyle())
+                        }.frame(height:geometry.size.height / 2 ).padding()
                      
                      
                    }
@@ -502,6 +561,74 @@ struct HomeworkClassListView: View {
         
     }
 
+struct HomeworkAllListView: View {
+   
+     @ObservedObject var HModel = HomeworkModel()
+     var url = "https://mobdenapi.azurewebsites.net/"
+     var homeworkPath = "assets/homework/"
+    var className : String = ""
+    init(stageId:Int,classId:Int){
+        self.className = Homework.getClassName(classId:classId)
+        self.HModel.GetHomeworksBy(classId: classId, stageId: stageId)
+        
+     }
+     
+     
+     var body: some View{
+         
+         
+         GeometryReader{ geometry in
+             VStack{
+               //NavigationView{
+                  VStack{
+                      
+                    List(self.HModel.homeworkList){ info in
+                        
+                        
+                        NavigationLink(destination: PlanInfoView(url: URL(string: self.url + self.homeworkPath + info.file  )!) ){
+                            
+                            VStack{
+                                HStack{
+                                        Spacer()
+                                    Text(info.weekName).font(.largeTitle)
+                                        .padding(8)
+                                        .flipsForRightToLeftLayoutDirection(true)
+                                        .lineSpacing(2)
+                                        .multilineTextAlignment(.trailing)
+                                                                  
+                                      }.frame(alignment:.top)
+                                                          
+                                  }.frame(height:100)
+                                    .background(Color.blue.opacity(0.2))
+                                    .cornerRadius(8)
+                            
+                            
+                        }
+                        
+                                                          
+                     }
+                      
+                                      
+                                      
+                  }//.padding([.trailing,.leading],10)
+                      .frame(width:geometry.size.width)
+                    .navigationBarTitle( Text( "جميع واجبات" + " " + self.className ),displayMode: .inline)
+                    //.navigationBarHidden(true)
+                  //}.frame(width: geometry.size.width)
+                 
+                 
+               }
+         
+         
+         
+         }//.padding(.top,10)
+         
+         
+         
+           }
+     
+    
+}
 
 
 

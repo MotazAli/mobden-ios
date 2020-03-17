@@ -779,7 +779,16 @@ struct Homework : Codable, Identifiable{
 
     }
     
-    
+    static func getClassName(classId:Int) -> String {
+        if classId == 1 {return "الصف الاول"}
+        else if classId == 2 {return "الصف الثانى"}
+        else if classId == 3 {return "الصف الثالث"}
+        else if classId == 4 {return "الصف الرابع"}
+        else if classId == 5 {return "الصف الخامس"}
+        else if classId == 6 {return "الصف السادس"}
+        
+        else { return "لا يوجد"}
+    }
     
     enum CodingKeys : String ,CodingKey{
 
