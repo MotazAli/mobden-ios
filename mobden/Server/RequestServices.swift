@@ -43,27 +43,30 @@ final class WordModel: ObservableObject{
             // Read HTTP Response Status code
             if let response = response as? HTTPURLResponse {
                 print("Response HTTP Status code: \(response.statusCode)")
+                guard response.statusCode == 200  else{ return }
             }
             
             // Convert HTTP Response Data to a simple String
-            if let data = data, let dataString = String(data: data, encoding: .utf8) {
-                
-                if dataString != "null"{
-                let data = Data(dataString.utf8)
-                let wordsData = try! JSONDecoder().decode(Word.self, from: data)
-               
-                DispatchQueue.main.async {
-                                 self.words.append(wordsData)
-                }
-                }
-//                print("Response data string:\n \(dataString)")
-//
-//                print("Response data string:\n \(String(describing: wordsData.title))")
-//
-//
-//                print("Response data string:\n \(String(describing: self.words[0].title))")
-                
-            }
+                        if let data = data, let dataString = String(data: data, encoding: .utf8) {
+                            
+                            if dataString != "null"{
+                            let data = Data(dataString.utf8)
+                            let wordsData = try! JSONDecoder().decode(Word.self, from: data)
+                           
+                            DispatchQueue.main.async {
+                                             self.words.append(wordsData)
+                            }
+                            }
+            //                print("Response data string:\n \(dataString)")
+            //
+            //                print("Response data string:\n \(String(describing: wordsData.title))")
+            //
+            //
+            //                print("Response data string:\n \(String(describing: self.words[0].title))")
+                            
+                        }
+            
+            
             
         }
         task.resume()
@@ -128,7 +131,11 @@ final class ArticleModel: ObservableObject{
             // Read HTTP Response Status code
             if let response = response as? HTTPURLResponse {
                 print("Response HTTP Status code: \(response.statusCode)")
+                guard response.statusCode == 200  else{ return }
+                
+                
             }
+            
             
             // Convert HTTP Response Data to a simple String
             if let data = data, let dataString = String(data: data, encoding: .utf8) {
@@ -145,6 +152,8 @@ final class ArticleModel: ObservableObject{
 
                 
             }
+            
+            
             
         }
         task.resume()
@@ -178,23 +187,27 @@ final class ArticleModel: ObservableObject{
             // Read HTTP Response Status code
             if let response = response as? HTTPURLResponse {
                 print("Response HTTP Status code: \(response.statusCode)")
+                
+                guard response.statusCode == 200  else{
+                   return
+                }
             }
             
             // Convert HTTP Response Data to a simple String
             if let data = data, let dataString = String(data: data, encoding: .utf8) {
-                
-                if dataString != "null"{
-                
-                let data = Data(dataString.utf8)
-                let articlesData = try! JSONDecoder().decode([Article].self, from: data)
-               
-                DispatchQueue.main.async {
-                                 self.articles = articlesData
-                }
-                }
+                                   
+                                   if dataString != "null"{
+                                   
+                                   let data = Data(dataString.utf8)
+                                   let articlesData = try! JSONDecoder().decode([Article].self, from: data)
+                                  
+                                   DispatchQueue.main.async {
+                                                    self.articles = articlesData
+                                   }
+                                   }
 
-                
-            }
+                                   
+                               }
             
         }
         task.resume()
@@ -247,6 +260,7 @@ final class ArticleModel: ObservableObject{
             // Read HTTP Response Status code
             if let response = response as? HTTPURLResponse {
                 print("Response HTTP Status code: \(response.statusCode)")
+                guard response.statusCode == 200  else{ return }
             }
             
             // Convert HTTP Response Data to a simple String
@@ -320,6 +334,7 @@ final class ArticleModel: ObservableObject{
                 if let response = response as? HTTPURLResponse {
                    
                     print("Response HTTP Status code: \(response.statusCode)")
+                    guard response.statusCode == 200  else{ return }
                 }
                 
                 // Convert HTTP Response Data to a simple String
@@ -399,31 +414,31 @@ final class ArticleModel: ObservableObject{
                     if let response = response as? HTTPURLResponse {
                        
                         print("Response HTTP Status code: \(response.statusCode)")
+                        guard response.statusCode == 200  else{ return }
+                        
+                        
                     }
                     
                     // Convert HTTP Response Data to a simple String
-                    if let data = data, let dataString = String(data: data, encoding: .utf8) {
-                        
-                        if dataString != "null"{
-                            let data = Data(dataString.utf8)
-                                           let articlesData = try! JSONDecoder().decode([Article].self, from: data)
-                                          
-                                           DispatchQueue.main.async {
-                                            print("done")
-                                            self.articles = articlesData
-                                            
-                                           }
-                        }
-                       
-                        
-        //                print("Response data string:\n \(dataString)")
-        //
-        //                print("Response data string:\n \(String(describing: wordsData.title))")
-        //
-        //
-        //                print("Response data string:\n \(String(describing: self.words[0].title))")
-                        
-                    }
+                                  if let data = data, let dataString = String(data: data, encoding: .utf8) {
+                                      
+                                      if dataString != "null"{
+                                          let data = Data(dataString.utf8)
+                                                         let articlesData = try! JSONDecoder().decode([Article].self, from: data)
+                                                        
+                                                         DispatchQueue.main.async {
+                                                          print("done")
+                                                          self.articles = articlesData
+                                                          
+                                                         }
+                                      }
+                                     
+                                      
+                    
+                                      
+                                  }
+                    
+                    
                     
                 }
                 task.resume()
@@ -473,6 +488,7 @@ final class AboutSchoolModel: ObservableObject{
             // Read HTTP Response Status code
             if let response = response as? HTTPURLResponse {
                 print("Response HTTP Status code: \(response.statusCode)")
+                guard response.statusCode == 200  else{ return }
             }
             
             // Convert HTTP Response Data to a simple String
@@ -543,6 +559,7 @@ final class HonorBoardlModel: ObservableObject{
             // Read HTTP Response Status code
             if let response = response as? HTTPURLResponse {
                 print("Response HTTP Status code: \(response.statusCode)")
+                guard response.statusCode == 200  else{ return }
             }
             
             // Convert HTTP Response Data to a simple String
@@ -620,6 +637,7 @@ final class HonorBoardlModel: ObservableObject{
                 // Read HTTP Response Status code
                 if let response = response as? HTTPURLResponse {
                     print("Response HTTP Status code: \(response.statusCode)")
+                    guard response.statusCode == 200  else{ return }
                 }
                 
                 // Convert HTTP Response Data to a simple String
@@ -687,6 +705,7 @@ final class RegistrationModel: ObservableObject{
             // Read HTTP Response Status code
             if let response = response as? HTTPURLResponse {
                 print("Response HTTP Status code: \(response.statusCode)")
+                guard response.statusCode == 200  else{ return }
             }
             
             // Convert HTTP Response Data to a simple String
@@ -749,6 +768,7 @@ final class RegistrationModel: ObservableObject{
                 // Read HTTP Response Status code
                 if let response = response as? HTTPURLResponse {
                     print("Response HTTP Status code: \(response.statusCode)")
+                    guard response.statusCode == 200  else{ return }
                 }
                 
                 // Convert HTTP Response Data to a simple String
@@ -826,6 +846,7 @@ final class RegistrationModel: ObservableObject{
                 // Read HTTP Response Status code
                 if let response = response as? HTTPURLResponse {
                     print("Response HTTP Status code: \(response.statusCode)")
+                    guard response.statusCode == 200  else{ return }
                 }
                 
                 // Convert HTTP Response Data to a simple String
@@ -897,6 +918,7 @@ final class PrizesModel: ObservableObject{
             // Read HTTP Response Status code
             if let response = response as? HTTPURLResponse {
                 print("Response HTTP Status code: \(response.statusCode)")
+                guard response.statusCode == 200  else{ return }
             }
             
             // Convert HTTP Response Data to a simple String
@@ -973,6 +995,7 @@ final class PublicRelationModel: ObservableObject{
             if let response = response as? HTTPURLResponse {
                
                 print("Response HTTP Status code: \(response.statusCode)")
+                guard response.statusCode == 200  else{ return }
             }
             
             // Convert HTTP Response Data to a simple String
@@ -1050,6 +1073,7 @@ final class PublicRelationModel: ObservableObject{
                 // Read HTTP Response Status code
                 if let response = response as? HTTPURLResponse {
                     print("Response HTTP Status code: \(response.statusCode)")
+                    guard response.statusCode == 200  else{ return }
                 }
                 
                 // Convert HTTP Response Data to a simple String
@@ -1060,6 +1084,7 @@ final class PublicRelationModel: ObservableObject{
                     let infoData = try! JSONDecoder().decode(PublicRelation.self, from: data)
                    
                     DispatchQueue.main.async {
+                        
                         self.publicRelationInfo = infoData
                         //self.articles.append( articlesData)
                         //print("count \(self.articles.count)")
@@ -1129,6 +1154,7 @@ final class SupervisionAndDevelopmentModel: ObservableObject{
             if let response = response as? HTTPURLResponse {
                
                 print("Response HTTP Status code: \(response.statusCode)")
+                guard response.statusCode == 200  else{ return }
             }
             
             // Convert HTTP Response Data to a simple String
@@ -1208,6 +1234,7 @@ final class SupervisionAndDevelopmentModel: ObservableObject{
                 // Read HTTP Response Status code
                 if let response = response as? HTTPURLResponse {
                     print("Response HTTP Status code: \(response.statusCode)")
+                    guard response.statusCode == 200  else{ return }
                 }
                 
                 // Convert HTTP Response Data to a simple String
@@ -1262,6 +1289,7 @@ final class SupervisionAndDevelopmentModel: ObservableObject{
                 if let response = response as? HTTPURLResponse {
                    
                     print("Response HTTP Status code: \(response.statusCode)")
+                    guard response.statusCode == 200  else{ return }
                 }
                 
                 // Convert HTTP Response Data to a simple String
@@ -1336,6 +1364,7 @@ final class SupervisionAndDevelopmentModel: ObservableObject{
                     if let response = response as? HTTPURLResponse {
                        
                         print("Response HTTP Status code: \(response.statusCode)")
+                        guard response.statusCode == 200  else{ return }
                     }
                     
                     // Convert HTTP Response Data to a simple String
@@ -1411,6 +1440,7 @@ final class SupervisionAndDevelopmentModel: ObservableObject{
                 if let response = response as? HTTPURLResponse {
                    
                     print("Response HTTP Status code: \(response.statusCode)")
+                    guard response.statusCode == 200  else{ return }
                 }
                 
                 // Convert HTTP Response Data to a simple String
@@ -1490,6 +1520,7 @@ final class SupervisionAndDevelopmentModel: ObservableObject{
                 if let response = response as? HTTPURLResponse {
                    
                     print("Response HTTP Status code: \(response.statusCode)")
+                    guard response.statusCode == 200  else{ return }
                 }
                 
                 // Convert HTTP Response Data to a simple String
@@ -1565,6 +1596,7 @@ final class SupervisionAndDevelopmentModel: ObservableObject{
                 // Read HTTP Response Status code
                 if let response = response as? HTTPURLResponse {
                     print("Response HTTP Status code: \(response.statusCode)")
+                    guard response.statusCode == 200  else{ return }
                 }
                 
                 // Convert HTTP Response Data to a simple String
@@ -1636,6 +1668,7 @@ final class ComprehensiveModel: ObservableObject{
             if let response = response as? HTTPURLResponse {
                
                 print("Response HTTP Status code: \(response.statusCode)")
+                guard response.statusCode == 200  else{ return }
             }
             
             // Convert HTTP Response Data to a simple String
@@ -1715,6 +1748,7 @@ final class ComprehensiveModel: ObservableObject{
                 // Read HTTP Response Status code
                 if let response = response as? HTTPURLResponse {
                     print("Response HTTP Status code: \(response.statusCode)")
+                    guard response.statusCode == 200  else{ return }
                 }
                 
                 // Convert HTTP Response Data to a simple String
@@ -1787,6 +1821,7 @@ final class ComprehensiveModel: ObservableObject{
                 if let response = response as? HTTPURLResponse {
                    
                     print("Response HTTP Status code: \(response.statusCode)")
+                    guard response.statusCode == 200  else{ return }
                 }
                 
                 // Convert HTTP Response Data to a simple String
@@ -1870,6 +1905,7 @@ final class ComprehensiveModel: ObservableObject{
                     if let response = response as? HTTPURLResponse {
                        
                         print("Response HTTP Status code: \(response.statusCode)")
+                        guard response.statusCode == 200  else{ return }
                     }
                     
                     // Convert HTTP Response Data to a simple String
@@ -1949,6 +1985,7 @@ final class TransferModel: ObservableObject{
             if let response = response as? HTTPURLResponse {
                
                 print("Response HTTP Status code: \(response.statusCode)")
+                guard response.statusCode == 200  else{ return }
             }
             
             // Convert HTTP Response Data to a simple String
@@ -2028,6 +2065,7 @@ final class TransferModel: ObservableObject{
                 // Read HTTP Response Status code
                 if let response = response as? HTTPURLResponse {
                     print("Response HTTP Status code: \(response.statusCode)")
+                    guard response.statusCode == 200  else{ return }
                 }
                 
                 // Convert HTTP Response Data to a simple String
@@ -2082,6 +2120,7 @@ final class TransferModel: ObservableObject{
                 if let response = response as? HTTPURLResponse {
                    
                     print("Response HTTP Status code: \(response.statusCode)")
+                    guard response.statusCode == 200  else{ return }
                 }
                 
                 // Convert HTTP Response Data to a simple String
@@ -2143,6 +2182,7 @@ final class TransferModel: ObservableObject{
                 if let response = response as? HTTPURLResponse {
                    
                     print("Response HTTP Status code: \(response.statusCode)")
+                    guard response.statusCode == 200  else{ return }
                 }
                 
                 // Convert HTTP Response Data to a simple String
@@ -2232,6 +2272,7 @@ final class NewsModel: ObservableObject{
             // Read HTTP Response Status code
             if let response = response as? HTTPURLResponse {
                 print("Response HTTP Status code: \(response.statusCode)")
+                guard response.statusCode == 200  else{ return }
             }
             
             // Convert HTTP Response Data to a simple String
@@ -2295,6 +2336,7 @@ final class NewsModel: ObservableObject{
             // Read HTTP Response Status code
             if let response = response as? HTTPURLResponse {
                 print("Response HTTP Status code: \(response.statusCode)")
+                guard response.statusCode == 200  else{ return }
             }
             
             // Convert HTTP Response Data to a simple String
@@ -2368,6 +2410,7 @@ final class NewsModel: ObservableObject{
                 if let response = response as? HTTPURLResponse {
                    
                     print("Response HTTP Status code: \(response.statusCode)")
+                    guard response.statusCode == 200  else{ return }
                 }
                 
                 // Convert HTTP Response Data to a simple String
@@ -2447,6 +2490,7 @@ final class NewsModel: ObservableObject{
                     if let response = response as? HTTPURLResponse {
                        
                         print("Response HTTP Status code: \(response.statusCode)")
+                        guard response.statusCode == 200  else{ return }
                     }
                     
                     // Convert HTTP Response Data to a simple String
@@ -2539,6 +2583,7 @@ final class LeadershipModel: ObservableObject{
                     if let response = response as? HTTPURLResponse {
                        
                         print("Response HTTP Status code: \(response.statusCode)")
+                        guard response.statusCode == 200  else{ return }
                     }
                     
                     // Convert HTTP Response Data to a simple String
@@ -2634,6 +2679,7 @@ final class DepartmentLeaderModel: ObservableObject{
                    if let response = response as? HTTPURLResponse {
                       
                        print("Response HTTP Status code: \(response.statusCode)")
+                        guard response.statusCode == 200  else{ return }
                    }
                    
                    // Convert HTTP Response Data to a simple String
@@ -2725,6 +2771,7 @@ final class StudentActivityModel: ObservableObject{
                    if let response = response as? HTTPURLResponse {
                       
                        print("Response HTTP Status code: \(response.statusCode)")
+                        guard response.statusCode == 200  else{ return }
                    }
                    
                    // Convert HTTP Response Data to a simple String
@@ -2794,6 +2841,7 @@ final class StudentActivityModel: ObservableObject{
                // Read HTTP Response Status code
                if let response = response as? HTTPURLResponse {
                    print("Response HTTP Status code: \(response.statusCode)")
+                    guard response.statusCode == 200  else{ return }
                }
                
                // Convert HTTP Response Data to a simple String
@@ -2875,6 +2923,7 @@ final class ResourcesLaboratoryModel: ObservableObject{
                    if let response = response as? HTTPURLResponse {
                       
                        print("Response HTTP Status code: \(response.statusCode)")
+                        guard response.statusCode == 200  else{ return }
                    }
                    
                    // Convert HTTP Response Data to a simple String
@@ -2944,6 +2993,7 @@ final class ResourcesLaboratoryModel: ObservableObject{
                // Read HTTP Response Status code
                if let response = response as? HTTPURLResponse {
                    print("Response HTTP Status code: \(response.statusCode)")
+                    guard response.statusCode == 200  else{ return }
                }
                
                // Convert HTTP Response Data to a simple String
@@ -3025,6 +3075,7 @@ final class HomeworkModel: ObservableObject{
                    if let response = response as? HTTPURLResponse {
                       
                        print("Response HTTP Status code: \(response.statusCode)")
+                        guard response.statusCode == 200  else{ return }
                    }
                    
                    // Convert HTTP Response Data to a simple String
@@ -3094,6 +3145,7 @@ final class HomeworkModel: ObservableObject{
                // Read HTTP Response Status code
                if let response = response as? HTTPURLResponse {
                    print("Response HTTP Status code: \(response.statusCode)")
+                    guard response.statusCode == 200  else{ return }
                }
                
                // Convert HTTP Response Data to a simple String
@@ -3169,6 +3221,7 @@ final class HomeworkModel: ObservableObject{
                    if let response = response as? HTTPURLResponse {
                       
                        print("Response HTTP Status code: \(response.statusCode)")
+                        guard response.statusCode == 200  else{ return }
                    }
                    
                    // Convert HTTP Response Data to a simple String
@@ -3249,6 +3302,7 @@ final class HomeworkModel: ObservableObject{
                    if let response = response as? HTTPURLResponse {
                       
                        print("Response HTTP Status code: \(response.statusCode)")
+                        guard response.statusCode == 200  else{ return }
                    }
                    
                    // Convert HTTP Response Data to a simple String
