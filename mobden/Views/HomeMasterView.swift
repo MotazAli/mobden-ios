@@ -123,7 +123,7 @@ struct HomeMasterView: View {
                     
                     
                     VStack{
-                        NavigationLink(destination: ArticlesView()){
+                        NavigationLink(destination: ArticlesView(stageId: 0)){
                             HStack{
                                 Text("شاهد الكل").foregroundColor(Color.blue)
                                 Spacer()
@@ -254,9 +254,9 @@ struct HomeMasterView: View {
 
 
                     VStack{
-                        NavigationLink(destination: ArticlesView()){
+                        //NavigationLink(destination: ArticlesView()){
                             HStack{
-                                Text("شاهد الكل").foregroundColor(Color.blue)
+                                //Text("شاهد الكل").foregroundColor(Color.blue)
                                 Spacer()
                                 Text("عن المدرسة").foregroundColor(.primary)
                                 .frame(width:100 , height:25,alignment: .center)
@@ -267,7 +267,7 @@ struct HomeMasterView: View {
                             }
                             
                             
-                        }
+                        //}
                         
                         
                         

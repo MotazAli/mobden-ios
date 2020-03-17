@@ -227,7 +227,7 @@ struct HomeworkView: View {
                                           }.frame(alignment:.top)
                                                               
                                       }.frame(height:100)
-                                        .background(Color.blue.opacity(0.2))
+                                        .background(Color.blue.opacity(0.12))
                                         .cornerRadius(8)
                                 
                                 
@@ -356,7 +356,14 @@ struct HomeworkClassListView: View {
     
     init(stageId:Int)
     {
-        for number in 1...6{
+        var numberOfClass  = 0
+        if stageId == 1 {
+            numberOfClass = 6
+        }
+        else {
+            numberOfClass = 3
+        }
+        for number in 1...numberOfClass{
             var temp = Homework()
             temp.id = number
             temp.classId = number
@@ -394,7 +401,7 @@ struct HomeworkClassListView: View {
                                       }.frame(alignment:.top)
                                                           
                                   }.frame(height:100)
-                                    .background(Color.blue.opacity(0.2))
+                                    .background(Color.blue.opacity(0.12))
                                     .cornerRadius(8)
                             
                             
@@ -500,7 +507,7 @@ struct HomeworkClassListView: View {
                                               }.frame(alignment:.top)
                                                                   
                                           }.frame(height:100)
-                                            .background(Color.blue.opacity(0.2))
+                                            .background(Color.blue.opacity(0.12))
                                             .cornerRadius(8)
                                     
                                     
@@ -528,19 +535,20 @@ struct HomeworkClassListView: View {
                                         Spacer()
                                     Text("جميع الواجبات").font(.largeTitle)
                                         .padding(8)
-                                        .flipsForRightToLeftLayoutDirection(true)
-                                        .lineSpacing(2)
-                                        .multilineTextAlignment(.trailing)
+                                        //.flipsForRightToLeftLayoutDirection(true)
+                                        //.lineSpacing(2)
+                                        //.multilineTextAlignment(.trailing)
                                     
                                     Image(systemName:"book.circle")
                                     .resizable()
                                     .scaledToFit()
                                      .frame(width:60 , height: 40)
+                                    .padding(8)
                                                                   
                                       }.frame(alignment:.top)
                                                           
                                   }.frame(height:100)
-                                    .background(Color.blue.opacity(0.2))
+                                    .background(Color.blue.opacity(0.12))
                                     .cornerRadius(8)
                             
                             
@@ -599,7 +607,7 @@ struct HomeworkAllListView: View {
                                       }.frame(alignment:.top)
                                                           
                                   }.frame(height:100)
-                                    .background(Color.blue.opacity(0.2))
+                                    .background(Color.blue.opacity(0.12))
                                     .cornerRadius(8)
                             
                             

@@ -14,12 +14,20 @@ struct ArticlesView: View {
         @ObservedObject var articleModel = ArticleModel()
         var url = "https://mobdenapi.azurewebsites.net/"
         var articleUrl = "assets/articles/"
+    
         
-        
-        init() {
+    init(stageId:Int) {
             //self.articleModel = ArticleModel()
-            self.articleModel.getTopThreeArticles()
+        if stageId == 0{
+            self.articleModel.getHomeAllArticles()
         }
+        else
+        {
+            self.articleModel.getArticleByStage(id: stageId)
+            
+        }
+           
+    }
         
         
         var body: some View {
@@ -115,6 +123,6 @@ struct ArticlesView: View {
 
 struct ArticlesView_Previews: PreviewProvider {
     static var previews: some View {
-        ArticlesView()
+        ArticlesView(stageId: -1)
     }
 }

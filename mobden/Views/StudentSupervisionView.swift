@@ -224,7 +224,7 @@ struct StudentSupervisionListView: View {
                                       }.frame(alignment:.top)
                                                           
                                   }.frame(height:100)
-                                    .background(Color.gray.opacity(0.2))
+                                    .background(Color.blue.opacity(0.12))
                                     .cornerRadius(8)
                             
                             
@@ -379,7 +379,7 @@ struct StudentSupervisionPlanListView: View {
                                       }.frame(alignment:.top)
                                                           
                                   }.frame(height:100)
-                                    .background(Color.gray.opacity(0.2))
+                                    .background(Color.blue.opacity(0.12))
                                     .cornerRadius(8)
                             
                             

@@ -105,12 +105,62 @@ final class ArticleModel: ObservableObject{
     
     
     
-     func getTopThreeArticles()
+     func getHomeAllArticles()
     {
 
         articles.removeAll()
         
         let url = URL(string: "https://mobdenapi.azurewebsites.net/MobdenAPI/ManagmentArticles/GetArticles")
+        guard let requestUrl = url else { fatalError() }
+        // Create URL Request
+        var request = URLRequest(url: requestUrl)
+        // Specify HTTP Method to use
+        request.httpMethod = "GET"
+        // Send HTTP Request
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            
+            // Check if Error took place
+            if let error = error {
+                print("Error took place \(error)")
+                return
+            }
+            
+            // Read HTTP Response Status code
+            if let response = response as? HTTPURLResponse {
+                print("Response HTTP Status code: \(response.statusCode)")
+            }
+            
+            // Convert HTTP Response Data to a simple String
+            if let data = data, let dataString = String(data: data, encoding: .utf8) {
+                
+                if dataString != "null"{
+                
+                let data = Data(dataString.utf8)
+                let articlesData = try! JSONDecoder().decode([Article].self, from: data)
+               
+                DispatchQueue.main.async {
+                                 self.articles = articlesData
+                }
+                }
+
+                
+            }
+            
+        }
+        task.resume()
+        
+        
+        
+        
+    }
+    
+    
+    func getTopThreeArticles()
+    {
+
+        articles.removeAll()
+        
+        let url = URL(string: "https://mobdenapi.azurewebsites.net/MobdenAPI/ManagmentArticles/GetTopThreeArticles")
         guard let requestUrl = url else { fatalError() }
         // Create URL Request
         var request = URLRequest(url: requestUrl)
@@ -226,10 +276,10 @@ final class ArticleModel: ObservableObject{
     
     
     
-    func getTopThreeArticleByStage(id: Int)
+    func getArticleByStage(id: Int)
         {
 
-            PrimaryArticles.removeAll()
+            articles.removeAll()
             var articleObject = Article()
             articleObject.stage = id
             
@@ -281,7 +331,7 @@ final class ArticleModel: ObservableObject{
                                       
                                        DispatchQueue.main.async {
                                         print("done")
-                                        self.PrimaryArticles = articlesData
+                                        self.articles = articlesData
                                         
                                        }
                     }
@@ -305,7 +355,85 @@ final class ArticleModel: ObservableObject{
         }
     
     
-    
+    func getTopThreeArticleByStage(id: Int)
+            {
+
+                articles.removeAll()
+                var articleObject = Article()
+                articleObject.stage = id
+                
+    //            let url = URL(string: "https://mobdenapi.azurewebsites.net/MobdenAPI/Article/GetTopThreeArticleByStage")
+                
+                
+                let url = URL(string: "https://mobdenapi.azurewebsites.net/MobdenAPI/Article/GetTopThreeArticleByStage")
+                
+                guard let requestUrl = url else { fatalError() }
+                // Create URL Request
+                var request = URLRequest(url: requestUrl)
+                // Specify HTTP Method to use
+                //request.httpMethod = "GET"
+                
+                
+                let jsonData = try! JSONEncoder().encode(articleObject)
+                //let jsonString = String(data: jsonData, encoding: .utf8)!
+                request.httpMethod = "POST" //set http method as POST
+                request.setValue("application/json; charset=utf-8",
+                     forHTTPHeaderField: "Content-Type")
+                request.setValue("application/json; charset=utf-8",
+                     forHTTPHeaderField: "Accept")
+                request.httpBody = jsonData
+                
+                
+                
+                
+                // Send HTTP Request
+                let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                    
+                    // Check if Error took place
+                    if let error = error {
+                        print("Error took place \(error)")
+                        return
+                    }
+                    
+                    // Read HTTP Response Status code
+                    if let response = response as? HTTPURLResponse {
+                       
+                        print("Response HTTP Status code: \(response.statusCode)")
+                    }
+                    
+                    // Convert HTTP Response Data to a simple String
+                    if let data = data, let dataString = String(data: data, encoding: .utf8) {
+                        
+                        if dataString != "null"{
+                            let data = Data(dataString.utf8)
+                                           let articlesData = try! JSONDecoder().decode([Article].self, from: data)
+                                          
+                                           DispatchQueue.main.async {
+                                            print("done")
+                                            self.articles = articlesData
+                                            
+                                           }
+                        }
+                       
+                        
+        //                print("Response data string:\n \(dataString)")
+        //
+        //                print("Response data string:\n \(String(describing: wordsData.title))")
+        //
+        //
+        //                print("Response data string:\n \(String(describing: self.words[0].title))")
+                        
+                    }
+                    
+                }
+                task.resume()
+                
+                
+                
+                
+            }
+        
+        
     
     
 }

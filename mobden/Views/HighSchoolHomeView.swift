@@ -44,13 +44,14 @@ struct HighSchoolHomeView: View {
                            
                            
                            VStack{
-                               NavigationLink(destination: ArticlesView()){
+                               NavigationLink(destination: ArticlesView(stageId: 3)){
                                    HStack{
                                        Text("شاهد الكل").foregroundColor(Color.blue)
                                        Spacer()
                                        Text("المقالات").foregroundColor(.primary)
                                            .frame(width:100 , height:25,alignment: .center)
-                                           .background(Color.green.opacity(0.6))
+                                        .background(LinearGradient(gradient: Gradient(colors: [.init(white: 0.9), .green]), startPoint: .top, endPoint: .bottom))
+                                           //.background(Color.green.opacity(0.6))
 
                                        .cornerRadius(5)
                                        .shadow(radius: 4)
@@ -146,7 +147,8 @@ struct HighSchoolHomeView: View {
                                        Spacer()
                                        Text("الاخبار").foregroundColor(.primary)
                                        .frame(width:100 , height:25,alignment: .center)
-                                           .background(Color.green.opacity(0.6))
+                                        .background(LinearGradient(gradient: Gradient(colors: [.init(white: 0.9), .green]), startPoint: .top, endPoint: .bottom))
+                                           //.background(Color.green.opacity(0.6))
 
                                        .cornerRadius(5)
                                        .shadow(radius: 4)
@@ -234,7 +236,8 @@ struct HighSchoolHomeView: View {
                                        Spacer()
                                        Text("لوحة الشرف")
                                        .frame(width:100 , height:25,alignment: .center)
-                                           .background(Color.green.opacity(0.6))
+                                        .background(LinearGradient(gradient: Gradient(colors: [.init(white: 0.9), .green]), startPoint: .top, endPoint: .bottom))
+                                           //.background(Color.green.opacity(0.6))
 
                                        .cornerRadius(5)
                                        .shadow(radius: 4)
@@ -332,7 +335,7 @@ struct HighSchoolHomeView: View {
                    
                        
                        
-                       .navigationBarTitle("الرئيسية")
+                       .navigationBarTitle("الثانوي")
                        .navigationBarHidden(true)
                        
                        
