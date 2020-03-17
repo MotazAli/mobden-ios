@@ -13,11 +13,12 @@ struct PrimarySchoolHomeView: View {
             @State var isSheetPersented = false
             @State var articleID :Int = 0
     @State var newsID : Int = 0
+    @State var honorBoardID : Int = 0
         @State var viewName : ViewScreen = ViewScreen.noView
              
             @ObservedObject var articleModel = ArticleModel()
             @ObservedObject var newsModel = NewsModel()
-        @ObservedObject var honorBoardModel = HonorBoardlModel()
+        @ObservedObject var honorBoardModel = HonorBoardModel()
              var url = "https://mobdenapi.azurewebsites.net/"
                var articleUrl = "assets/articles/"
         var honorBoardUrl = "assets/honorBoards/"
@@ -231,10 +232,11 @@ struct PrimarySchoolHomeView: View {
                         
                         
                         VStack{
-                            //NavigationLink(destination: ArticlesView()){
+                            NavigationLink(destination: HonorBoardView(stageId: 1)){
                                 HStack{
+                                    Text("شاهد الكل").foregroundColor(Color.blue)
                                     Spacer()
-                                    Text("لوحة الشرف")
+                                    Text("لوحة الشرف").foregroundColor(.primary)
                                     .frame(width:100 , height:25,alignment: .center)
                                         .background(LinearGradient(gradient: Gradient(colors: [.init(white: 0.9), .green]), startPoint: .top, endPoint: .bottom))
                                         //.background(Color.green.opacity(0.6))
@@ -244,7 +246,7 @@ struct PrimarySchoolHomeView: View {
                                 }
                                 
                                 
-                            //}
+                            }
                             
                             
                             if honorBoardModel.honorBoardStageList.isEmpty{
@@ -268,8 +270,8 @@ struct PrimarySchoolHomeView: View {
                                                 
                                                 VStack{
                                                     Button(action: {
-                                                                
-                                                                
+                                                        self.honorBoardID = honor.id
+                                                        self.viewName = ViewScreen.honorBoard
                                                             }){
                                                                 VStack(alignment: .center){
                                                                     
@@ -362,8 +364,8 @@ struct PrimarySchoolHomeView: View {
                 return AnyView( ArticleView(articleID: self.articleID))
                            
             }
-            else if viewScreen == ViewScreen.prizesView {
-                return AnyView( PrizesView())
+            else if viewScreen == ViewScreen.honorBoard {
+                return AnyView( HonorBoardInfoView(honorBoardID:  self.honorBoardID))
                            
             }
             else if viewScreen == ViewScreen.newsView {

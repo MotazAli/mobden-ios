@@ -19,7 +19,7 @@ enum ViewScreen: Int {
     registrationView = 5 , publicRelationView = 6 ,supervisionView = 7 , supervisionListView = 8 ,
     supervisionInfoView = 9 , supervisionTeamView = 10 , comprehensiveView = 11 , transferView = 12,
     newsView = 13 , leadership = 14 ,planWork = 15 ,studentSupervisionView = 16 ,
-    studentActivityView = 17 , resourcesLaboratory = 18 , homework = 19
+    studentActivityView = 17 , resourcesLaboratory = 18 , homework = 19 ,honorBoard = 20
     
     
 }
@@ -209,13 +209,18 @@ struct AboutSchool : Decodable, Identifiable{
 
 
 
-struct HonorBoard : Decodable ,Identifiable{
-var id:Int
-var studentFullName:String
-var image:String
-
-var creationDate:String
-var description:String
+struct HonorBoard : Codable ,Identifiable{
+var id:Int = 0
+var studentFullName:String = ""
+var image:String = ""
+    var studentID:Int = 0
+    var studentStage:Int = 0
+    var studentClass:Int = 0
+var creationDate:String = ""
+    var modifiedDate:String = ""
+    var creationUserId:Int = 0
+    var modifiedUserId:Int = 0
+var description:String = ""
     var arabicDate:String{
         get{
             
@@ -223,6 +228,46 @@ var description:String
                 
         }
     }
+    
+    
+    
+    
+    
+    init() {}
+     
+    init(from decoder: Decoder) throws {
+         let container = try decoder.container(keyedBy: CodingKeys.self)
+         self.id = try container.decodeIfPresent(Int.self, forKey: .id) ?? 0
+         self.image = try container.decodeIfPresent(String.self, forKey: .image) ?? ""
+        self.studentID = try container.decodeIfPresent(Int.self, forKey: .studentID) ?? 0
+        self.studentStage = try container.decodeIfPresent(Int.self, forKey: .studentStage) ?? 0
+        self.studentClass = try container.decodeIfPresent(Int.self, forKey: .studentClass) ?? 0
+         self.studentFullName = try container.decodeIfPresent(String.self, forKey: .studentFullName) ?? ""
+         self.description = try container.decodeIfPresent(String.self, forKey: .description) ?? ""
+         self.creationDate = try container.decodeIfPresent(String.self, forKey: .creationDate) ?? ""
+         self.modifiedDate = try container.decodeIfPresent(String.self, forKey: .modifiedDate) ?? ""
+         self.creationUserId = try container.decodeIfPresent(Int.self, forKey: .creationUserId) ?? 0
+         self.modifiedUserId = try container.decodeIfPresent(Int.self, forKey: .modifiedUserId) ?? 0
+
+     }
+     
+     
+     enum CodingKeys : String , CodingKey{
+        case id = "id"
+         case image = "image"
+         case studentFullName = "studentFullName"
+         case studentID = "studentID"
+        case studentStage = "studentStage"
+        case studentClass = "studentClass"
+         case description = "description"
+         case creationDate = "creationDate"
+        case modifiedDate = "modifiedDate"
+        case creationUserId = "creationUserId"
+        case modifiedUserId = "modifiedUserId"
+        
+     }
+    
+    
     
 }
 

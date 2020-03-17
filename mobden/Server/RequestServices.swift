@@ -526,10 +526,11 @@ final class AboutSchoolModel: ObservableObject{
 
 
 
-final class HonorBoardlModel: ObservableObject{
+final class HonorBoardModel: ObservableObject{
     
     @Published var honorBoardList = [HonorBoard]()
     @Published var honorBoardStageList = [HonorBoard]()
+    @Published var honorBoardInfo = HonorBoard()
 //    init() {
 //        fetchPosts()
 //    }
@@ -662,7 +663,140 @@ final class HonorBoardlModel: ObservableObject{
             
             
         }
-        
+    
+    
+    
+    
+    
+    
+    func getHonorBoardBy(id : Int)
+           {
+
+               
+       
+               
+               
+               let urlComponent = NSURLComponents(string: "https://mobdenapi.azurewebsites.net/MobdenAPI/HonorBoard/GetHonorBoardByID")
+               
+               urlComponent?.queryItems = [
+                   (NSURLQueryItem(name: "id", value: String(describing: id)) as URLQueryItem)
+               ]
+               
+               
+               
+               //guard let requestUrl = url else { fatalError() }
+               guard let requestUrl = urlComponent?.url else { fatalError() }
+               
+               
+               // Create URL Request
+               var request = URLRequest(url: requestUrl)
+               // Specify HTTP Method to use
+               request.httpMethod = "GET"
+               // Send HTTP Request
+               let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                   
+                   // Check if Error took place
+                   if let error = error {
+                       print("Error took place \(error)")
+                       return
+                   }
+                   
+                   // Read HTTP Response Status code
+                   if let response = response as? HTTPURLResponse {
+                       print("Response HTTP Status code: \(response.statusCode)")
+                       guard response.statusCode == 200  else{ return }
+                   }
+                   
+                   // Convert HTTP Response Data to a simple String
+                   if let data = data, let dataString = String(data: data, encoding: .utf8) {
+                       
+                       if dataString != "null"{
+                       let data = Data(dataString.utf8)
+                       let infoData = try! JSONDecoder().decode(HonorBoard.self, from: data)
+                      
+                       DispatchQueue.main.async {
+                           self.honorBoardInfo = infoData
+                           //self.articles.append( articlesData)
+                           //print("count \(self.articles.count)")
+                       }
+                       }
+                       
+
+                       
+                   }
+                   
+               }
+               task.resume()
+               
+               
+               
+               
+           }
+       
+       
+    func getHonorBoardByStageID(stageId : Int)
+           {
+
+               
+       
+            honorBoardStageList.removeAll()
+               
+               let urlComponent = NSURLComponents(string: "https://mobdenapi.azurewebsites.net/MobdenAPI/HonorBoard/GetHonorBoardByStageID")
+               
+               urlComponent?.queryItems = [
+                   (NSURLQueryItem(name: "id", value: String(describing: stageId)) as URLQueryItem)
+               ]
+               
+               
+               
+               //guard let requestUrl = url else { fatalError() }
+               guard let requestUrl = urlComponent?.url else { fatalError() }
+               
+               
+               // Create URL Request
+               var request = URLRequest(url: requestUrl)
+               // Specify HTTP Method to use
+               request.httpMethod = "GET"
+               // Send HTTP Request
+               let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                   
+                   // Check if Error took place
+                   if let error = error {
+                       print("Error took place \(error)")
+                       return
+                   }
+                   
+                   // Read HTTP Response Status code
+                   if let response = response as? HTTPURLResponse {
+                       print("Response HTTP Status code: \(response.statusCode)")
+                       guard response.statusCode == 200  else{ return }
+                   }
+                   
+                   // Convert HTTP Response Data to a simple String
+                   if let data = data, let dataString = String(data: data, encoding: .utf8) {
+                       
+                       if dataString != "null"{
+                       let data = Data(dataString.utf8)
+                       let listData = try! JSONDecoder().decode([HonorBoard].self, from: data)
+                      
+                       DispatchQueue.main.async {
+                           self.honorBoardStageList = listData
+                           //self.articles.append( articlesData)
+                           //print("count \(self.articles.count)")
+                       }
+                       }
+                       
+
+                       
+                   }
+                   
+               }
+               task.resume()
+               
+               
+               
+               
+           }
     
     
     
