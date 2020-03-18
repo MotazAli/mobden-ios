@@ -16,6 +16,7 @@ struct MiddleSchoolSliderMenu: View {
                    let stageId : Int = 2
                @State var departmentId  = 0
                let primaryPlanWorkUrl : String = "https://mobden.azurewebsites.net/pdf/working_plan_motwasta.pdf"
+    let urlLink : String = "https://me.classera.com/"
                   var width: CGFloat = 270
                   
 
@@ -146,6 +147,24 @@ struct MiddleSchoolSliderMenu: View {
                                                   
                                                    
                                                 }
+                                                HStack{
+                                                  Spacer()
+                                                  
+                                                  Button(action:{
+                                                       
+                                                      self.viewName = ViewScreen.webView
+                                                      self.isSheetPersented.toggle()
+                                                  }){
+                                                      Text("التعليم الالكتروني").fontWeight(.bold)
+                                                      .foregroundColor(Color.white)
+                                                          .padding(20)
+                                                      .font(.title)
+                                                  }
+                                                  
+                                                  
+                                                  
+                                                   
+                                                }
            //                                     HStack{
            //                                       Spacer()
            //                                         Text("اتصل بنا").padding(20)
@@ -184,7 +203,7 @@ struct MiddleSchoolSliderMenu: View {
                           //ArticleView(articleID: 65)
                        VStack{
                            
-                           if self.viewName == ViewScreen.planWork{
+                           if self.viewName == ViewScreen.planWork || self.viewName == ViewScreen.webView{
                                VStack{
                                        Button(action: {self.isSheetPersented.toggle()}){
                                        Text("اغلاق").font(.headline)
@@ -234,6 +253,10 @@ struct MiddleSchoolSliderMenu: View {
                        return AnyView( HomeworkView(stageId: self.stageId, departmentId: self.departmentId))
                                                     
                                      }
+                        else if viewScreen == ViewScreen.webView {
+                            return AnyView( WebView(url: self.urlLink))
+                                           
+                        }
                       else{
                           return AnyView( EmptyView())
                       }

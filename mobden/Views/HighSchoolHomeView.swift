@@ -272,7 +272,7 @@ struct HighSchoolHomeView: View {
                                                        Button(action: {
                                                                    self.honorBoardID = honor.id
                                                                    self.viewName = ViewScreen.honorBoard
-                                                                   
+                                                                   self.isSheetPersented.toggle()
                                                                }){
                                                                    VStack(alignment: .center){
                                                                        

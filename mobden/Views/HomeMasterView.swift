@@ -14,6 +14,7 @@ struct HomeMasterView: View {
     //@State var isWordViewPersented = false
         @State var articleID :Int = 0
     @State var honorBoardID : Int = 0
+    @State var aboutSchoolLink:String = ""
     @State var viewName : ViewScreen = ViewScreen.noView
          @ObservedObject var model = WordModel()
         @ObservedObject var articleModel = ArticleModel()
@@ -296,7 +297,9 @@ struct HomeMasterView: View {
                                             
                                             VStack{
                                                 Button(action: {
-                                                           
+                                                           self.viewName = ViewScreen.webView
+                                                    self.aboutSchoolLink = about.link
+                                                           self.isSheetPersented.toggle()
                                                             
                                                         }){
                                                             VStack(alignment: .center){
@@ -428,6 +431,7 @@ struct HomeMasterView: View {
                                                 Button(action: {
                                                             self.honorBoardID = honor.id
                                                             self.viewName = ViewScreen.honorBoard
+                                                            self.isSheetPersented.toggle()
                                                             
                                                         }){
                                                             VStack(alignment: .center){
@@ -542,7 +546,24 @@ struct HomeMasterView: View {
             }.sheet(isPresented:self.$isSheetPersented){
     //            ArticleView(articleModel : ArticleModel(getArticleByID: self.articleID))
                
-                self.getViewByID(viewScreen: self.viewName)
+               VStack{
+                    
+                    if self.viewName == ViewScreen.webView{
+                        VStack{
+                                Button(action: {self.isSheetPersented.toggle()}){
+                                Text("اغلاق").font(.headline)
+                                    .frame(width: 400, height: 50)
+                                    .background(Color.gray.opacity(0.5))
+                                .cornerRadius(10)
+                                 .padding([.top,.trailing,.leading],10)
+                        
+                            }
+                                
+                            }
+                    }
+                    
+                    self.getViewByID(viewScreen: self.viewName)
+                }
                 
                 
             }
@@ -564,6 +585,10 @@ struct HomeMasterView: View {
         else if viewScreen == ViewScreen.honorBoard {
             return AnyView( HonorBoardInfoView(honorBoardID:  self.honorBoardID))
                        
+        }
+        else if viewScreen == ViewScreen.webView {
+            return AnyView( WebView(url: self.aboutSchoolLink))
+                           
         }
         else{
             return AnyView( EmptyView())

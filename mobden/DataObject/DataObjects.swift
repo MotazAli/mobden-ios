@@ -19,7 +19,7 @@ enum ViewScreen: Int {
     registrationView = 5 , publicRelationView = 6 ,supervisionView = 7 , supervisionListView = 8 ,
     supervisionInfoView = 9 , supervisionTeamView = 10 , comprehensiveView = 11 , transferView = 12,
     newsView = 13 , leadership = 14 ,planWork = 15 ,studentSupervisionView = 16 ,
-    studentActivityView = 17 , resourcesLaboratory = 18 , homework = 19 ,honorBoard = 20
+    studentActivityView = 17 , resourcesLaboratory = 18 , homework = 19 ,honorBoard = 20 , webView = 21
     
     
 }
