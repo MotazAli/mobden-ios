@@ -52,7 +52,8 @@ struct MasterMenuSlider : View {
                                     }){
                                         Text("القبول و التسجيل")
                                             .foregroundColor(Color.black)
-                                            .padding(20)
+                                            .padding(.trailing,28)
+                                            .padding(.vertical,15)
                                             .font(.title)
 
                                     }
@@ -68,7 +69,8 @@ struct MasterMenuSlider : View {
                                     }){
                                         Text("الجوائز")
                                             .foregroundColor(.primary)
-                                            .padding(20)
+                                            .padding(.trailing,28)
+                                            .padding(.vertical,15)
                                         .font(.title)
                                     }
                                     
@@ -84,7 +86,8 @@ struct MasterMenuSlider : View {
                                     }){
                                         Text("الجودة الشاملة")
                                             .foregroundColor(.primary)
-                                            .padding(20)
+                                            .padding(.trailing,28)
+                                            .padding(.vertical,15)
                                         .font(.title)
                                     }
                                     
@@ -98,9 +101,11 @@ struct MasterMenuSlider : View {
                                     }){
                                         Text("الاشراف و التطوير المهني").fontWeight(.medium)
                                             .foregroundColor(.primary)
-                                            .padding(20)
+                                            .padding(.trailing,28)
+                                            .padding(.vertical,15)
                                             .font(.system(size: 22))
-                                        .scaledToFit()
+                                            .scaledToFit()
+                                            .fixedSize()
                                         
                                     }
                                     
@@ -117,7 +122,8 @@ struct MasterMenuSlider : View {
                                     }){
                                         Text("العلاقات العامة")
                                             .foregroundColor(.primary)
-                                            .padding(20)
+                                            .padding(.trailing,28)
+                                            .padding(.vertical,15)
                                         .font(.title)
                                     }
                                     
@@ -133,7 +139,8 @@ struct MasterMenuSlider : View {
                                     }){
                                         Text("النقل المدرسي")
                                             .foregroundColor(.primary)
-                                            .padding(20)
+                                            .padding(.trailing,28)
+                                            .padding(.vertical,15)
                                         .font(.title)
                                     }
                                     
@@ -150,7 +157,8 @@ struct MasterMenuSlider : View {
                                     }){
                                         Text("اتصل بنا")
                                             .foregroundColor(.primary)
-                                            .padding(20)
+                                            .padding(.trailing,28)
+                                            .padding(.vertical,15)
                                         .font(.title)
                                     }
                                     
@@ -161,7 +169,7 @@ struct MasterMenuSlider : View {
                                     Spacer()
                                 
                                   }
-                                  .frame(width: 270,height:geometry.size.height, alignment: .topLeading)
+            .frame(width: 270,height:geometry.size.height)
                                   .background(Color.red.opacity(0.9))
                                   .offset(x: 80)
                                 

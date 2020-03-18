@@ -42,7 +42,7 @@ struct ContentView: View {
                     
                     Image("logo2").resizable().scaledToFit().frame(width:90,height:80)
                     Spacer()
-                    Text(" طلائع المبدعين الاهلية للبنين").font(.system(size: 20)).fontWeight(.bold)
+                    Text(" طلائع المبدعين الاهلية للبنين").font(.system(size: 20)).fontWeight(.bold).fixedSize()
                    Spacer()
                     Button(action: {
                         
@@ -89,7 +89,7 @@ struct ContentView: View {
                         }
                        
                         
-                    }.tag(3).tag(2).padding([.horizontal, .top],10)
+                    }.tag(3).padding(.top,10).padding(.horizontal,15)
                     .onAppear(){self.isMasterHomeView = false}
                     
                     
@@ -100,7 +100,7 @@ struct ContentView: View {
                         }
                         
                         
-                    }.tag(2).padding([.horizontal, .top],10)
+                    }.tag(2).padding(.top,10).padding(.horizontal,15)
                     .onAppear(){self.isMasterHomeView = false}
                     
                     
@@ -115,7 +115,7 @@ struct ContentView: View {
                         
                         
                         
-                    }.tag(1).padding([.horizontal, .top],10)
+                    }.tag(1).padding(.top,10).padding(.horizontal,15)
                         .onAppear(){self.isMasterHomeView = false}
                     
                     HomeMasterView().tabItem{
@@ -128,7 +128,7 @@ struct ContentView: View {
                         }
                         
                         
-                    }.tag(0).padding([.horizontal, .top],10)
+                    }.tag(0).padding(.top,10).padding(.horizontal,15)
                         .onAppear(){ self.isMasterHomeView = true}
                     
                 }

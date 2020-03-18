@@ -54,7 +54,8 @@ struct HighSchoolSliderMenu: View {
                                                     }){
                                                      Text("القيادة المدرسية").fontWeight(.bold)
                                                             .foregroundColor(Color.white)
-                                                            .padding(20)
+                                                            .padding(.trailing,28)
+                                                            .padding(.vertical,15)
                                                             .font(.title)
 
                                                     }
@@ -70,7 +71,8 @@ struct HighSchoolSliderMenu: View {
                                                     }){
                                                         Text("الخطة التشغيلية").fontWeight(.bold)
                                                         .foregroundColor(Color.white)
-                                                            .padding(20)
+                                                         .padding(.trailing,28)
+                                                            .padding(.vertical,15)
                                                         .font(.title)
                                                     }
                                                     
@@ -88,7 +90,8 @@ struct HighSchoolSliderMenu: View {
                                                     }){
                                                         Text("الإرشاد الطلابي").fontWeight(.bold)
                                                         .foregroundColor(Color.white)
-                                                            .padding(20)
+                                                        .padding(.trailing,28)
+                                                            .padding(.vertical,15)
                                                         .font(.title)
                                                     }
                                                     
@@ -103,9 +106,10 @@ struct HighSchoolSliderMenu: View {
                                                     }){
                                                         Text("النشاط الطلابي").fontWeight(.bold)
                                                         .foregroundColor(Color.white)
-                                                            .padding(20)
+                                                         .padding(.trailing,28)
+                                                            .padding(.vertical,15)
                                                             .font(.title)
-                                                        .scaledToFit()
+                                                       
                                                         
                                                     }
                                                     
@@ -123,7 +127,8 @@ struct HighSchoolSliderMenu: View {
                                                     }){
                                                         Text("المصادر والمعامل").fontWeight(.bold)
                                                         .foregroundColor(Color.white)
-                                                            .padding(20)
+                                                        .padding(.trailing,28)
+                                                            .padding(.vertical,15)
                                                         .font(.title)
                                                     }
                                                     
@@ -140,7 +145,8 @@ struct HighSchoolSliderMenu: View {
                                                     }){
                                                         Text("الواجبات المدرسية").fontWeight(.bold)
                                                         .foregroundColor(Color.white)
-                                                            .padding(20)
+                                                         .padding(.trailing,28)
+                                                            .padding(.vertical,15)
                                                         .font(.title)
                                                     }
                                                     
@@ -158,7 +164,8 @@ struct HighSchoolSliderMenu: View {
                                                       }){
                                                           Text("التعليم الالكتروني").fontWeight(.bold)
                                                           .foregroundColor(Color.white)
-                                                              .padding(20)
+                                                            .padding(.trailing,28)
+                                                              .padding(.vertical,15)
                                                           .font(.title)
                                                       }
                                                       
@@ -174,7 +181,7 @@ struct HighSchoolSliderMenu: View {
                                                     Spacer()
                                                 
                                                   }
-                                                  .frame(width: 270,height:geometry.size.height, alignment: .topLeading)
+                                                  .frame(width: 270,height:geometry.size.height)
                                                   .background(Color.blue.opacity(0.9))
                                                   .offset(x: 80)
                                                 
