@@ -143,8 +143,20 @@ struct MasterMenuSlider : View {
                                   }
                                   HStack{
                                     Spacer()
-                                      Text("اتصل بنا").padding(20)
-                                    .font(.title)
+                                    
+                                    Button(action:{
+                                        self.viewName = ViewScreen.contactUsView
+                                        self.isSheetPersented.toggle()
+                                    }){
+                                        Text("اتصل بنا")
+                                            .foregroundColor(.primary)
+                                            .padding(20)
+                                        .font(.title)
+                                    }
+                                    
+                                    
+                                    
+                                     
                                   }
                                     Spacer()
                                 
@@ -211,6 +223,10 @@ struct MasterMenuSlider : View {
                            return AnyView( TransferView())
                                       
                        }
+            else if viewScreen == ViewScreen.contactUsView {
+                 return AnyView( ContactUsView())
+                                                 
+            }
         else{
             return AnyView( EmptyView())
         }

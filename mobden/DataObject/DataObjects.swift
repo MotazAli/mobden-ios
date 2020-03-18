@@ -19,7 +19,8 @@ enum ViewScreen: Int {
     registrationView = 5 , publicRelationView = 6 ,supervisionView = 7 , supervisionListView = 8 ,
     supervisionInfoView = 9 , supervisionTeamView = 10 , comprehensiveView = 11 , transferView = 12,
     newsView = 13 , leadership = 14 ,planWork = 15 ,studentSupervisionView = 16 ,
-    studentActivityView = 17 , resourcesLaboratory = 18 , homework = 19 ,honorBoard = 20 , webView = 21
+    studentActivityView = 17 , resourcesLaboratory = 18 , homework = 19 ,honorBoard = 20 , webView = 21,
+    contactUsView = 22
     
     
 }
@@ -859,6 +860,49 @@ struct Homework : Codable, Identifiable{
 
 
 
+struct Contact : Decodable, Identifiable{
+    var id:Int = 0
+    var title:String = ""
+    var mobile1:String = ""
+    var mobile2:String = ""
+    var creationDate:String = ""
+    
+        var arabicDate:String{
+            get{
+                
+                return SystemDates.getArabicDate(date:self.creationDate)
+                    
+            }
+        }
+    
+    
+    
+    init(){  }
+    
+     init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.id = try container.decodeIfPresent(Int.self, forKey: .id) ?? 0
+        self.title = try container.decodeIfPresent(String.self, forKey: .title) ?? ""
+        self.mobile1 = try container.decodeIfPresent(String.self, forKey: .mobile1) ?? ""
+        self.mobile2 = try container.decodeIfPresent(String.self, forKey: .mobile2) ?? ""
+        self.creationDate = try container.decodeIfPresent(String.self, forKey: .creationDate) ?? ""
+        
 
+    }
+    
+    
+    
+    enum CodingKeys : String ,CodingKey{
+
+        case id = "id"
+        case title = "title"
+        case mobile1 = "mobile1"
+        case mobile2 = "mobile2"
+        case creationDate = "creationDate"
+        
+        
+    }
+     
+}
 
 

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C3579F3A24228D7F008A6F5D /* ContactUsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3579F3924228D7F008A6F5D /* ContactUsView.swift */; };
 		C369A66F2406C4D100CB6E79 /* DataObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = C369A66E2406C4D100CB6E79 /* DataObjects.swift */; };
 		C369A6712406C58C00CB6E79 /* RequestServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = C369A6702406C58C00CB6E79 /* RequestServices.swift */; };
 		C369A6752406C79800CB6E79 /* HomeMasterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C369A6742406C79800CB6E79 /* HomeMasterView.swift */; };
@@ -52,6 +53,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C3579F3924228D7F008A6F5D /* ContactUsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactUsView.swift; sourceTree = "<group>"; };
 		C369A66E2406C4D100CB6E79 /* DataObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataObjects.swift; sourceTree = "<group>"; };
 		C369A6702406C58C00CB6E79 /* RequestServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestServices.swift; sourceTree = "<group>"; };
 		C369A6742406C79800CB6E79 /* HomeMasterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMasterView.swift; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 				C369A6B2242026BF00CB6E79 /* HomeworkView.swift */,
 				C369A6B424218E1400CB6E79 /* HonorBoardView.swift */,
 				C369A6B62421C5F600CB6E79 /* WebView.swift */,
+				C3579F3924228D7F008A6F5D /* ContactUsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -315,6 +318,7 @@
 				C3A039DE23FFA840002BBE36 /* SceneDelegate.swift in Sources */,
 				C369A6AF241EE6F600CB6E79 /* StudentActivityView.swift in Sources */,
 				C369A6712406C58C00CB6E79 /* RequestServices.swift in Sources */,
+				C3579F3A24228D7F008A6F5D /* ContactUsView.swift in Sources */,
 				C369A6AB241D8FA600CB6E79 /* LeadershipView.swift in Sources */,
 				C369A69E2417531900CB6E79 /* PrimarySchoolHomeView.swift in Sources */,
 				C369A6A2241C6C2000CB6E79 /* MiddleSchoolHomeView.swift in Sources */,
